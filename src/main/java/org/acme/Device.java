@@ -7,7 +7,7 @@ import java.util.Random;
 public class Device {
 
     private String deviceName = null;
-    private int humidity = 0;
+    private int heartFreq = 0;
     private int temp = 0;
     private Random random = new Random();
 
@@ -23,7 +23,7 @@ public class Device {
         this.deviceName = deviceName;
     }
 
-    public int getHumidity() {
+    public int getHeartFrequency() {
         int min = 50;
         int max = 100;
         return (int) (Math.random() * (max - min)) + min;
@@ -31,13 +31,13 @@ public class Device {
 
     }
 
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
+    public void setHeartFreq(int heartFreq) {
+        this.heartFreq = heartFreq;
     }
 
     public int getTemp() {
-        int min = 10;
-        int max = 50;
+        int min = 36;
+        int max = 40;
         return (int) (Math.random() * (max - min)) + min;
     }
 
@@ -47,7 +47,7 @@ public class Device {
 
     @Override
     public String toString(){
-        return "{\"deviceName\":\""+deviceName+"\",\"humidity\":"+getHumidity()+",\"temp\":"+getTemp()+"}";
+        return "{\"deviceName\":\""+deviceName+"\",\"heartFrequency\":"+getHeartFrequency()+",\"temp\":"+getTemp()+"}";
     }
 
 }

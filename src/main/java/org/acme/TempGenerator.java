@@ -16,7 +16,7 @@ public class TempGenerator {
 
     @Outgoing("device-temp")
     public Flowable<String> generate() {
-        return Flowable.interval(2, TimeUnit.SECONDS)
+        return Flowable.interval(1,  TimeUnit.SECONDS)
                 .onBackpressureDrop()
                 .map(t -> {
                     String data = esp8266.toString();

@@ -6,14 +6,14 @@ var config = {
     data: {
         labels: xAxis,
         datasets: [{
-            label: 'Heart Frequency',
+            label: 'Temperature',
             backgroundColor: 'red',
             borderColor: 'red',
             data: [
             ],
             fill: false,
         }, {
-            label: 'Blood Pressure',
+            label: 'Heart Frequency',
             fill: false,
             backgroundColor: 'blue',
             borderColor: 'blue',
@@ -42,7 +42,7 @@ var config = {
                 display: true,
                 title: {
                     display: true,
-                    text: 'Month'
+                    text: 'Day'
                 }
             },
             y: {
@@ -65,13 +65,12 @@ var source = new EventSource("/devices/stream");
 source.onmessage = function (event) {
     var incoming = JSON.parse(event.data);
 
-
     if (config.data.datasets.length > 0) {
         xMax = xMax +5;
         config.data.labels.push(xMax);
 
         config.data.datasets[0].data.push(incoming.temp);
-        config.data.datasets[1].data.push(incoming.humidity);
+        config.data.datasets[1].data.push(incoming.heartFrequency);
         window.myLine.update();
     }
     //Date.getTime()
@@ -79,7 +78,7 @@ source.onmessage = function (event) {
     tr_temp = "<tr role=\"row\">\n" +
         "            <td role=\"cell\" data-label=\"Device Name\">A</td>\n" +
         "            <td role=\"cell\" data-label=\"Heart Frequency\">B</td>\n" +
-        "            <td role=\"cell\" data-label=\"Blood Pressure\">C</td>\n" +
+        "            <td role=\"cell\" data-label=\"Temperature\">C</td>\n" +
         "            <td role=\"cell\" data-label=\"Reading\">D</td>\n" +
         "        </tr>";
 
@@ -94,11 +93,14 @@ source.onmessage = function (event) {
 
     var cell = document.createElement("td")
     var cellText = document.createTextNode(incoming.temp+"°");
+    if(incoming.temp > 36){
+        //alert("You have contracted FEVER")
+    }
     cell.appendChild(cellText);
     row.appendChild(cell);
 
     var cell = document.createElement("td")
-    var cellText = document.createTextNode(incoming.humidity+"%");
+    var cellText = document.createTextNode(incoming.heartFrequency+" bpm");
     cell.appendChild(cellText);
     row.appendChild(cell);
 
