@@ -9,6 +9,8 @@ Il progetto utilizza le seguenti tecnologie:
 
 - Docker (Installare Docker Desktop:)
         - https://docs.docker.com/desktop/install/windows-install/
+        - setup wsl 2 per avviare la virtualizzazione:
+            - https://learn.microsoft.com/it-it/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
 
 - MongoDB (installare MongoDB):
         - https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
@@ -31,7 +33,8 @@ Una volta installati Docker e MongoDB:
         - creare una nuova shell (anche da intellij) e digitare:
             - mongosh "mongodb://localhost:27017"
     - Avviare l'applicazione quarkus:
-            - mvn quarkus:dev
+            - mvn quarkus:dev oppure
+            - mvnw quarkus:dev
 
 Inserire in un browser: http://localhost:8080/MIO_ENDPOINT per visualizzare l'output
 -----------------------------------------------------------------------
