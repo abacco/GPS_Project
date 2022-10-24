@@ -28,7 +28,6 @@ public class Device {
         int max = 100;
         return (int) (Math.random() * (max - min)) + min;
         //return random.nextInt((max-min)+min);
-
     }
 
     public void setHeartFreq(int heartFreq) {

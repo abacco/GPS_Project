@@ -22,5 +22,4 @@ public class Reciever {
         System.out.println("Receiving readings: " + d);
         return d;
     }
-
 }
