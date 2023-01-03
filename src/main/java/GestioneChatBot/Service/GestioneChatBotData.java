@@ -20,7 +20,7 @@ public class GestioneChatBotData {
         return mongoClient.getDatabase(DBname).getCollection(DBname);
     }
 
-    private List<Solution> getSolutions(String problem) {
+    public List<Solution> getSolutions(String problem) {
         List<Solution> list = new ArrayList<>();
         MongoCursor<Document> cursor = getCollection().find().iterator();
 
