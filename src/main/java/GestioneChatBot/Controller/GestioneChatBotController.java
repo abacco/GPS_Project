@@ -6,12 +6,10 @@ import GestioneChatBot.Service.Solution;
 import GestioneChatBot.Service.SolutionsNotFound;
 import io.vertx.core.json.JsonArray;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/ChatBot")
 public class GestioneChatBotController {
