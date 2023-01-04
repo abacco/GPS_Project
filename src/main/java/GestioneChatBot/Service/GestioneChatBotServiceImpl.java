@@ -1,8 +1,9 @@
 package GestioneChatBot.Service;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
-
+@ApplicationScoped
 public class GestioneChatBotServiceImpl implements GestioneChatBotService{
 
     @Inject

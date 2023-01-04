@@ -9,6 +9,10 @@ import io.vertx.core.json.JsonArray;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Path("/ChatBot")
@@ -37,11 +41,21 @@ public class GestioneChatBotController {
     }
 
     @GET
+    @Path("/interface")
     @Produces(MediaType.TEXT_HTML)
-    public String printCBPage() {
+    public String printCBPage() throws IOException {
+        String path = "C:\\Users\\aless\\Documents\\GPS_Project\\src\\main\\java\\GestioneChatBot\\Controller\\ChatBot.html";
 
-        //stub
-
-        return null;
+        return Files.readString(Paths.get(path));
     }
+
+    @GET
+    @Path("/ChatBotScript")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getScript() throws IOException {
+        String path = "C:\\Users\\aless\\Documents\\GPS_Project\\src\\main\\java\\GestioneChatBot\\Controller\\ChatBotScript.js";
+
+        return Files.readString(Paths.get(path));
+    }
+
 }
