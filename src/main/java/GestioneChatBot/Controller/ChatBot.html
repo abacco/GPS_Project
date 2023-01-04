@@ -10,12 +10,14 @@
 </div>
 
 <div id="CBButtonList">
-    <button id="CBButtonA" name="CBButton" value="Infarto">Infarto</button>
-    <button id="CBButtonB" name="CBButtonLine" value="Tachicardia">Tachicardia</button>
-    <button id="CBButtonC" name="CBButtonLine" value="Pressione Alta">Pressione Alta</button>
-    <button id="CBButtonD" name="CBButtonLine" value="Pressione Bassa">Pressione Bassa</button>
-    <button id="CBButtonE" name="CBButtonLine" value="Febbre">Febbre</button>
+    <button id="CBButtonA" name="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
+    <button id="CBButtonB" name="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
+    <button id="CBButtonC" name="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
+    <button id="CBButtonD" name="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
+    <button id="CBButtonE" name="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
 </div>
+
+<script src="ChatBotScript.js"></script>
 
 </body>
 </html>
