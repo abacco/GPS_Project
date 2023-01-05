@@ -44,7 +44,7 @@ public class GestioneChatBotController {
     @Path("/interface")
     @Produces(MediaType.TEXT_HTML)
     public String printCBPage() throws IOException {
-        String path = "C:\\Users\\aless\\Documents\\GPS_Project\\src\\main\\java\\GestioneChatBot\\Controller\\ChatBot.html";
+        String path = "../src/main/java/GestioneChatBot/Controller/ChatBot.html";
 
         return Files.readString(Paths.get(path));
     }
@@ -53,9 +53,8 @@ public class GestioneChatBotController {
     @Path("/ChatBotScript")
     @Produces(MediaType.TEXT_PLAIN)
     public String getScript() throws IOException {
-        String path = "C:\\Users\\aless\\Documents\\GPS_Project\\src\\main\\java\\GestioneChatBot\\Controller\\ChatBotScript.js";
+        String path = "../src/main/java/GestioneChatBot/Controller/ChatBotScript.js";
 
         return Files.readString(Paths.get(path));
     }
-
 }
