@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Report</title>
+
+    <div id="download">
+    <h1>Sezione Report</h1>
+    </div>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+            integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer">
+    </script>
+</head>
+
+<body>
+<button id="download-button">Download PDF</button>
+<script> const button = document.getElementById('download-button');
+        function generatePDF() {
+        // Choose the element that your content will be rendered to.
+        const element = document.getElementById('download');
+        html2pdf().from(element).save();
+    }
+    button.addEventListener('click', generatePDF);
+</script>
+</body>
+</html>
