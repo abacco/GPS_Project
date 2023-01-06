@@ -1,0 +1,117 @@
+@charset "ISO-8859-1";
+body{
+    background-color: #a0faed;
+}
+h1{
+    color: red;
+
+}
+
+.generale{
+    display: inline-flex;
+
+}
+
+.predizioni{
+
+    display: inline-flex;
+
+    margin-top: 100px;
+
+}
+p{
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 400px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 175px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+
+.infarto{
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 350px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 155px;
+    margin-top: 5px;
+    border: none;
+
+}
+
+.aterosclerosi{
+
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 340px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 155px;
+    margin-top: 5px;
+    border: none;
+}
+
+h2{
+
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.boxgrafico{
+
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 800px;
+    text-align: center;
+    margin-right: 50px;
+    font-size: 50px;
+    margin-left: 60px;
+    height: 700px;
+    margin-top: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px grey;
+    position: absolute;
+    right: 5px;
+    top: 50px;
+
+
+
+}
