@@ -8,9 +8,13 @@ function sendRequest(problem) {
         let element = document.getElementById("responseArea");
 
         for (let i in responseArray) {
-            let node = document.createTextNode(responseArray[i])
+            let lineBreak = document.createElement("br");
+            let num =  Number(i) + 1
+
+            let node = document.createTextNode(num + ". " + responseArray[i] )
 
             element.append(node)
+            element.append(lineBreak)
         }
     }
 
