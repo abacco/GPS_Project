@@ -1,0 +1,424 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/@patternfly/patternfly/patternfly.css"
+            crossorigin="anonymous"
+    >
+    <title>CardioTel - Device - Home Page</title>
+    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+    <script src="https://kit.fontawesome.com/aaf6c434f3.js" crossorigin="anonymous"></script>
+    <style>
+        ::-webkit-scrollbar{
+            width:0.4em;
+            height:0.2em;
+            background: transparent;
+            margin-right: 10px;
+            padding: 5px;
+        }
+        ::-webkit-scrollbar:hover{
+            background-color:#eaeaea ;
+            border: none;
+        }
+        ::-webkit-resizer{
+            -webkit-border-radius:4px;
+            background-color:#ccc;
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb{
+            min-height:0.8em;
+            min-width:0.8em;
+            -webkit-border-radius:4px;
+            background-color: rgba(42, 42, 42, 0.71);
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            background-color: #282828;
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb:active{
+            background-color:rgba(42, 42, 42, 0.71);
+            border: none;
+        }
+
+        body {
+            background-color: #a0faec;
+        }
+
+        .float{
+            position:fixed;
+            bottom:10px;
+            right:72px;
+            background-color: #fff;
+            color:#000;
+            border-radius:50px;
+            text-align:center;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+            z-index: 999;
+        }
+
+        .float-due{
+            position:fixed;
+            bottom:10px;
+            left:72px;
+            background-color: #fff;
+            color:#000;
+            border-radius:50px;
+            text-align:center;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+            z-index: 999;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+            width: 1200px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 15px;
+            font-size: 0;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 25px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+        a:nth-child(1) {
+            width: 300px;
+        }
+        a:nth-child(2) {
+            width: 300px;
+        }
+        a:nth-child(3) {
+            width: 300px;
+        }
+        a:nth-child(4) {
+            width: 300px;
+        }
+        a:nth-child(5) {
+            width: 300px;
+        }
+        nav .start-home, a:nth-child(1):hover~.animation {
+            width: 300px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+        nav .start-area-predizioni, a:nth-child(2):hover~.animation {
+            width: 300px;
+            left: 300px;
+            background-color: #1abc9c;
+        }
+        nav .start-report, a:nth-child(3):hover~.animation {
+            width: 300px;
+            left: 600px;
+            background-color: #1abc9c;
+        }
+        nav .start-chatbot, a:nth-child(4):hover~.animation {
+            width: 300px;
+            left: 900px;
+            background-color: #1abc9c;
+        }
+        nav .start-contact, a:nth-child(5):hover~.animation {
+            width: 300px;
+            left: 1200px;
+            background-color: #1abc9c;
+        }
+
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+
+            background-color: white;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+        }
+
+        .container2 {
+            background-color: white;
+
+            height: 765px;
+            overflow: scroll;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+            padding: 5px;
+        }
+
+        .container3 {
+            background-color: white;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+            padding: 3px;
+        }
+
+        .caption-border {
+            /* bordi arrotondati */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        table.comicGreen {
+            border: 10px solid #FFFFFF;
+            border-radius: 10px;
+            background-color: #ffffff;
+            width: 100%;
+            text-align: left;
+            align-content: center;
+            border-collapse: collapse;
+        }
+        table.comicGreen td, table.comicGreen th {
+            border: 0px solid #fff;
+            padding: 3px 20px;
+            border-radius: 10px;
+        }
+
+        table.comicGreen tfoot {
+            font-size: 21px;
+            font-weight: bold;
+            color: #000;
+            background: #fff;
+            border-top: 1px solid #fff;
+            border-radius: 10px;
+        }
+        table.comicGreen tfoot td {
+            border-radius: 10px;
+            font-size: 21px;
+        }
+
+        .sensore-uno {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-due {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-tre {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-quattro {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894; /* red color for not error in sensor C2002D*/
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-cinque {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .alert {
+            border-radius: 15px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            color: black;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+    </style>
+</head>
+<body>
+<p>
+    <a id="inizio"></a>
+</p>
+<a href="#fine" class="float smooth" style="width:50px; height:50px; padding-top: 18px">
+    <i class="fa-solid fa-chevron-down"></i>
+</a>
+
+<a href="#inizio" class="float-due smooth" style="width:50px; height:50px; padding-top: 18px">
+    <i class="fa-solid fa-chevron-up"></i>
+</a>
+
+<br>
+<div class="container">
+    <!-- PatternFly components -->
+    <div style="width:100%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <br>
+    <div class="container3">
+        <strong>
+            <table class="comicGreen" style="border-right-width: 0px; border-left-width: 0px;">
+                <tfoot>
+                <tr>
+                    <td>Temperatura <br> Corporea</td>
+                    <td><div class="sensore-uno"></div></td>
+                    <td>Frequenza <br> Cardiaca</td>
+                    <td><div class="sensore-due"></div></td>
+                    <td>Ossigenazione</td>
+                    <td><div class="sensore-tre"></div></td>
+                    <td>Colesterolo</td>
+                    <td><div class="sensore-quattro"></div></td>
+                    <td>Pressione</td>
+                    <td><div class="sensore-cinque"></div></td>
+                </tr>
+                </tfoot>
+            </table>
+        </strong>
+        <br>
+        <div class="alert alert-success" style="text-align: center">
+            <strong>I sensori funzionano correttamente</strong> <a href="#" class="alert-link"></a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script src='./plot.js'></script>
+    <div class="container2">
+        <table class="pf-c-table pf-m-grid-md" role="grid" id="device-table">
+            <caption class="caption-border">Rilevazione dei parametri in tempo reale</caption>
+            <thead>
+            <tr role="row">
+                <th role="columnheader" scope="col" >Nome Dispositivo</th>
+                <th role="columnheader" scope="col">Temperatura Corporea</th>
+                <th role="columnheader" scope="col">Frequenza Cardiaca</th>
+                <th role="columnheader" scope="col">Ossigenazione</th>
+                <th role="columnheader" scope="col">Colesterolo</th>
+                <th role="columnheader" scope="col">Pressione</th>
+                <th role="columnheader" scope="col">Lettura Effettuata</th>
+            </tr>
+            </thead>
+            <tbody role="rowgroup" id="tempBody">
+            </tbody>
+        </table>
+        <p>
+            <a id="fine"></a>
+        </p>
+    </div>
+</div>
+<nav style="right: 195px;">
+    <a href="#">Device</a>
+    <a href="#">Area Predizioni</a>
+    <a href="#">Report</a>
+    <a href="#">Chatbot</a>
+    <div class="animation start-home"></div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<button id="saveDataBtn" type="submit" style="visibility: hidden"></button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js"></script>
+<script>
+    var smooth = [$('a.smooth'), 100, 750];
+
+    smooth[0].click(function() {
+        $('html, body').animate({
+            scrollTop: $('[id="' + $.attr(this, 'href').substr(1) + '"]').offset().top -smooth[1]
+        }, smooth[2]);
+        return false;
+    });
+</script>
+</body>
+</html>
+
