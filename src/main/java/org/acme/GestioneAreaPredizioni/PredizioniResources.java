@@ -6,26 +6,45 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.acme.Device;
+import org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniAteroService;
+import org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniInfartoService;
+import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.reactivestreams.Publisher;
+
+import java.util.List;
+
+
 @Path("/AreaPredizioni")
 public class PredizioniResources {
+
     @Inject
     PredizioniInfartoService serviceInfarto;
     PredizioniAteroService serviceAtero;
+    @Channel("my-data-stream-AP")
+    Publisher<List<Predizione>> data;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public double PredizioneInfarto(Rilevazione rilevazione) {
-        return serviceInfarto.getPredizioneInfarto(rilevazione);
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public String PredizioneInfarto(List<Device> rilevazione) {
+        return null;//serviceInfarto.getPredizioneInfarto(rilevazione).toString();
     }
 
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public double PredizioneAtero(Rilevazione rilevazione) {
-        return serviceAtero.getPredizioneAtero(rilevazione);
+    public String PredizioneAtero(List<Device> rilevazione) {
+        return null;//serviceAtero.getPredizioneAtero(rilevazione).toString();
+    }
+
+    @GET
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+        public Publisher<List<Predizione>> stream() {
+        return data;
+    }
+
     }
 
 
 
-
-}
