@@ -73,13 +73,13 @@ public class Device {
         first = (int) (Math.random() * (max - min)) + min;
 
         if(Math.random() > 0.5 ) {
-            if(first > 37) {
+            if(first == 37) {
                 return (int) (Math.random() * (42 - first)) + first;
             }
         }
 
         if(Math.random() > 0.5) {
-            if(first < 35) {
+            if(first == 35) {
                 return (int) (Math.random() * (33 - first)) + first; // crea un valore tra 33 e 35
             }
         }
@@ -100,7 +100,7 @@ public class Device {
         first = (int) (Math.random() * (max - min)) + min;
 
         if(Math.random() > 0.5) {
-            if(first < 75) {
+            if(first == 80) {
                 return (int) (Math.random() * (45 - first)) + first; // crea un valore tra 65 e 45
             }
         }
@@ -121,13 +121,13 @@ public class Device {
         first = (int) (Math.random() * (max - min)) + min;
 
         if(Math.random() > 0.5 ) {
-            if(first > 230) {
+            if(first == 230) {
                 return (int) (Math.random() * (400 - first)) + first;
             }
         }
 
         if(Math.random() > 0.5) {
-            if(first < 170) {
+            if(first == 170) {
                 return (int) (Math.random() * (100 - first)) + first; // crea un valore tra 100 e 170
             }
         }
@@ -148,13 +148,13 @@ public class Device {
         first = (int) (Math.random() * (max - min)) + min;
 
         if(Math.random() > 0.5 ) {
-            if(first > 129) {
+            if(first == 129) {
                 return (int) (Math.random() * (180 - first)) + first;
             }
         }
 
         if(Math.random() > 0.5) {
-            if(first < 78) {
+            if(first == 78) {
                 return (int) (Math.random() * (30 - first)) + first; // crea un valore tra 30 e 78
             }
         }
