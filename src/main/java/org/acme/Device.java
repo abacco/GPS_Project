@@ -34,22 +34,29 @@ public class Device {
 
 
     public int getHeartFrequency() {
-        int min = 50;
-        int max = 140;
+        int min = 60;
+        int max = 90;
 
         int first; //valore fisualizzato solo quando otteniamo un valore critico
 
-        first = (int) (Math.random() * (max - min)) + min;
+        first = (int) (Math.random() * (max - min)) + min;  //calcolo valore random tra min e max
 
-        if(first >= 90) {
-            return (int) (Math.random() * (max - first)) + first;
+        //vede se il valore random è maggiore di 90
+        if(Math.random() > 0.5) {
+            if(first >= 89) {
+                return (int) (Math.random() * (140 - first)) + first; // crea un valore tra 90 e 140
+            }
         }
 
-        if(first <= 60) {
-            return (int) (Math.random() * (min - first)) + first;
+
+        //vede se il valore random è
+        if(Math.random() > 0.5) {
+            if(first == 60) {
+                return (int) (Math.random() * (50 - first)) + first; // crea un valore tra 50 e 60
+            }
         }
 
-        else return first;
+        return first;
         //return random.nextInt((max-min)+min);
     }
 
@@ -58,17 +65,26 @@ public class Device {
     }
 
     public int getTemp() {
-        int min = 34;
-        int max = 42;
+        int min = 35;
+        int max = 37;
 
         int first;
 
         first = (int) (Math.random() * (max - min)) + min;
 
-        if(first >= 39) {
-            return (int) (Math.random() * (max - first)) + first;
+        if(Math.random() > 0.5 ) {
+            if(first > 37) {
+                return (int) (Math.random() * (42 - first)) + first;
+            }
         }
-        else return first;
+
+        if(Math.random() > 0.5) {
+            if(first < 35) {
+                return (int) (Math.random() * (33 - first)) + first; // crea un valore tra 33 e 35
+            }
+        }
+
+        return first;
     }
 
     public void setTemp(int temp) {
@@ -76,17 +92,20 @@ public class Device {
     }
 
     public int getOssigenazione() {
-        int min = 20;
+        int min = 80;
         int max = 100;
 
         int first;
 
         first = (int) (Math.random() * (max - min)) + min;
 
-        if(first <= 80) {
-            return (int) (Math.random() * (min - first)) + first;
+        if(Math.random() > 0.5) {
+            if(first < 75) {
+                return (int) (Math.random() * (45 - first)) + first; // crea un valore tra 65 e 45
+            }
         }
-        else return first;
+
+        return first;
     }
 
     public void setOssigenazione(int ossigenazione) {
@@ -94,17 +113,26 @@ public class Device {
     }
 
     public int getColesterolo() {
-        int min = 50;
-        int max = 400;
+        int min = 170;
+        int max = 230;
 
         int first;
 
         first = (int) (Math.random() * (max - min)) + min;
 
-        if(first >= 200) {
-            return (int) (Math.random() * (max - first)) + first;
+        if(Math.random() > 0.5 ) {
+            if(first > 230) {
+                return (int) (Math.random() * (400 - first)) + first;
+            }
         }
-        else return first;
+
+        if(Math.random() > 0.5) {
+            if(first < 170) {
+                return (int) (Math.random() * (100 - first)) + first; // crea un valore tra 100 e 170
+            }
+        }
+
+        return first;
     }
 
     public void setColesterolo(int colesterolo) {
@@ -112,17 +140,26 @@ public class Device {
     }
 
     public int getPressione() {
-        int min = 30;
-        int max = 180;
+        int min = 78;
+        int max = 129;
 
         int first;
 
         first = (int) (Math.random() * (max - min)) + min;
 
-        if(first >= 135) {
-            return (int) (Math.random() * (max - first)) + first;
+        if(Math.random() > 0.5 ) {
+            if(first > 129) {
+                return (int) (Math.random() * (180 - first)) + first;
+            }
         }
-        else return first;
+
+        if(Math.random() > 0.5) {
+            if(first < 78) {
+                return (int) (Math.random() * (30 - first)) + first; // crea un valore tra 30 e 78
+            }
+        }
+
+        return first;
     }
 
     public void setPressione(int pressione) {
