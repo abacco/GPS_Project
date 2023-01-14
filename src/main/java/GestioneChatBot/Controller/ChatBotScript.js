@@ -7,6 +7,13 @@ function sendRequest(problem) {
 
         let element = document.getElementById("responseArea");
 
+        let clearButton = document.createElement("button")
+        clearButton.innerHTML="Close"
+        clearButton.addEventListener("click", function () {
+            clear()
+        })
+        element.append(clearButton)
+
         for (let i in responseArray) {
             let lineBreak = document.createElement("br");
             let num =  Number(i) + 1

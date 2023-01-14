@@ -3,6 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <title>ChatBot</title>
+    <style>
+        ::-webkit-scrollbar{
+            width:0.4em;
+            height:0.2em;
+            background: transparent;
+            margin-right: 10px;
+            padding: 5px;
+        }
+        ::-webkit-scrollbar:hover{
+            background-color:#eaeaea ;
+            border: none;
+        }
+        ::-webkit-resizer{
+            -webkit-border-radius:4px;
+            background-color:#ccc;
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb{
+            min-height:0.8em;
+            min-width:0.8em;
+            -webkit-border-radius:4px;
+            background-color: rgba(42, 42, 42, 0.71);
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            background-color: #282828;
+            border: none;
+        }
+        ::-webkit-scrollbar-thumb:active{
+            background-color:rgba(42, 42, 42, 0.71);
+            border: none;
+        }
+
+        body {
+            background-color: #a0faec;
+        }
+
+        .float{
+            position:fixed;
+            bottom:10px;
+            right:72px;
+            background-color: #fff;
+            color:#000;
+            border-radius:50px;
+            text-align:center;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+            z-index: 999;
+        }
+
+        .float-due{
+            position:fixed;
+            bottom:10px;
+            left:72px;
+            background-color: #fff;
+            color:#000;
+            border-radius:50px;
+            text-align:center;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+            z-index: 999;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+            width: 1200px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 15px;
+            font-size: 0;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 25px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+        a:nth-child(1) {
+            width: 300px;
+        }
+        a:nth-child(2) {
+            width: 300px;
+        }
+        a:nth-child(3) {
+            width: 300px;
+        }
+        a:nth-child(4) {
+            width: 300px;
+        }
+        a:nth-child(5) {
+            width: 300px;
+        }
+        nav .start-home, a:nth-child(1):hover~.animation {
+            width: 300px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+        nav .start-area-predizioni, a:nth-child(2):hover~.animation {
+            width: 300px;
+            left: 300px;
+            background-color: #1abc9c;
+        }
+        nav .start-report, a:nth-child(3):hover~.animation {
+            width: 300px;
+            left: 600px;
+            background-color: #1abc9c;
+        }
+        nav .start-chatbot, a:nth-child(4):hover~.animation {
+            width: 300px;
+            left: 900px;
+            background-color: #1abc9c;
+        }
+        nav .start-contact, a:nth-child(5):hover~.animation {
+            width: 300px;
+            left: 1200px;
+            background-color: #1abc9c;
+        }
+
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+
+            background-color: white;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+        }
+
+        .container2 {
+            background-color: white;
+
+            height: 765px;
+            overflow: scroll;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+            padding: 5px;
+        }
+
+        .container3 {
+            background-color: white;
+
+            /* bordi arrotondati */
+            border-radius: 15px;
+            border: 3px solid #fff;
+
+            /* ombra */
+            box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+            padding: 3px;
+        }
+
+        .caption-border {
+            /* bordi arrotondati */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        table.comicGreen {
+            border: 10px solid #FFFFFF;
+            border-radius: 10px;
+            background-color: #ffffff;
+            width: 100%;
+            text-align: left;
+            align-content: center;
+            border-collapse: collapse;
+        }
+        table.comicGreen td, table.comicGreen th {
+            border: 0px solid #fff;
+            padding: 3px 20px;
+            border-radius: 10px;
+        }
+
+        table.comicGreen tfoot {
+            font-size: 21px;
+            font-weight: bold;
+            color: #000;
+            background: #fff;
+            border-top: 1px solid #fff;
+            border-radius: 10px;
+        }
+        table.comicGreen tfoot td {
+            border-radius: 10px;
+            font-size: 21px;
+        }
+
+        .sensore-uno {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-due {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-tre {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-quattro {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894; /* red color for not error in sensor C2002D*/
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .sensore-cinque {
+            width: 25px;
+            height: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            background: #ace894;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+
+        .alert {
+            border-radius: 15px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            color: black;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        #responseArea {
+            background-color: #1abc9c;
+            border-radius: 6px;
+        }
+
+        #CBButtonList {
+            border-radius: 6px;
+            background-color: darkcyan;
+            height: 180px;
+            width: 100px;
+            position:absolute;
+            display:flex;
+            flex-direction: column;
+            flex-wrap:wrap;
+            bottom: 0;
+            right: 0;
+        }
+
+        #CBButtonList button {
+            background-color: transparent;
+            border: transparent;
+            border-radius: 5px;
+            display: block;
+            justify-self: center;
+            margin-top: 5px;
+        }
+
+        #CBButtonList button:hover {
+            background-color: darkblue;
+            border: transparent;
+            color: white;
+        }
+
+        #CBButtonList button:active {
+            background-color: white;
+            color: black;
+        }
+
+        #responseArea button {
+            position: relative;
+            background-color: transparent;
+            border: transparent;
+            border-radius: 5px;
+            display: inline-block;
+            float: right;
+        }
+
+        #responseArea button:hover {
+            background-color: darkblue;
+            border: transparent;
+            color: white;
+        }
+
+        #responseArea button:active {
+            background-color: white;
+            color: black;
+        }
+
+        #CBButtonList hr {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 80px;
+            height: 1px;
+            border: none;
+            background-color: black;
+        }
+
+    </style>
 </head>
 <body>
 <div id="responseArea">
@@ -10,11 +388,15 @@
 </div>
 
 <div id="CBButtonList">
-    <button id="CBButtonA" name="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
-    <button id="CBButtonB" name="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
-    <button id="CBButtonC" name="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
-    <button id="CBButtonD" name="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
-    <button id="CBButtonE" name="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
+    <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
+    <hr>
+    <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
+    <hr>
+    <button id="CBButtonC" class="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
+    <hr>
+    <button id="CBButtonD" class="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
+    <hr>
+    <button id="CBButtonE" class="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
 </div>
 
 <script type="text/javascript" src="./ChatBotScript"></script>
