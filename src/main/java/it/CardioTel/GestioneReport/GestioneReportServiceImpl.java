@@ -2,12 +2,13 @@ package it.CardioTel.GestioneReport;
 
 import org.bson.Document;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+@ApplicationScoped
 public class GestioneReportServiceImpl {
 
     @Inject
@@ -27,6 +28,8 @@ public class GestioneReportServiceImpl {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(pot[0]);
+        System.out.println(pot[1]);
         ArrayList<Document> list = new ArrayList<Document>();
         list = gestioneReportData.getMeasurement(pot);
         return list;

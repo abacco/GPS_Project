@@ -12,15 +12,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 @Path("/Report")
-public class GestioneReportController {
+public class GestioneReportController  {
 
    @Inject
     GestioneReportServiceImpl gestioneReportService;
 
-    @POST
-    @Path("/getMeasurements")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getReport(@FormParam("datarange") String periodOfTime) {
+    @GET
+    public String getReport(@QueryParam("daterange") String periodOfTime) {
         try {
             ArrayList<Document> measurementList = gestioneReportService.getMeasurements(periodOfTime);
 
@@ -32,7 +30,7 @@ public class GestioneReportController {
 
             return array.toString();
         } catch (Exception e) {
-            return null;
+            return e.getMessage();
         }
     }
 
@@ -40,7 +38,7 @@ public class GestioneReportController {
     @Path("/interface")
     @Produces(MediaType.TEXT_HTML)
     public String printReportPage() throws IOException {
-        String path = "./src/main/resources/META-INF/resources/Report.html";
+        String path = "../src/main/resources/META-INF/resources/Report.html";
 
         return Files.readString(Paths.get(path));
     }
@@ -49,10 +47,11 @@ public class GestioneReportController {
     @Path("/ReportScript")
     @Produces(MediaType.TEXT_PLAIN)
     public String getScript() throws IOException {
-        String path = "./src/main/resources/META-INF/resources/Report.html";
+        String path = "../src/main/resources/META-INF/resources/Report.html";
 
         return Files.readString(Paths.get(path));
     }
+
 }
 
 
