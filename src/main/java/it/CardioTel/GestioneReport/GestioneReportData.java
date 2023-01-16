@@ -25,10 +25,10 @@ public class GestioneReportData{
     public ArrayList<Document> getMeasurement(Date[] pot) {
 
         Date startDate = pot[0];
-        Date endDate = pot[2];
+        Date endDate = pot[1];
         ArrayList<Document> list = new ArrayList<Document>();
         // controllare mongoClient
-       // MongoClient mongoClient = new MongoClient("localhost", 27017);
+        // MongoClient mongoClient = new MongoClient("localhost", 27017);
         MongoDatabase database = mongoClient.getDatabase("db");
         MongoCursor<Document> cursor = getCollection().find().iterator();
         MongoCollection<Document> measureCollection = database.getCollection("Misurazioni");
