@@ -4,28 +4,79 @@
 <head>
   <meta charset="UTF-8">
   <title>Area Predizioni</title>
+
+  <!--JQuery-->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <!--Foglio di stile-->
   <link href="AreaPredizioni/AreaPredizioni.css" rel="stylesheet" type="text/css">
+
+  <!--Javascript-->
   <script src = "./AreaPredizioni/AreaPredizioni.js"></script>
 
 </head>
+
 <body>
+
   <div class="generale">
+
     <div>
-    <div class="predizioni">
-      <p> <input type = "button" class = "aterosclerosi" value = "Aterosclerosi"></p> <h2>% Rischio</h2>
+
+      <!--Pulsante Aterosclerosi-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "aterosclerosi" value = "Aterosclerosi"></p>
+        <div>
+
+          <!--Sezione percentuale Aterosclerosi-->
+          <table class ="percentuale">
+
+            <thead><th>%Rischio</th></thead>
+
+            <!--Stampa percentuale Aterosclerosi-->
+            <tbody role="rowgroup" id="ateroBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    <br>
+      <!--Pulsante Infarto-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "infarto" value = "Infarto"></p>
+        <div>
+
+          <!--Sezione percentuale Infarto-->
+          <table class ="percentuale">
+
+            <thead><th>%Rischio</th></thead>
+
+            <!--Stampa percentuale Infarto-->
+            <tbody role="rowgroup" id="infartoBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
     </div>
 
-  <br>
+    <!--Sezione grafico predizioni-->
+    <div id="graficoBody"></div>
 
-    <div class="predizioni">
-      <p> <input type = "button" class = "infarto" value = "Infarto"></p> <h2>% Rischio</h2>
-    </div>
-    </div>
-    <div class="boxgrafico">
+  </div>
 
-    </div>
+  <!--Barra Navigazionale-->
+  <nav>
+    <a href="/#">Device</a>
+    <a href="/AreaPredizioni.html">Area Predizioni</a>
+    <a href="/Report.html">Report</a>
+    <a href="/Chatbot.html">Chatbot</a>
+    <div class="animation start-area-predizioni"></div>
+  </nav>
 
-</div>
 </body>
+
 </html>

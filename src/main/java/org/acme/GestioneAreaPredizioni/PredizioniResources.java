@@ -23,7 +23,7 @@ public class PredizioniResources {
     PredizioniInfartoService serviceInfarto;
     PredizioniAteroService serviceAtero;
     @Channel("my-data-stream-AP")
-    Publisher<List<Predizione>> data;
+    Publisher<List<String>> data;
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
@@ -40,8 +40,7 @@ public class PredizioniResources {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
-        public Publisher<List<Predizione>> stream() {
-        return data;
+        public Publisher<List<String>> stream() {return data;
     }
 
     }

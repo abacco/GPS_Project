@@ -17,13 +17,13 @@ public class Reciever {
     @Incoming("AreaPredizioni")
     @Outgoing("my-data-stream-AP")
     @Broadcast
-    public List<Predizione> process(List<Device> data) {
+    public List<String> process(List<Device> data) {
         List<Device> ril = data;
 
-        List<Predizione> pr = new ArrayList<>();
+        List<String> pr = new ArrayList<>();
 
-        pr.add(PredizioniInfartoService.getPredizioneInfarto(ril));
-        pr.add(PredizioniAteroService.getPredizioneAtero(ril));
+        pr.add(PredizioniInfartoService.getPredizioneInfarto(ril).toString());
+        pr.add(PredizioniAteroService.getPredizioneAtero(ril).toString());
 
         return pr;
     }
