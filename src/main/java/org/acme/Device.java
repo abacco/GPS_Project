@@ -13,7 +13,9 @@ public class Device {
 
     private int colesterolo = 0;  //colesterolo
 
-    private int pressione = 0;  //pressione
+    private int pressione = 0;  //pressione minima
+
+    private int pressione_due = 0;  //pressione massima
 
     private Random random = new Random();
 
@@ -140,26 +142,53 @@ public class Device {
     }
 
     public int getPressione() {
-        int min = 78;
-        int max = 129;
+        int min = 100;
+        int max = 120;
 
         int first;
 
         first = (int) (Math.random() * (max - min)) + min;
 
         if(Math.random() > 0.5 ) {
-            if(first == 129) {
-                return (int) (Math.random() * (180 - first)) + first;
+            if(first >= 119) {
+                return (int) (Math.random() * (150 - first)) + first;
             }
         }
 
         if(Math.random() > 0.5) {
-            if(first == 78) {
-                return (int) (Math.random() * (30 - first)) + first; // crea un valore tra 30 e 78
+            if(first <= 102) {
+                return (int) (Math.random() * (40 - first)) + first; // crea un valore tra 30 e 78
             }
         }
 
         return first;
+    }
+
+    public int getPressione_due() {
+        int min = 75;
+        int max = 85;
+
+        int first;
+
+        first = (int) (Math.random() * (max - min)) + min;
+
+        if(Math.random() > 0.5 ) {
+            if(first >= 84) {
+                return (int) (Math.random() * (97 - first)) + first;
+            }
+        }
+
+        if(Math.random() > 0.5) {
+            if(first <= 76) {
+                return (int) (Math.random() * (50 - first)) + first; // crea un valore tra 30 e 78
+            }
+        }
+
+        return first;
+    }
+
+    public void setPressione_due(int pressione_due) {
+        this.pressione_due = pressione_due;
     }
 
     public void setPressione(int pressione) {
@@ -168,7 +197,7 @@ public class Device {
 
     @Override
     public String toString(){
-        return "{\"deviceName\":\""+deviceName+"\",\"heartFrequency\":"+getHeartFrequency()+",\"temp\":"+getTemp()+",\"ossigenazione\":"+getOssigenazione()+",\"colesterolo\":"+ getColesterolo()+",\"pressione\":"+getPressione()+"}";
+        return "{\"deviceName\":\""+deviceName+"\",\"heartFrequency\":"+getHeartFrequency()+",\"temp\":"+getTemp()+",\"ossigenazione\":"+getOssigenazione()+",\"colesterolo\":"+ getColesterolo()+",\"pressione\":"+getPressione()+",\"pressione_due\":"+getPressione_due()+"}";
     }
 
 }
