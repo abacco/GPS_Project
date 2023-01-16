@@ -21,6 +21,7 @@ public class TempGenerator {
     @Inject MongoClient mongoClient;
     private Timer myTimer;
 
+
     //private Date date = new Date();
 
     Device esp8266 = new Device("ESP8266-01");
@@ -31,16 +32,18 @@ public class TempGenerator {
             return Flowable.interval(10,  TimeUnit.SECONDS)
                     .onBackpressureDrop()
                     .map(t -> {
-                        String data = esp8266.toString();
+
                         Document document = new Document()
                                 .append("deviceName", esp8266.getDeviceName())
                                 .append("heartFrequency", esp8266.getHeartFrequency())
                                 .append("temp", esp8266.getTemp())
                                 .append("ossigenazione", esp8266.getOssigenazione())
                                 .append("colesterolo", esp8266.getColesterolo())
-                                .append("pressione", esp8266.getPressione())
+                                .append("pressione massima", esp8266.getPressione())
+                                .append("pressione minima", esp8266.getPressione_due())
                                 .append("date", new Date());
                         myTimer = new Timer();
+                        String data = esp8266.toString();
                         myTimer.schedule(new TimerTask(){
                             @Override
                             public void run(){
@@ -51,9 +54,10 @@ public class TempGenerator {
                         return data;
                     });
         } catch (Exception e) {
+            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
-
     }
 
     public List<String> list() {

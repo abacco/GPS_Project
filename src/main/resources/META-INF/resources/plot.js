@@ -34,7 +34,14 @@ var config = {
             data: [
             ],
         }, {
-            label: 'Pressione',
+            label: 'Pressione massima',
+            fill: false,
+            backgroundColor: '#fd50e7',
+            borderColor: '#fd50e7',
+            data: [
+            ],
+        }, {
+            label: 'Pressione minima',
             fill: false,
             backgroundColor: '#fd50e7',
             borderColor: '#fd50e7',
@@ -96,6 +103,7 @@ source.onmessage = function (event) {
         config.data.datasets[2].data.push(incoming.ossigenazione);
         config.data.datasets[3].data.push(incoming.colesterolo);
         config.data.datasets[4].data.push(incoming.pressione);
+        config.data.datasets[5].data.push(incoming.pressione_due);
 
         window.myLine.update();
     }
@@ -106,7 +114,8 @@ source.onmessage = function (event) {
         "            <td role=\"cell\" data-label=\"Temperature\">C</td>\n" +
         "            <td role=\"cell\" data-label=\"Ossigenazione\">D</td>\n" +
         "            <td role=\"cell\" data-label=\"Colesterolo\">E</td>\n" +
-        "            <td role=\"cell\" data-label=\"Pressione\">F</td>\n" +
+        "            <td role=\"cell\" data-label=\"Pressione Massima\">F</td>\n" +
+        "            <td role=\"cell\" data-label=\"Pressione Minima\">F</td>\n" +
         "            <td role=\"cell\" data-label=\"Reading\">G</td>\n" +
         "        </tr>";
 
@@ -145,6 +154,11 @@ source.onmessage = function (event) {
 
     var cell = document.createElement("td")
     var cellText = document.createTextNode(incoming.pressione + " mmHg");
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+
+    var cell = document.createElement("td")
+    var cellText = document.createTextNode(incoming.pressione_due + " mmHg");
     cell.appendChild(cellText);
     row.appendChild(cell);
 
