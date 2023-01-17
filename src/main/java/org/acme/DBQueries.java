@@ -35,7 +35,8 @@ public class DBQueries {
                 device.setOssigenazione(document.getInteger("ossigenazione"));
                 device.setTemp(document.getInteger("temp"));
                 device.setHeartFreq(document.getInteger("heartFrequency"));
-
+                device.setHeartFreq(document.getInteger("pressione massima"));
+                device.setHeartFreq(document.getInteger("pressione minima"));
 
                 list.add(device);
             }

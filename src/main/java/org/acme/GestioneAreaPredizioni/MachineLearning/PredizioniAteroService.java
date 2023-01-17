@@ -4,8 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.acme.Device;
 import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
-import weka.core.Instance;
-import weka.core.Instances;
+import weka.core.*;
 import weka.core.converters.ConverterUtils.DataSource;
 
 import java.util.List;
@@ -17,8 +16,8 @@ public class PredizioniAteroService {
     //crea un dataset per il modello da un arff file generato tramite i dati nel db e effettua la predizione della nuova instance
     public static Predizione getPredizioneAtero(List<Device> rilevazione){
         try{
-            DataSource source = new DataSource(getArffAtero());
-            Instance instance = getAsInstanceAtero(rilevazione);
+            DataSource source = new DataSource(MLModel.getArff("atero"));
+            Instances instance = getAsInstanceAtero(rilevazione);
 
             return MLModel.classifyInstance(instance,source);
 
@@ -30,15 +29,42 @@ public class PredizioniAteroService {
 
     }
 
-    //genera l'arff file da cui ottenere il datasource
-    public static Instances getArffAtero(){
-        return null;
-        //generate dataset for AteroModel
-    }
 
-    public static Instance getAsInstanceAtero(List<Device> rilevazioni){
-        return null;
-        //trasforma la lista di misurazioni in una classe Instance
+    public static Instances getAsInstanceAtero(List<Device> rilevazioni){
+        @Deprecated
+        FastVector deviceList = new FastVector<>();
+
+        @Deprecated
+        FastVector instance = new FastVector<>();
+
+
+
+
+        //creare fastvector con gli attributi necessari alla predizione
+
+        instance.addElement(new Attribute("heartFreq"));
+        instance.addElement(new Attribute("pressione"));
+        instance.addElement(new Attribute("pressione_due"));
+        instance.addElement(new Attribute("colesterolo"));
+
+        Instances data = new Instances("dataSetAtero", instance, 0);
+
+
+        for(int i=0;i<rilevazioni.size();i++){
+            double[] vals = new double[data.numAttributes()];  // important: needs NEW array!
+
+            Device rilevazione = rilevazioni.get(i);
+            vals[0] = rilevazione.getHeartFrequency();
+            vals[1] = rilevazione.getPressione();
+            vals[2] = rilevazione.getPressione_due();
+            vals[3] = rilevazione.getColesterolo();
+
+            data.add(new DenseInstance(1.0,vals));
+
+        }
+
+        return data;
+
     }
 
 

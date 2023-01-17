@@ -17,21 +17,9 @@ public class Reciever {
     @Incoming("AreaPredizioni")
     @Outgoing("my-data-stream-AP")
     @Broadcast
-    public List<String> process(List<Device> data) {
-        List<Device> ril = data;
-
-        List<String> pr = new ArrayList<>();
-
-        pr.add(PredizioniInfartoService.getPredizioneInfarto(ril).toString());
-        pr.add(PredizioniAteroService.getPredizioneAtero(ril).toString());
-
-        return pr;
-    }
-
-
     public String process(byte[] data) {
         String d = new String(data);
-        System.out.println("Receiving readings: " + d);
+        System.out.println("Receiving predictions: " + d);
         return d;
     }
 }

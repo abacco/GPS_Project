@@ -1,11 +1,19 @@
 package org.acme.GestioneAreaPredizioni.MachineLearning;
 
+import org.acme.DBQueries;
 import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.converters.ConverterUtils;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.LinearRegression;
 
+import javax.enterprise.context.ApplicationScoped;
+
+import static org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniAteroService.getAsInstanceAtero;
+import static org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniInfartoService.getAsInstanceInfarto;
+
+@ApplicationScoped
 public class MLModel {
 
 
@@ -25,7 +33,7 @@ public class MLModel {
     }
 
 
-    public static Predizione classifyInstance(Instance instance, DataSource source) {
+    public static Predizione classifyInstance(Instances instances, DataSource source) {
         //ottenimento modello dal dataset
         LinearRegression model = null;
         try {
@@ -33,8 +41,18 @@ public class MLModel {
 
             Predizione pr = new Predizione();
 
-            //classificazione instance
-            double percent = model.classifyInstance(instance);
+            //classificazione instance, il metodo fa una media delle predizioni
+            double percent=0;
+            int cont =0;
+            for(Instance i : instances){
+                percent =+model.classifyInstance(i);
+                cont++;
+            }
+
+            percent+=percent/cont;
+
+
+
             pr.setPercentualeRischio(percent);
 
             //valore per send alert
@@ -51,6 +69,37 @@ public class MLModel {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+
+    //genera l'arff file da cui ottenere il datasource in base alla malattia
+    public static String getArff(String malattia){
+        DBQueries query = new DBQueries();
+        Instances dataset =  null;
+        String outputFilename = "";
+
+        if(malattia.equals("infarto")){
+             dataset = getAsInstanceInfarto(query.getRilevazioni());
+             outputFilename = "RilevazioniSetInfarto";
+        }else{
+             dataset = getAsInstanceAtero(query.getRilevazioni());
+             outputFilename = "RilevazioniSetAtero";
+        }
+
+        try {
+            ConverterUtils.DataSink.write(outputFilename, dataset);
+        }
+        catch (Exception e) {
+            System.err.println("Failed to save data to: " + outputFilename);
+            e.printStackTrace();
+        }
+
+        return outputFilename;
+
+
+
+
     }
 }
 

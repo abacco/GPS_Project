@@ -23,27 +23,15 @@ public class PredizioniResources {
     PredizioniInfartoService serviceInfarto;
     PredizioniAteroService serviceAtero;
     @Channel("my-data-stream-AP")
-    Publisher<List<String>> data;
+    Publisher<String> data;
 
     @GET
+    @Path("stream")
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    public String PredizioneInfarto(List<Device> rilevazione) {
-        return null;//serviceInfarto.getPredizioneInfarto(rilevazione).toString();
+        public Publisher<String> stream() {return data;
     }
 
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String PredizioneAtero(List<Device> rilevazione) {
-        return null;//serviceAtero.getPredizioneAtero(rilevazione).toString();
-    }
-
-    @GET
-    @Produces(MediaType.SERVER_SENT_EVENTS)
-        public Publisher<List<String>> stream() {return data;
-    }
-
-    }
+}
 
 
 
