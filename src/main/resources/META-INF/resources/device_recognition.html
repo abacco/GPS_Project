@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="welcome_page_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;1,100;1,600&family=Oswald:wght@200;300;600;700&display=swap" rel="stylesheet">
+    <title>CardioTel - Collegamento Sensore </title>
+
+  </head>
+  <body class="body">
+    <div class="container">
+      <div class="container2">
+        Dispositivo personale riconosciuto correttamente
+        <div class="lista">
+          Nome dispositivo: <p class="lista2">ESP8266-01</p>
+          Stato: <p class="lista2">Connesso</p>
+        </div>
+      </div>
+
+      <button class="button2" type="button" onclick="linker()">INIZIA</button>
+
+    </div>
+
+
+
+
+    <script>
+      function linker() {
+        window.location.href="index.html";
+      }
+    </script>
+  </body>
 </html>
