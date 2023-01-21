@@ -92,7 +92,7 @@ window.onload = function() {
 var source = new EventSource("/devices/stream");
 source.onmessage = function (event) {
     var incoming = JSON.parse(event.data);
-
+    console.log(incoming)
 
     if (config.data.datasets.length > 0) {
         xMax = xMax +5;

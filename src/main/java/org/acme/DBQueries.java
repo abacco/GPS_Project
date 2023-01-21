@@ -13,6 +13,7 @@ import java.util.List;
 
 @ApplicationScoped
 public class DBQueries {
+    /*
 
    @Inject
    MongoClient mongoClient;
@@ -46,7 +47,7 @@ public class DBQueries {
         return list;
 
     }
-
+*/
 
 
 }

@@ -21,10 +21,11 @@ public class PredizioniInfartoService {
             Predizione pr = new Predizione();
 
             //creazione datasource per Infarto con i dati del db
-            DataSource source = new DataSource(MLModel.getArff("infarto"));
+            DataSource source = new DataSource(MLModel.getArff("infarto", rilevazione));
 
             //creazione Intance da classificare
             Instances instance = getAsInstanceInfarto(rilevazione);
+
 
             return MLModel.classifyInstance(instance,source);
 
@@ -61,9 +62,9 @@ public class PredizioniInfartoService {
             double[] vals = new double[data.numAttributes()];  // important: needs NEW array!
 
             Device rilevazione = rilevazioni.get(i);
-            vals[1] = rilevazione.getPressione();
-            vals[2] = rilevazione.getPressione_due();
-            vals[3] = rilevazione.getColesterolo();
+            vals[0] = rilevazione.getPressione();
+            vals[1] = rilevazione.getPressione_due();
+            vals[2] = rilevazione.getColesterolo();
 
             data.add(new DenseInstance(1.0,vals));
 

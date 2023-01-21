@@ -1,6 +1,8 @@
 package org.acme.GestioneAreaPredizioni.MachineLearning;
 
 import org.acme.DBQueries;
+import org.acme.Device;
+import org.acme.GestioneAreaPredizioni.PublisherSubscriber.PredictionGenerator;
 import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -9,6 +11,10 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.LinearRegression;
 
 import javax.enterprise.context.ApplicationScoped;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.List;
 
 import static org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniAteroService.getAsInstanceAtero;
 import static org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniInfartoService.getAsInstanceInfarto;
@@ -39,6 +45,7 @@ public class MLModel {
         try {
             model = getModel(source);
 
+
             Predizione pr = new Predizione();
 
             //classificazione instance, il metodo fa una media delle predizioni
@@ -47,7 +54,7 @@ public class MLModel {
             for(Instance i : instances){
                 percent =+model.classifyInstance(i);
                 cont++;
-            }
+                }
 
             percent+=percent/cont;
 
@@ -74,21 +81,24 @@ public class MLModel {
 
 
     //genera l'arff file da cui ottenere il datasource in base alla malattia
-    public static String getArff(String malattia){
+    public static String getArff(String malattia, List<Device> rilevazione){
         DBQueries query = new DBQueries();
         Instances dataset =  null;
         String outputFilename = "";
 
         if(malattia.equals("infarto")){
-             dataset = getAsInstanceInfarto(query.getRilevazioni());
-             outputFilename = "RilevazioniSetInfarto";
+             dataset = getAsInstanceInfarto(rilevazione);
+             outputFilename = "RilevazioniSetInfarto.arff";
         }else{
-             dataset = getAsInstanceAtero(query.getRilevazioni());
-             outputFilename = "RilevazioniSetAtero";
+             dataset = getAsInstanceAtero(rilevazione);
+             outputFilename = "RilevazioniSetAtero.arff";
         }
 
         try {
-            ConverterUtils.DataSink.write(outputFilename, dataset);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilename));
+            writer.write(dataset.toString());
+            writer.flush();
+            writer.close();
         }
         catch (Exception e) {
             System.err.println("Failed to save data to: " + outputFilename);
@@ -96,9 +106,6 @@ public class MLModel {
         }
 
         return outputFilename;
-
-
-
 
     }
 }

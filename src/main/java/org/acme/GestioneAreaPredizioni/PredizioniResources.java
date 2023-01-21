@@ -29,6 +29,7 @@ public class PredizioniResources {
     @Path("stream")
     @Produces(MediaType.SERVER_SENT_EVENTS)
         public Publisher<String> stream() {return data;
+
     }
 
 }

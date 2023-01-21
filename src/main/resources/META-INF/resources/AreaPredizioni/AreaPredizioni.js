@@ -9,17 +9,17 @@ $(document).ready(function(){
     malattiaI.css("background-color","white");
 
 
-
-
-    var source = new EventSource("/AreaPredizioni");
+    var source = new EventSource("/AreaPredizioni/stream");
     source.onmessage = function (event) {
-        var incoming = JSON.parse(event.data);
+        var incoming = JSON.parse(event.data)
+        var array1 = incoming[0].split(",")
+        var array2 = incoming[1].split(",")
+        console.log(array1,array2);
 
 
         if (config.data.datasets.length > 0) {
             xMax = xMax +6;
             config.data.labels.push(xMax);
-
             config.data.datasets[0].data.push(incoming[0].rischio);
             config.data.datasets[1].data.push(incoming[1].rischio);
             config.data.datasets[2].data.push(incoming[0].percentualeRischio);
