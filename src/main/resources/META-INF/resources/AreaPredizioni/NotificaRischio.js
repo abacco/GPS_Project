@@ -37,7 +37,7 @@ $(document).ready(function(){
             checkbox.css("background-color","red");
 
         } else if (array1[1] == "attenzione"){
-            alert("Attenzione! Riscio di Aterosclerosi moderato!");
+            //alert("Attenzione! Riscio di Aterosclerosi moderato!");
             checkbox.css("background-color","yellow");
         }
 
@@ -46,7 +46,7 @@ $(document).ready(function(){
             checkbox.css("background-color","red");
 
         } else if (array2[1] == "attenzione"){
-            alert("Attenzione! Riscio di Infarto moderato!");
+            //alert("Attenzione! Riscio di Infarto moderato!");
             checkbox.css("background-color","yellow");
         }
 

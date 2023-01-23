@@ -5,6 +5,15 @@ import java.util.Random;
 
 public class Device {
 
+    public static final int maxHeart=140;
+    public static final int minHeart=50;
+    public static final int maxCol=400;
+    public static final int minCol=100;
+    public static final int maxPresMas=150;
+    public static final int minPresMas=78;
+    public static final int maxPresMin=97;
+    public static final int minPresMin=50;
+
     private String deviceName = null;
     private int heartFreq = 0;  //frequenza cardiaca
     private int temp = 0;  //temperatura corporea
@@ -157,7 +166,7 @@ public class Device {
 
         if(Math.random() > 0.5) {
             if(first <= 102) {
-                return (int) (Math.random() * (40 - first)) + first; // crea un valore tra 30 e 78
+                return (int) (Math.random() * (78 - first)) + first; // crea un valore tra 30 e 78
             }
         }
 

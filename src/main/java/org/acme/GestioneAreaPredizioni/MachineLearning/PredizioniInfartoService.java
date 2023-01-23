@@ -54,6 +54,7 @@ public class PredizioniInfartoService {
         instance.addElement(new Attribute("pressione"));
         instance.addElement(new Attribute("pressione_due"));
         instance.addElement(new Attribute("colesterolo"));
+        instance.addElement(new Attribute("predizione"));
 
         Instances data = new Instances("dataSetAtero", instance, 0);
 
@@ -65,11 +66,13 @@ public class PredizioniInfartoService {
             vals[0] = rilevazione.getPressione();
             vals[1] = rilevazione.getPressione_due();
             vals[2] = rilevazione.getColesterolo();
+            vals[3] = MLModel.calcolaPrediction(rilevazione,"infarto");
 
             data.add(new DenseInstance(1.0,vals));
 
         }
 
+        data.setClassIndex(data.numAttributes()-1);
         return data;
 
     }

@@ -46,6 +46,7 @@ public class PredizioniAteroService {
         instance.addElement(new Attribute("pressione"));
         instance.addElement(new Attribute("pressione_due"));
         instance.addElement(new Attribute("colesterolo"));
+        instance.addElement(new Attribute("predizione"));
 
         Instances data = new Instances("dataSetAtero", instance, 0);
 
@@ -58,11 +59,12 @@ public class PredizioniAteroService {
             vals[1] = rilevazione.getPressione();
             vals[2] = rilevazione.getPressione_due();
             vals[3] = rilevazione.getColesterolo();
+            vals[4] = MLModel.calcolaPrediction(rilevazione,"atero");
 
             data.add(new DenseInstance(1.0,vals));
 
         }
-
+        data.setClassIndex(data.numAttributes()-1);
         return data;
 
     }
