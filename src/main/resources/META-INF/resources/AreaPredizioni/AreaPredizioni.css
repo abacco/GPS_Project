@@ -80,7 +80,8 @@ p{
 
 /* Tabella percentuali */
 .percentuale{
-
+    text-align: center;
+    word-wrap: break-word;
     border-radius: 20px;
     color:black;
     background-color: white;
@@ -116,6 +117,35 @@ p{
     position: absolute;
     right: 5px;
     top: 50px;
+
+}
+
+/* Pallino Rischio */
+.check{
+
+    border-radius: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-color: forestgreen;
+
+}
+
+/* Grafico Aterosclerosi */
+#graficoAtero{
+
+    display: inline;
+
+}
+
+/* Grafico Infarto */
+#graficoInfarto{
+
+    display: none;
 
 }
 

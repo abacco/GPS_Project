@@ -8,11 +8,14 @@
   <!--JQuery-->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+
   <!--Foglio di stile-->
   <link href="AreaPredizioni/AreaPredizioni.css" rel="stylesheet" type="text/css">
 
   <!--Javascript-->
   <script src = "./AreaPredizioni/AreaPredizioni.js"></script>
+ <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+
 
 </head>
 
@@ -33,7 +36,7 @@
             <thead><th>%Rischio</th></thead>
 
             <!--Stampa percentuale Aterosclerosi-->
-            <tbody role="rowgroup" id="ateroBody"></tbody>
+            <tbody role="rowgroup" id="ateroBody"><tr><td id="ateroPredict"></td></tr></tbody>
 
           </table>
 
@@ -53,7 +56,7 @@
             <thead><th>%Rischio</th></thead>
 
             <!--Stampa percentuale Infarto-->
-            <tbody role="rowgroup" id="infartoBody"></tbody>
+            <tbody role="rowgroup" id="infartoBody"><tr><td id="infartoPredict"></td></tr></tbody>
 
           </table>
 
@@ -64,14 +67,14 @@
     </div>
 
     <!--Sezione grafico predizioni-->
-    <div id="graficoBody"></div>
+    <div id="graficoBody"><div id ="graficoAtero"></div><div id="graficoInfarto"></div></div>
 
   </div>
 
   <!--Barra Navigazionale-->
   <nav>
     <a href="/#">Device</a>
-    <a href="/AreaPredizioni.html">Area Predizioni</a>
+    <a href="/AreaPredizioni.html" ><input type="radio"  class="check"> Area Predizioni</a>
     <a href="/Report.html">Report</a>
     <a href="/Chatbot.html">Chatbot</a>
     <div class="animation start-area-predizioni"></div>

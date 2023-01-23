@@ -41,8 +41,8 @@ public class Predizione {
 
     @Override
     public String toString(){
-        return "{percentualeRischio:\"" +percentualeRischio+"\"," +
-                "rischio:\""+rischio+"\"," +
-                "modello:\"" +modello + "\"}";
+        return Math.round(percentualeRischio)+"," +
+                rischio+"," +
+                modello;
     }
 }
