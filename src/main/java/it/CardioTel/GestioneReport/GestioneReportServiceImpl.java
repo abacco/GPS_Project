@@ -28,8 +28,6 @@ public class GestioneReportServiceImpl {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(pot[0]);
-        System.out.println(pot[1]);
         ArrayList<Document> list = new ArrayList<Document>();
         list = gestioneReportData.getMeasurement(pot);
         return list;

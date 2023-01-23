@@ -16,7 +16,7 @@ public class GestioneReportData{
     @Inject
     MongoClient mongoClient ;//=  new MongoClient("localhost", 27017);;
 
-    private static final String DBname = "Misurazioni";
+    private static final String DBname = "misurazioni";
 
     private MongoCollection getCollection() {
         return mongoClient.getDatabase(DBname).getCollection(DBname);
@@ -24,16 +24,16 @@ public class GestioneReportData{
 
     public ArrayList<Document> getMeasurement(Date[] pot) {
 
-        //Date startDate = pot[0];
-        //Date endDate = pot[1];
+        Date startDate = pot[0];
+        Date endDate = pot[1];
         ArrayList<Document> list = new ArrayList<Document>();
         //controllare mongoClient
        // MongoClient mongoClient = new MongoClient("localhost", 27017);
-        //MongoDatabase database = mongoClient.getDatabase("db");
+        MongoDatabase database = mongoClient.getDatabase("misurazioni");
         MongoCursor<Document> cursor = getCollection().find().iterator();
-        //MongoCollection<Document> measureCollection = database.getCollection("Misurazioni");
-       // Bson condition = new Document("$gte", startDate).append("$lte", endDate);
-       // Bson filter = new Document("Date", condition);
+        MongoCollection<Document> measureCollection = database.getCollection("misurazioni");
+        Bson condition = new Document("$gte", startDate).append("$lte", endDate);
+        Bson filter = new Document("Date", condition);
        // FindIterable<Document> documents = measureCollection.find(filter);
         try {
             while(cursor.hasNext()) {

@@ -1,24 +1,33 @@
 package it.CardioTel.GestioneReport;
 
+import com.google.gson.Gson;
 import io.vertx.core.json.JsonArray;
 import org.bson.Document;
 
 import javax.inject.Inject;
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
-@Path("/Report")
+@Path("/report")
 public class GestioneReportController  {
 
    @Inject
     GestioneReportServiceImpl gestioneReportService;
 
     @GET
-    public String getReport(@QueryParam("daterange") String periodOfTime) {
+    @Produces(MediaType.TEXT_PLAIN)
+    public String[] getReport(@QueryParam("daterange") String periodOfTime) {
         try {
             ArrayList<Document> measurementList = gestioneReportService.getMeasurements(periodOfTime);
 
@@ -27,12 +36,21 @@ public class GestioneReportController  {
             for(Document measurement : measurementList) {
                 array.add(measurement);
             }
-
-            return array.toString();
+            return getReportPage(array);
         } catch (Exception e) {
-            return e.getMessage();
+            return new String[]{e.getMessage()};
         }
     }
+
+        public String[] getReportPage (JsonArray data) {
+            List<String> strings = new ArrayList<String>();
+            for(int i = 0 ; i < strings.size() ; i++){
+                strings.add(data.getString(i));
+            }
+            int size = strings.size();
+            String[] stringArray = strings.toArray(new String[size]);
+            return stringArray;
+        }
 
     @GET
     @Path("/interface")
