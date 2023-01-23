@@ -43,4 +43,5 @@ public class GestioneReportServiceImpl {
 
     private Date startDate;
     private Date endDate;
+
 }

@@ -7,4 +7,5 @@ import java.util.Date;
 
 public interface GestioneReportService{
     ArrayList<Document> getMeasurements (String periodOfTime);
+
 }

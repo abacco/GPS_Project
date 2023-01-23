@@ -13,6 +13,7 @@ import javax.inject.Inject;
 
 @ApplicationScoped
 public class GestioneReportData{
+
     @Inject
     MongoClient mongoClient ;//=  new MongoClient("localhost", 27017);;
 
