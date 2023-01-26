@@ -13,4 +13,9 @@
       <module name="quarkus-edge-mqtt" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="quarkus-edge-mqtt" options="-parameters" />
+    </option>
+  </component>
 </project>

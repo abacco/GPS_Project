@@ -1,34 +1,10 @@
 package it.CardioTel.GestioneReport;
 
-import java.util.Date;
-
 public class Measurement {
 
-    public Measurement (String measurement, Date date){
+    private String deviceName;
 
-        this.measurement = measurement;
-        this.date = date;
-    }
+    private int temperature;
 
-    public String getMeasurement() {
-        return measurement;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public boolean isInTheRange(Measurement m1, Measurement m2){
-
-        boolean inRange = false;
-
-        if (this.date.after(m1.getDate()) && this.date.before(m2.getDate()))
-            inRange = true;
-
-        return inRange;
-    }
-
-    private String measurement = null;
-
-    private Date date = null;
+    
 }

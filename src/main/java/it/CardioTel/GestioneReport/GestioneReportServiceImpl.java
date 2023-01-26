@@ -8,13 +8,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @ApplicationScoped
 public class GestioneReportServiceImpl {
 
     @Inject
     GestioneReportData gestioneReportData;
 
-    public ArrayList<Document> getMeasurements (String periodOfTime){
+    public ArrayList<String> getMeasurements (String periodOfTime){
         Date [] pot = new Date [2];
         String startDate = "" ;
         String endDate = "" ;
@@ -30,7 +32,16 @@ public class GestioneReportServiceImpl {
         }
         ArrayList<Document> list = new ArrayList<Document>();
         list = gestioneReportData.getMeasurement(pot);
-        return list;
+
+        return getMeasurementsInString(list);
+    }
+
+    private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
+        ArrayList<String> s = new ArrayList<String>();
+        for (Document d : l){
+            s.add(d.toString());
+        }
+      return s;
     }
 
     public Date getStartDate() {
