@@ -28,18 +28,18 @@ $(document).ready(function(){
 
 
         //Stampa della percentuale relativo all'Aterosclerosi
-        tableBody.innerText=array1[0];
+        tableBody.innerText=array1[0] + "%";
 
         //Stampa della percentuale relativo all'Infarto
-        tableBody2.innerText=array2[0];
+        tableBody2.innerText=array2[0] + "%";
 
 
 
 
-        //Stampa del grafico relativo all'Aterosclerosi
+        //Stampa della tabella relativo all'Aterosclerosi
         graficoAtero.innerText=array1[2];
 
-        //Stampa del grafico relativo all'Infarto
+        //Stampa della tabella relativo all'Infarto
         graficoInfarto.innerText=array2[2];
 
     }
