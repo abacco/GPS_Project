@@ -25,6 +25,8 @@ import static org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniInfartoS
 @ApplicationScoped
 public class MLModel {
 
+    public static final double percentageRischio = 45;
+    public static final double percentageSicuro = 35;
 
     //tramite il datasource fornito crea un modello da sfruttare per la predizione
     public static LinearRegression getModel(DataSource source) throws Exception {
@@ -66,9 +68,9 @@ public class MLModel {
             pr.setPercentualeRischio(percent);
 
             //valore per send alert
-            if (percent >= 45) {
+            if (percent >= percentageRischio) {
                 pr.setRischio("rischio");
-            } else if (percent <= 35) {
+            } else if (percent <= percentageSicuro) {
                 pr.setRischio("sotto_controllo");
             } else {
                 pr.setRischio("attenzione");

@@ -24,19 +24,16 @@ public class PredictionGenerator {
 
     @Inject
     MongoClient mongoClient;
+
     @Outgoing("AreaPredizioni-temp")
     public Flowable<byte[]> generate() {
         return Flowable.interval(5,  TimeUnit.SECONDS)
                 .onBackpressureDrop()
                 .map(t -> {
-
                     List<Device> ril = getRilevazioni();
-
                     List<String> pr = new ArrayList<>();
-
                     pr.add(PredizioniInfartoService.getPredizioneInfarto(ril).toString());
                     pr.add(PredizioniAteroService.getPredizioneAtero(ril).toString());
-
 
                     //serializza l'array in byte[]
                     ObjectMapper objectMapper = new ObjectMapper();
@@ -79,6 +76,13 @@ public class PredictionGenerator {
 
         }
 
+        public List<Predizione> getPredizioni(){
+            List<Predizione> predizioni = new ArrayList<>();
+            List<Device> ril = getRilevazioni();
+            predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
+            predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
+            return predizioni;
+        }
 
 
 
