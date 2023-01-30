@@ -27,29 +27,30 @@ $(document).ready(function(){
 
     source.onmessage = function (event) {
         var incoming = JSON.parse(event.data)
-        var array1 = incoming[0].split(",")
-        var array2 = incoming[1].split(",")
+        var ateroPrediction = incoming[0].split(",")
+        var infartoPrediction = incoming[1].split(",")
 
-        console.log(array1,array2);
+        console.log(ateroPrediction,infartoPrediction);
 
-        if(array1[1] == "rischio"){
-            alert("Attenzione! Riscio di Aterosclerosi elevato!");
-            checkbox.css("background-color","red");
+        //il campo uno corrisponde al grado di rischio
+        checkCorrettezza(ateroPrediction[1]);
+        checkCorrettezza(infartoPrediction[1]);
 
-        } else if (array1[1] == "attenzione"){
-            //alert("Attenzione! Riscio di Aterosclerosi moderato!");
-            checkbox.css("background-color","yellow");
+        function checkCorrettezza(rischio){
+            if(rischio  == "sotto_controllo"){
+                checkbox.css("background-color","forestgreen");
+                checkbox.val("green");
+            }
+            if(rischio == "rischio"){
+                alert("Attenzione! Riscio di Aterosclerosi elevato!");
+                checkbox.css("background-color","red");
+                checkbox.val("red");
+            } else if (rischio == "attenzione"){
+                //alert("Attenzione! Riscio di Aterosclerosi moderato!");
+                checkbox.css("background-color","yellow");
+                checkbox.val("yellow");
+            }
         }
-
-        if(array2[1] == "rischio"){
-            alert("Attenzione! Riscio di Infarto elevato!");
-            checkbox.css("background-color","red");
-
-        } else if (array2[1] == "attenzione"){
-            //alert("Attenzione! Riscio di Infarto moderato!");
-            checkbox.css("background-color","yellow");
-        }
-
 
     };
 

@@ -39,10 +39,22 @@ public class Predizione {
 
     }
 
+
+    //transforma in stringa divisa da virgole per poter essere splittata
     @Override
     public String toString(){
         return Math.round(percentualeRischio)+"," +
                 rischio+"," +
                 modello;
+    }
+
+    //fa l'operazione inversa del toString, splitta e crea un'instanza di predizione
+    public static Predizione parsePredizione(String s){
+        String[] arg=s.split(",");
+        Predizione p = new Predizione();
+        p.setPercentualeRischio(Double.parseDouble(arg[0]));
+        p.setRischio(arg[1]);
+        p.setModello(arg[2]);
+        return p;
     }
 }

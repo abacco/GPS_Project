@@ -42,9 +42,10 @@ public class MLModel {
 
 
     public static Predizione classifyInstance(Instances instances, DataSource source) {
-        //ottenimento modello dal dataset
+
 
         try {
+            //ottenimento modello dal dataset
             LinearRegression model = getModel(source);
             Evaluation eval= new Evaluation(instances);
             eval.crossValidateModel(model,instances,10,new Random());
@@ -73,6 +74,7 @@ public class MLModel {
                 pr.setRischio("attenzione");
             }
 
+            //inserisce la valutazione del modello da stampare
             pr.setModello(eval.toSummaryString());
             return pr;
         } catch (Exception e) {
@@ -108,6 +110,8 @@ public class MLModel {
 
     }
 
+
+    //associa una percentuale di rischio in base al valore corrispondente
     public static double calcolaPrediction(Device rilevazione, String malattia) {
         List<Double> percent = new ArrayList<>();
 

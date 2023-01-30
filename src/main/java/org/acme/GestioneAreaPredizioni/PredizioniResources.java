@@ -23,7 +23,7 @@ public class PredizioniResources {
     PredizioniInfartoService serviceInfarto;
     PredizioniAteroService serviceAtero;
     @Channel("my-data-stream-AP")
-    Publisher<String> data;
+    public Publisher<String> data;
 
     @GET
     @Path("stream")

@@ -29,7 +29,7 @@ public class Reciever {
             list = objectMapper.readValue(data, List.class);
 
 
-            //converts in json
+            //converts in json la lista
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String json = ow.writeValueAsString(list);
             return json;
