@@ -1,13 +1,13 @@
 package it.CardioTel.GestioneReport;
 
 import com.google.gson.Gson;
+
 import io.vertx.core.json.JsonArray;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.bson.Document;
 
 import javax.inject.Inject;
 import javax.script.Invocable;
@@ -27,22 +27,58 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM_TYPE;
 
-@Path("/report")
+@Path("/Report")
 public class GestioneReportController  {
 
    @Inject
     GestioneReportServiceImpl gestioneReportService;
 
+        private Response generatePdf(String data) {
+            String s = data;
+            try {
+
+                byte[] b = s.getBytes();
+
+                String str = new String(b, StandardCharsets.UTF_8);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                PdfWriter writer = new PdfWriter(baos);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+
+                document.add(new Paragraph("Hello, PDF! " + str));
+                document.close();
+
+                return Response.ok(baos.toByteArray())
+                        .header("Content-Disposition", "attachment; filename=report.pdf")
+                        .build();
+            } catch (Exception e) {
+                return Response.serverError().build();
+            }
+        }
+
     @GET
     @Produces("application/pdf")
-    public byte[] getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
+    public void getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
             ArrayList<String> measurementList = gestioneReportService.getMeasurements(periodOfTime);
-            byte[] pdfBytes = generatePdfBytes(measurementList);
-            return pdfBytes;
+             generatePdf(measurementList.toString());
     }
-
+}
+/*
     private byte[] generatePdfBytes(List<String> strings) throws IOException {
         // create a new PDF document
         PDDocument document = new PDDocument();
@@ -87,7 +123,7 @@ public class GestioneReportController  {
             sb.append("Unit: ").append(measurement.get("unit")).append("\n\n");
         }
         return sb.toString();
-    }
-}
+    }*/
+
 
 
