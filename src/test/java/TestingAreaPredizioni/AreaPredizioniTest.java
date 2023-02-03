@@ -8,6 +8,7 @@ import org.acme.GestioneAreaPredizioni.PredizioniResources;
 import org.acme.GestioneAreaPredizioni.PublisherSubscriber.PredictionGenerator;
 import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
 import org.hamcrest.Matcher;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import java.util.List;
@@ -22,6 +23,7 @@ public class AreaPredizioniTest {
     PredictionGenerator p;
 
     @Test
+    @Order(4)
     public void CheckRischioCorrettoAtero() {
         Response r = (Response) given()
                 .when()
@@ -41,6 +43,7 @@ public class AreaPredizioniTest {
     }
 
     @Test
+    @Order(2)
     public void CheckRischioErratoAtero() {
         Response r = (Response) given()
                 .when()
@@ -59,6 +62,7 @@ public class AreaPredizioniTest {
     }
 
     @Test
+    @Order(3)
     public void CheckRischioCorrettoInfarto() {
 
         Response r = (Response) given()
@@ -81,6 +85,7 @@ public class AreaPredizioniTest {
     }
 
     @Test
+    @Order(1)
     public void CheckRischioErratoInfarto() {
         Response r = (Response) given()
                 .when()

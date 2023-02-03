@@ -18,7 +18,7 @@ public class GetReportTest {
     public void testGetReportReturnType() {
         StreamingOutput result = null;
         try {
-            result = grc.getReport("dd/MM/YYYY dd/MM/YYYY");
+            result = grc.getReport("01/01/1990 01/01/1990");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

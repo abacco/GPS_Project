@@ -60,6 +60,10 @@ public class TempGenerator {
         }
     }
 
+    public Device getEsp8266() {
+        return esp8266;
+    }
+
     public List<String> list() {
         List<String> list = new ArrayList<>();
         MongoCursor<Document> cursor = getCollection().find().iterator();
