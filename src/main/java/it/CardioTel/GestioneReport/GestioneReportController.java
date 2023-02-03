@@ -36,6 +36,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -47,35 +48,38 @@ public class GestioneReportController  {
    @Inject
     GestioneReportServiceImpl gestioneReportService;
 
-        private Response generatePdf(String data) {
-            String s = data;
+        private void generatePdf(ArrayList<String> data, ByteArrayOutputStream baos) {
             try {
-
-                byte[] b = s.getBytes();
-
-                String str = new String(b, StandardCharsets.UTF_8);
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PdfWriter writer = new PdfWriter(baos);
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf);
 
-                document.add(new Paragraph("Hello, PDF! " + str));
+
+                for(String s: data) {
+                    byte[] b = s.getBytes();
+
+                    String str = new String(b, StandardCharsets.UTF_8);
+
+                    //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    document.add(new Paragraph(str));
+                }
+
                 document.close();
 
-                return Response.ok(baos.toByteArray())
-                        .header("Content-Disposition", "attachment; filename=report.pdf")
-                        .build();
             } catch (Exception e) {
-                return Response.serverError().build();
             }
         }
 
     @GET
     @Produces("application/pdf")
-    public void getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
+    public StreamingOutput getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
             ArrayList<String> measurementList = gestioneReportService.getMeasurements(periodOfTime);
-             generatePdf(measurementList.toString());
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            generatePdf(measurementList, baos);
+            byte[] pdf = baos.toByteArray();
+            return output -> {output.write(pdf);};
+            //return output -> { generatePdf(measurementList.toString(), new ByteArrayOutputStream(output)); };
     }
 }
 /*
