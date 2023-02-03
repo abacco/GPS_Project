@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Area Predizioni</title>
+
+  <!--JQuery-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+  <!--Foglio di stile-->
+  <link href="AreaPredizioni/AreaPredizioni.css" rel="stylesheet" type="text/css">
+
+  <!--Javascript-->
+  <script src = "./AreaPredizioni/AreaPredizioni.js"></script>
+ <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+
+
+</head>
+
+<body>
+
+  <div class="generale">
+
+    <div>
+
+      <!--Pulsante Aterosclerosi-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "aterosclerosi" value = "Aterosclerosi"></p>
+        <div>
+
+          <!--Sezione percentuale Aterosclerosi-->
+          <table class ="percentuale">
+
+            <thead><th>Rischio</th></thead>
+
+            <!--Stampa percentuale Aterosclerosi-->
+            <tbody role="rowgroup" id="ateroBody"><tr><td id="ateroPredict"></td></tr></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    <br>
+      <!--Pulsante Infarto-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "infarto" value = "Infarto"></p>
+        <div>
+
+          <!--Sezione percentuale Infarto-->
+          <table class ="percentuale">
+
+            <thead><th>Rischio</th></thead>
+
+            <!--Stampa percentuale Infarto-->
+            <tbody role="rowgroup" id="infartoBody"><tr><td id="infartoPredict"></td></tr></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!--Sezione grafico predizioni-->
+    <div id="graficoBody"><div id ="graficoAtero"></div><div id="graficoInfarto"></div></div>
+
+  </div>
+
+  <!--Barra Navigazionale-->
+  <nav>
+    <a href="/#">Device</a>
+    <a href="/AreaPredizioni.html" ><input type="radio"  class="check"> Area Predizioni</a>
+    <a href="/Report.html">Report</a>
+    <a href="/Chatbot.html">Chatbot</a>
+    <div class="animation start-area-predizioni"></div>
+  </nav>
+
+</body>
+
+</html>

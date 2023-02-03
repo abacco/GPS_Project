@@ -1,0 +1,240 @@
+@charset "ISO-8859-1";
+
+/* Sfondo pagina */
+body{
+    background-color: #a0faed;
+}
+
+/* Div generale */
+.generale{
+    display: inline-flex;
+
+}
+/* Box dei pulsanti e delle percentuali */
+.predizioni{
+
+    display: inline-flex;
+
+    margin-top: 100px;
+
+}
+
+/* Contorni pulsanti */
+p{
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 400px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 175px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+/* Pulsante Infarto */
+.infarto{
+
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 340px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 155px;
+    margin-top: 5px;
+    border: none;
+
+}
+
+/* Punsante Aterosclerosi */
+.aterosclerosi{
+
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 340px;
+    text-align: center;
+    margin-right: 30px;
+    font-size: 50px;
+    margin-left: 30px;
+    height: 155px;
+    margin-top: 5px;
+    border: none;
+}
+
+/* Tabella percentuali */
+.percentuale{
+    text-align: center;
+    word-wrap: break-word;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 30px;
+    font-size: 30px;
+    width: 150px;
+    height: 195px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+/* Box grafico */
+#graficoBody{
+
+    text-wrap: none;
+    cursor: pointer;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 800px;
+    text-align: center;
+    margin-right: 50px;
+    font-size: 50px;
+    margin-left: 60px;
+    height: 700px;
+    margin-top: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px grey;
+    position: absolute;
+    right: 5px;
+    top: 50px;
+
+}
+
+/* Pallino Rischio */
+.check{
+
+    border-radius: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-color: forestgreen;
+
+}
+
+/* Grafico Aterosclerosi */
+#graficoAtero{
+
+    display: inline;
+
+}
+
+/* Grafico Infarto */
+#graficoInfarto{
+
+    display: none;
+
+}
+
+/* Barra Navigazionale */
+nav {
+    position: fixed;
+    bottom: 20px;
+    overflow: hidden;
+    margin-left: 5px;
+    width: 1200px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 15px;
+    font-size: 0;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+    right: 400px;
+}
+
+/* Link barra navigazionale */
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 25px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: black;
+}
+nav a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+/* Animazione barra navigazionale */
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+/* Pulsanti barra navigazionale */
+a:nth-child(1) {
+    width: 300px;
+}
+a:nth-child(2) {
+    width: 300px;
+}
+a:nth-child(3) {
+    width: 300px;
+}
+a:nth-child(4) {
+    width: 300px;
+}
+a:nth-child(5) {
+    width: 300px;
+}
+nav .start-home, a:nth-child(1):hover~.animation {
+    width: 300px;
+    left: 0;
+    background-color: #1abc9c;
+}
+nav .start-area-predizioni, a:nth-child(2):hover~.animation {
+    width: 300px;
+    left: 300px;
+    background-color: #1abc9c;
+}
+nav .start-report, a:nth-child(3):hover~.animation {
+    width: 300px;
+    left: 600px;
+    background-color: #1abc9c;
+}
+nav .start-chatbot, a:nth-child(4):hover~.animation {
+    width: 300px;
+    left: 900px;
+    background-color: #1abc9c;
+}
+nav .start-contact, a:nth-child(5):hover~.animation {
+    width: 300px;
+    left: 1200px;
+    background-color: #1abc9c;
+}
