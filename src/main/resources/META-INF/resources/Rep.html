@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text" id="daterange">
+<button onclick="fun()"></button>
+
+<div id="Dbutton"></div>
+
+
+<script>
+  function fun() {
+    let element = document.getElementById("daterange");
+    let string = "http://localhost:8080/report?='"+ element.innerText + "'";
+    let download = document.createElement("a");
+    download.href = string;
+    document.getElementById("Dbutton").append(download);
+  }
+
+</script>
+
+</body>
+</html>

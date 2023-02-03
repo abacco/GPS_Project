@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Report</title>
+
+    <h1>Sezione Report</h1>
+    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1"/>
+
+</head>
+
+<body>
+<div id="date"></div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <input type="text" id="daterange"/>
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+
+        });
+    </script>
+
+
+    <button onClick="generate()">Crea Report</button>
+    <script>
+    function generate() {
+        clear();
+        let element = document.getElementById("daterange");
+        let string = "http://localhost:8080/report?daterange="+ encodeURIComponent(element.value);
+
+        let report = document.createElement("a");
+        report.href = string;
+        report.innerHTML = "Visualizza Report";
+        report.download = "Report.pdf";
+        document.getElementById("date").append(report);
+    }
+
+    function clear() {
+        document.getElementById("date").innerHTML = "";
+    }
+
+    </script>
+
+<!--
+<div id= "print">
+<br>
+    <div style="width:100%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+    <div class=""></div>
+    </div>
+    <div class="chartjs-size-monitor-shrink"><div class=""></div>
+    </div>
+    </div>
+    <canvas id="canvas" style="display: block; width: 1140px; height: 570px;" width="1140" height="570" class="chartjs-render-monitor"></canvas>
+    </div>
+</div>
+    <button id="download-button">Download PDF</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const button = document.getElementById('download-button');
+        function generatePDF() {
+            var element = document.getElementById("print");
+            var opt = {
+                margin:       0,
+                filename:     'Report.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 1 },
+                jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
+            };
+            html2pdf(element,opt);
+        }
+        button.addEventListener("click", generatePDF);
+    </script>
+    <a href='http://localhost:8080/report'><button>Download PDF</button></a>
+</body>
+</html>
