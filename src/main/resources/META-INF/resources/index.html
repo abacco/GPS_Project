@@ -1,65 +1,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link
             rel="stylesheet"
             href="https://unpkg.com/@patternfly/patternfly/patternfly.css"
             crossorigin="anonymous"
     >
-    <title>Edge Device</title>
+    <title>CardioTel - Device - Home Page</title>
     <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
-    <style>
-        canvas{
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/aaf6c434f3.js" crossorigin="anonymous"></script>
+
 </head>
-<body>
-<nav class="navbar navbar-default navbar-pf" role="navigation">
-    <div class="collapse navbar-collapse navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-primary">
-            <li>
-                <a href="#0">Devices</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<body class="body">
+<p>
+    <a id="inizio"></a>
+</p>
+<a href="#fine" class="float smooth" style="width:50px; height:50px; padding-top: 18px">
+    <i class="fa-solid fa-chevron-down"></i>
+</a>
+
+<a href="#inizio" class="float-due smooth" style="width:50px; height:50px; padding-top: 18px">
+    <i class="fa-solid fa-chevron-up"></i>
+</a>
+
+<br>
 <div class="container">
-
     <!-- PatternFly components -->
-    <div class="alert alert-success" style="text-align: center">
-        <strong>Working Sensors</strong> <a href="#" class="alert-link"></a>.
-    </div>
-
     <div style="width:100%;">
         <canvas id="canvas"></canvas>
     </div>
     <br>
+    <div class="container3">
+        <strong>
+            <table class="comicGreen" style="border-right-width: 0px; border-left-width: 0px;">
+                <tfoot>
+                <tr>
+                    <td>Temperatura <br> Corporea</td>
+                    <td><div class="sensore-uno"></div></td>
+                    <td>Frequenza <br> Cardiaca</td>
+                    <td><div class="sensore-due"></div></td>
+                    <td>Ossigenazione</td>
+                    <td><div class="sensore-tre"></div></td>
+                    <td>Colesterolo</td>
+                    <td><div class="sensore-quattro"></div></td>
+                    <td>Pressione</td>
+                    <td><div class="sensore-cinque"></div></td>
+                </tr>
+                </tfoot>
+            </table>
+        </strong>
+        <br>
+        <div class="alert alert-success" style="text-align: center">
+            <strong>I sensori funzionano correttamente</strong> <a href="#" class="alert-link"></a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
     <br>
     <script src='./plot.js'></script>
-    <table class="pf-c-table pf-m-grid-md" role="grid" id="device-table">
-        <caption>Realtime data</caption>
-        <thead>
-        <tr role="row">
-            <th role="columnheader" scope="col">Device Name</th>
-            <th role="columnheader" scope="col">Temperature</th>
-            <th role="columnheader" scope="col">Heart Frequency</th>
-            <th role="columnheader" scope="col">Reading</th>
-        </tr>
-        </thead>
-        <tbody role="rowgroup" id="tempBody">
-        </tbody>
-    </table>
+    <div class="container2">
+        <table class="pf-c-table pf-m-grid-md" role="grid" id="device-table">
+            <caption class="caption-border">Rilevazione dei parametri in tempo reale</caption>
+            <thead>
+            <tr role="row">
+                <th role="columnheader" scope="col" >Nome Dispositivo</th>
+                <th role="columnheader" scope="col">Temperatura Corporea</th>
+                <th role="columnheader" scope="col">Frequenza Cardiaca</th>
+                <th role="columnheader" scope="col">Ossigenazione</th>
+                <th role="columnheader" scope="col">Colesterolo</th>
+                <th role="columnheader" scope="col">Pressione Massima</th>
+                <th role="columnheader" scope="col">Pressione Minima</th>
+                <th role="columnheader" scope="col">Lettura Effettuata</th>
+            </tr>
+            </thead>
+            <tbody role="rowgroup" id="tempBody">
+            </tbody>
+        </table>
+        <p>
+            <a id="fine"></a>
+        </p>
+    </div>
 </div>
-
-
+<nav style="right: 195px;">
+    <a href="#">Device</a>
+    <a href="#">Area Predizioni</a>
+    <a href="#">Report</a>
+    <a href="#">Chatbot</a>
+    <div class="animation start-home"></div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<button id="saveDataBtn" type="submit" style="visibility: hidden"></button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js"></script>
+<script>
+    var smooth = [$('a.smooth'), 100, 750];
+
+    smooth[0].click(function() {
+        $('html, body').animate({
+            scrollTop: $('[id="' + $.attr(this, 'href').substr(1) + '"]').offset().top -smooth[1]
+        }, smooth[2]);
+        return false;
+    });
+</script>
 </body>
 </html>
 
