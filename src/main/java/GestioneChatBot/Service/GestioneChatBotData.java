@@ -17,8 +17,18 @@ public class GestioneChatBotData {
     private static final String DBname = "soluzioni";
 
     private MongoCollection getCollection() {
+        MongoCollection mc = mongoClient.getDatabase(DBname).getCollection(DBname);
+        if(mc.countDocuments()<=0){
+            Document document = new Document()
+                    .append("Febbre", "Febbre")
+                    .append("Pressione Bassa", "Pressione Bassa")
+                    .append("Pressione Alta", "Pressione Alta")
+                    .append("Tachicardia", "Tachicardia")
+                    .append("Infarto", "Infarto");
+            mc.insertOne(document);
+        }
+        return mc;
 
-        return mongoClient.getDatabase(DBname).getCollection(DBname);
     }
 
     public List<Solution> getSolutions(String problem) {
