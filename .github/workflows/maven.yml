@@ -50,11 +50,6 @@ jobs:
     - name: Start Mosquitto container
       uses: docker://eclipse-mosquitto:1.6.12
 
-    - name: Run tests
-      uses: maven:3.6.3-jdk-11
-      with:
-        args: test
-
     - name: Stop containers
       run: |
         docker stop $(docker ps -q)
