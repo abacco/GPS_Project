@@ -47,8 +47,6 @@ jobs:
 
     - name: Start MongoDB container
       uses: docker://mongo:4.4.1
-      with:
-        args: mongod --bind_ip 0.0.0.0 --dbpath /data/db --smallfiles
 
     - name: Start Mosquitto container
       uses: docker://eclipse-mosquitto:1.6.12
