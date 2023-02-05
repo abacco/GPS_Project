@@ -49,6 +49,9 @@ jobs:
 
     - name: Start Mosquitto container
       uses: docker://eclipse-mosquitto:1.6.12
+      
+    - name: Create mongoDB Docker container      
+      run: sudo docker run -d -p 27017:27017 mongo:latest
 
     - name: Run tests
       uses: maven:3.6.3-jdk-11
