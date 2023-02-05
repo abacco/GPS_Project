@@ -50,9 +50,6 @@ jobs:
       with:
           image-version: latest
           port: 27017
-    - name: Test mongo connection
-      id: test_mongo_connection
-      run: "sudo mongosh \"mongodb://localhost:27017\""
 
     - name: Start Mosquitto container
       uses: docker://eclipse-mosquitto:1.6.12
