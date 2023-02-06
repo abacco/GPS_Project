@@ -33,8 +33,7 @@ jobs:
     steps:
     - name: Create mongo Docker container
       id: build_mongo_docker
-      run:
-          "mongosh \"mongodb://localhost:27017\""
+    - run: "echo mongosh \"mongodb://localhost:27017\""
 
           
 #    - name: Start Mosquitto container
