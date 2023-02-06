@@ -215,6 +215,7 @@ public class DeviceResourceTest {
             f = true;
         }
         assertThat(f, sensore5);
+
     }
 
 

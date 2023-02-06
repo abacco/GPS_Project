@@ -88,6 +88,7 @@ public class PredictionGenerator {
                 predizioni.set(0,pTest);
                 predizioni.set(1,pTest);
             }
+
             return predizioni;
         }
 
