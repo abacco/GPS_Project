@@ -78,9 +78,9 @@ public class PredictionGenerator {
 
         public List<Predizione> getPredizioni(){
             List<Predizione> predizioni = new ArrayList<>();
-            List<Device> ril = getRilevazioni();
-            predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
-            predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
+         //   List<Device> ril = getRilevazioni();
+          //  predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
+            //  predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
             if(predizioni.get(0).getRischio()==null && predizioni.get(1).getRischio()==null ){
                 Predizione pTest = predizioni.get(0);
                 pTest.setPercentualeRischio(25);
