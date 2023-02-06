@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>ChatBot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;1,100;1,600&family=Oswald:wght@200;300;600;700&display=swap" rel="stylesheet">
+    <link href="src/main/resources/META-INF/resources/AreaPredizioni/AreaPredizioni.css" rel="stylesheet" type="text/css">
     <style>
         ::-webkit-scrollbar{
             width:0.4em;
@@ -93,6 +95,7 @@
             font-weight: bold;
             color: black;
             cursor: pointer;
+
         }
 
         nav a:hover {
@@ -319,16 +322,18 @@
         }
 
         #CBButtonList {
-            border-radius: 6px;
-            background-color: darkcyan;
-            height: 180px;
-            width: 100px;
+            border-radius: 15px;
+            background-color: #fff;
+            height: 270px;
+            width: 300px;
             position:absolute;
             display:flex;
             flex-direction: column;
             flex-wrap:wrap;
-            bottom: 0;
-            right: 0;
+            bottom: 85px;
+            left: 1141px;
+
+            box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
         }
 
         #CBButtonList button {
@@ -337,13 +342,16 @@
             border-radius: 5px;
             display: block;
             justify-self: center;
-            margin-top: 5px;
+            margin: 14px auto;
+            font-size: 20px;
         }
 
         #CBButtonList button:hover {
-            background-color: darkblue;
+            background-color: #1abc9c;
             border: transparent;
-            color: white;
+            color: #212121;
+            padding-left: 40px;
+            padding-right: 40px;
         }
 
         #CBButtonList button:active {
@@ -374,10 +382,10 @@
         #CBButtonList hr {
             margin-top: 5px;
             margin-bottom: 5px;
-            width: 80px;
+            width: 80%;
             height: 1px;
             border: none;
-            background-color: black;
+            background-color: #212121;
         }
 
     </style>
@@ -387,7 +395,7 @@
 
 </div>
 
-<div id="CBButtonList">
+<div id="CBButtonList" style="display:none;">
     <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
     <hr>
     <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
@@ -398,6 +406,31 @@
     <hr>
     <button id="CBButtonE" class="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
 </div>
+
+
+<!--Barra Navigazionale-->
+<nav style="right: 160px">
+    <a href="resources/META-INF.resources/index.html">Device</a>
+    <a href="resources/META-INF/resources/AreaPredizioni.html" >Area Predizioni</a>
+    <a href="src/main/resources/META-INF/resources/Rep.html">Report</a>
+    <a href="#" onclick="javascript:hide()"> Chatbot</a>
+    <div class="animation start-chatbot"></div>
+</nav>
+
+<script>
+
+    function hide() {
+       const variable = document.getElementById('CBButtonList');
+
+       if (variable.style.display == "block") {
+           variable.style.display = "none";
+       } else {
+           variable.style.display = "block";
+       }
+    }
+
+
+</script>
 
 <script type="text/javascript" src="./ChatBotScript"></script>
 
