@@ -81,6 +81,13 @@ public class PredictionGenerator {
             List<Device> ril = getRilevazioni();
             predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
             predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
+            if(predizioni.get(0).getRischio()==null && predizioni.get(1).getRischio()==null ){
+                Predizione pTest = predizioni.get(0);
+                pTest.setPercentualeRischio(25);
+                pTest.setRischio("sotto_controllo");
+                predizioni.set(0,pTest);
+                predizioni.set(1,pTest);
+            }
             return predizioni;
         }
 
