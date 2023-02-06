@@ -8,6 +8,8 @@ import org.bson.Document;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @ApplicationScoped
@@ -19,16 +21,25 @@ public class GestioneChatBotData {
     private MongoCollection getCollection() {
         MongoCollection mc = mongoClient.getDatabase(DBname).getCollection(DBname);
         if(mc.countDocuments()<=0){
-            Document document = new Document()
-                    .append("Febbre", "Febbre")
-                    .append("Pressione Bassa", "Pressione Bassa")
-                    .append("Pressione Alta", "Pressione Alta")
-                    .append("Tachicardia", "Tachicardia")
-                    .append("Infarto", "Infarto");
-            mc.insertOne(document);
+            Document documentI = addProblema("Infarto","soluzioneInfarto");
+            Document documentF = addProblema("Febbre","soluzioneFebbre");
+            Document documentP = addProblema("Pressione Alta","soluzionePressioneAlta");
+            Document documentp = addProblema("Pressione Bassa","soluzionePressioneBassa");
+            Document documentT = addProblema("Tachicardia","soluzioneTachicardia");
+
+            List<Document> list = Collections.EMPTY_LIST;
+            Collections.addAll(list = new ArrayList<Document>(),documentI,documentF,documentP,documentp,documentT);
+
+            mc.insertMany(list);
         }
         return mc;
 
+    }
+
+    private Document addProblema(String problema, String soluzione) {
+        return new Document()
+                .append("problem",problema )
+                .append("solution",soluzione);
     }
 
     public List<Solution> getSolutions(String problem) {

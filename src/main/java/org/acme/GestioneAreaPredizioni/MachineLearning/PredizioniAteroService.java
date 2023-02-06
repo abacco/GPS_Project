@@ -15,7 +15,9 @@ public class PredizioniAteroService {
 
     //crea un dataset per il modello da un arff file generato tramite i dati nel db e effettua la predizione della nuova instance
     public static Predizione getPredizioneAtero(List<Device> rilevazione){
-        try{
+        if(rilevazione.size()>=10){
+
+            try{
             DataSource source = new DataSource(MLModel.getArff("atero",rilevazione));
             Instances instance = getAsInstanceAtero(rilevazione);
 
@@ -23,7 +25,7 @@ public class PredizioniAteroService {
 
         }catch (Exception e){
             e.printStackTrace();
-    }
+    }}
         return new Predizione();
 
 

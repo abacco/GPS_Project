@@ -17,22 +17,28 @@ public class PredizioniInfartoService {
 
     //crea un dataset per il modello da un arff file generato tramite i dati nel db e effettua la predizione della nuova instance
     public static Predizione getPredizioneInfarto(List<Device> rilevazione){
-        try {
-            Predizione pr = new Predizione();
-
-            //creazione datasource per Infarto con i dati del db
-            DataSource source = new DataSource(MLModel.getArff("infarto", rilevazione));
-
-            //creazione Intance da classificare
-            Instances instance = getAsInstanceInfarto(rilevazione);
 
 
-            return MLModel.classifyInstance(instance,source);
+        //controlla se ci sono abbastanza instance per fare la tenfold validation
+        if(rilevazione.size()>=10){
+
+            try {
+                Predizione pr = new Predizione();
+
+                //creazione datasource per Infarto con i dati del db
+                DataSource source = new DataSource(MLModel.getArff("infarto", rilevazione));
+
+                //creazione Intance da classificare
+                Instances instance = getAsInstanceInfarto(rilevazione);
+
+
+                return MLModel.classifyInstance(instance,source);
 
 
 
-        }catch (Exception e){
-            e.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         return new Predizione();
