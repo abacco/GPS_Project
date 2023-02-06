@@ -27,7 +27,7 @@ public class AreaPredizioniTest {
     public void CheckRischioCorrettoAtero() {
         Response r = (Response) given()
                 .when()
-                .get("/AreaPredizioni/stream");
+                .get("/AreaPredizioni");
 
         List<Predizione> predizioni =this.p.getPredizioni();
         Matcher<Boolean> predictionAttended = is(checkPredictionCohesion(predizioni.get(0)));
@@ -47,7 +47,7 @@ public class AreaPredizioniTest {
     public void CheckRischioErratoAtero() {
         Response r = (Response) given()
                 .when()
-                .get("/AreaPredizioni/stream");
+                .get("/AreaPredizioni");
 
         List<Predizione> predizioni =this.p.getPredizioni();
         Matcher<Boolean> predictionAttended = is(!checkPredictionCohesion(predizioni.get(0)));
@@ -67,7 +67,7 @@ public class AreaPredizioniTest {
 
         Response r = (Response) given()
                 .when()
-                .get("/AreaPredizioni/stream");
+                .get("/AreaPredizioni");
 
         List<Predizione> predizioni =this.p.getPredizioni();
 
@@ -89,7 +89,7 @@ public class AreaPredizioniTest {
     public void CheckRischioErratoInfarto() {
         Response r = (Response) given()
                 .when()
-                .get("/AreaPredizioni/stream");
+                .get("/AreaPredizioni");
 
         List<Predizione> predizioni =this.p.getPredizioni();
         Matcher<Boolean> predictionAttended = is(!checkPredictionCohesion(predizioni.get(1)));

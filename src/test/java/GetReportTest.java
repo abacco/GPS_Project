@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
@@ -16,6 +18,10 @@ public class GetReportTest {
 
     @Test
     public void testGetReportReturnType() {
+        given().when().get("/Report")
+                .then()
+                .statusCode(404);
+
         StreamingOutput result = null;
         try {
             result = grc.getReport("01/01/1990 01/01/1990");
@@ -23,5 +29,12 @@ public class GetReportTest {
             throw new RuntimeException(e);
         }
         assertNotNull(result);
+    }
+    @Test
+    public void testGetReportReturnType2() {
+        given().when().get("/localhost:8080")
+                .then()
+                .statusCode(404)
+                .body(is(""));
     }
 }
