@@ -19,9 +19,18 @@ jobs:
   start_mosquitto:
     runs-on: ubuntu-latest
     steps:
-    - name: Start Mosquitto container
-      uses: docker://eclipse-mosquitto:1.6.12    
-
+    #- name: Start Mosquitto container
+     # uses: docker://eclipse-mosquitto:1.6.12    
+     - name: Start Mosquitto
+       uses: namoshek/mosquitto-github-action@v1
+       with:
+        version: '1.6'
+        ports: '1883:1883 8883:8883'
+        certificates: ${{ github.workspace }}/.ci/tls-certificates
+        config: ${{ github.workspace }}/.ci/mosquitto.conf
+        password-file: ${{ github.workspace}}/.ci/mosquitto.passwd
+        container-name: 'mqtt'
+        
   start_mongo:
     runs-on: ubuntu-latest
     
