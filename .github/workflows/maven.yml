@@ -39,13 +39,6 @@ jobs:
           port: 27017
 
 
-  start-mongosh:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run mongosh commands
-        uses: docker://rtsp/mongosh
-      - run: mongosh "mongodb://localhost:27017"
-
 
           #    - name: Start Mosquitto container
           #      uses: docker://eclipse-mosquitto:1.6.12
