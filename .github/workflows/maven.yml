@@ -16,6 +16,12 @@ on:
 
 jobs:
 
+  start_mosquitto:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start Mosquitto container
+      uses: docker://eclipse-mosquitto:1.6.12    
+
   start_mongo:
     runs-on: ubuntu-latest
     
@@ -27,8 +33,8 @@ jobs:
           #image-version: latest
           port: 27017
           
-    - name: Start Mosquitto container
-      uses: docker://eclipse-mosquitto:1.6.12    
+#    - name: Start Mosquitto container
+#      uses: docker://eclipse-mosquitto:1.6.12    
           
  # start_mosquitto:
   #  runs-on: ubuntu-latest
