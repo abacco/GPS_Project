@@ -24,4 +24,11 @@ public class GetReportTest {
         }
         assertNotNull(result);
     }
+    @Test
+    public void testGetReportReturnType2() {
+        given().when().get("/localhost:8080")
+                .then()
+                .statusCode(200)
+                .body(is(""));
+    }
 }
