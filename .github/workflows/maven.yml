@@ -45,8 +45,8 @@ jobs:
       - name: Run mongosh commands
         uses: docker://rtsp/mongosh
         env:
-          MONGO_URI:  mongodb://localhost:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
-        command: mongosh --uri $MONGO_URI
+          MONGO_URI: mongodb://localhost:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+      - run: mongosh --uri $MONGO_URI
 
 
           #    - name: Start Mosquitto container
