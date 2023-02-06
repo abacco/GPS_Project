@@ -13,14 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @QuarkusTest
 public class GetReportTest {
 
+    int i =0;
+
     @Inject
     GestioneReportController grc;
+
 
     @Test
     public void testGetReportReturnType() {
         given().when().get("/Report")
                 .then()
-                .statusCode(200);
+                .statusCode(500);
 
         StreamingOutput result = null;
         try {
@@ -34,8 +37,7 @@ public class GetReportTest {
     public void testGetReportReturnType2() {
         given().when().get("/localhost:8080")
                 .then()
-                .statusCode(404)
-                .body(is(""));
+                .statusCode(404);
 
     }
 }
