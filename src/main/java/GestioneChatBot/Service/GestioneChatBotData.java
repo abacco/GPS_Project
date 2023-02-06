@@ -31,6 +31,7 @@ public class GestioneChatBotData {
             Collections.addAll(list = new ArrayList<Document>(),documentI,documentF,documentP,documentp,documentT);
 
             mc.insertMany(list);
+
         }
         return mc;
 

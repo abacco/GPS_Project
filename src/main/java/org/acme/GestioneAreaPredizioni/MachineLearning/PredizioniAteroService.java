@@ -29,6 +29,7 @@ public class PredizioniAteroService {
         return new Predizione();
 
 
+
     }
 
 

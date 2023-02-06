@@ -42,6 +42,7 @@ public class PredizioniInfartoService {
         }
 
         return new Predizione();
+
     }
 
 
