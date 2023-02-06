@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
