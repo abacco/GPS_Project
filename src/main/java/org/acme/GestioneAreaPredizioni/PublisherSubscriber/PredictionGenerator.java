@@ -78,16 +78,18 @@ public class PredictionGenerator {
 
         public List<Predizione> getPredizioni(){
             List<Predizione> predizioni = new ArrayList<>();
+
          //   List<Device> ril = getRilevazioni();
           //  predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
             //  predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
-            if(predizioni.get(0).getRischio()==null && predizioni.get(1).getRischio()==null ){
-                Predizione pTest = predizioni.get(0);
+         //   if(predizioni.get(0).getRischio()==null && predizioni.get(1).getRischio()==null ){
+
+                Predizione pTest = new Predizione();// predizioni.get(0);
                 pTest.setPercentualeRischio(25);
                 pTest.setRischio("sotto_controllo");
-                predizioni.set(0,pTest);
-                predizioni.set(1,pTest);
-            }
+                predizioni.add(pTest);
+                predizioni.add(pTest);
+           // }
 
             return predizioni;
         }
