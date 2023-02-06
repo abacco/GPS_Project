@@ -20,7 +20,7 @@ public class GetReportTest {
     public void testGetReportReturnType() {
         given().when().get("/Report")
                 .then()
-                .statusCode(404);
+                .statusCode(200);
 
         StreamingOutput result = null;
         try {
@@ -36,5 +36,6 @@ public class GetReportTest {
                 .then()
                 .statusCode(404)
                 .body(is(""));
+
     }
 }
