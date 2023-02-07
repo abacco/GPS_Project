@@ -16,27 +16,27 @@ on:
 
 jobs:
 
-  start_mosquitto:
-    runs-on: ubuntu-latest
-    steps:
+# # start_mosquitto:
+#   # runs-on: ubuntu-latest
+#  #  steps:
       #- name: Start Mosquitto container
       # uses: docker://eclipse-mosquitto:1.6.12
-      - name: Start Mosquitto
-        uses: namoshek/mosquitto-github-action@v1
-        with:
-          version: '1.6'
-          ports: '1883:1883 8883:8883'
+ # #    - name: Start Mosquitto
+ ##       uses: namoshek/mosquitto-github-action@v1
+##        with:
+  ##        version: '1.6'
+   ##       ports: '1883:1883 8883:8883'
 
-  start_mongo:
-    runs-on: ubuntu-latest
+##  start_mongo:
+##    runs-on: ubuntu-latest
 
-    steps:
-      - name: Create mongo Docker container
-        id: build_mongo_docker
-        uses: DigiPie/mongo-action@v1.0.1
-        with:
+ ##   steps:
+    ##  - name: Create mongo Docker container
+ ##       id: build_mongo_docker
+##        uses: DigiPie/mongo-action@v1.0.1
+ ##       with:
           #image-version: latest
-          port: 27017
+   ##       port: 27017
 
 
 
@@ -89,6 +89,23 @@ jobs:
       #    - name: Start Mosquitto container
       #     uses: docker://eclipse-mosquitto:1.6.12
 
+
+      - name: Start Mosquitto container
+        uses: docker://eclipse-mosquitto:1.6.12
+      - name: Start Mosquitto
+        uses: namoshek/mosquitto-github-action@v1
+        with:
+            version: '1.6'
+            ports: '1883:1883 8883:8883'
+
+
+
+      - name: Create mongo Docker container
+        id: build_mongo_docker
+        uses: DigiPie/mongo-action@v1.0.1
+        with:
+          #image-version: latest
+          port: 27017
       - name: Build with Maven
         run: mvn clean verify #-B package --file pom.xml
 
