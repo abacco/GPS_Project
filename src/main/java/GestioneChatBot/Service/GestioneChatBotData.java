@@ -19,8 +19,8 @@ public class GestioneChatBotData {
     private static final String DBname = "soluzioni";
 
     private MongoCollection getCollection() {
-        MongoCollection mc = null;      //aggiunto controllo per la connessione al DB per la pipeline
-        if(mongoClient != null){
+       MongoCollection mc = null;      //aggiunto controllo per la connessione al DB per la pipeline
+        try{
             mc= mongoClient.getDatabase(DBname).getCollection(DBname);
             if(mc.countDocuments()<=0){
                 Document documentI = addProblema("Infarto","soluzioneInfarto");
@@ -35,7 +35,7 @@ public class GestioneChatBotData {
                 mc.insertMany(list);
 
             }
-        }
+        }catch (Exception e){}
         return mc;
 
     }
