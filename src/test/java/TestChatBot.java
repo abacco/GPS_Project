@@ -49,7 +49,7 @@ public class TestChatBot {
     @Test
     public void testGetSolutions_noSolutions() {
         String response = myResource.getSolutions("NotExistProblems");
-        assertTrue(response == null);
+        assertTrue(response.equals("Solution not found"));
     }
 }
 

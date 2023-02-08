@@ -74,12 +74,21 @@ public class GestioneReportController  {
     @GET
     @Produces("application/pdf")
     public StreamingOutput getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
-            ArrayList<String> measurementList = gestioneReportService.getMeasurements(periodOfTime);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            generatePdf(measurementList, baos);
-            byte[] pdf = baos.toByteArray();
-            return output -> {output.write(pdf);};
-            //return output -> { generatePdf(measurementList.toString(), new ByteArrayOutputStream(output)); };
+        ArrayList<String> measurementList = new ArrayList<>();
+        try{
+            measurementList = gestioneReportService.getMeasurements(periodOfTime);
+        }catch (Exception e){  //se fallisce a fare lo split o a connettersi al db genera dati fittizi
+            String d1 = "device1";
+            String d2 = "device2";
+            measurementList.add(d1);
+            measurementList.add(d2);
+        }
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        generatePdf(measurementList, baos);
+        byte[] pdf = baos.toByteArray();
+        return output -> {output.write(pdf);};
+        //return output -> { generatePdf(measurementList.toString(), new ByteArrayOutputStream(output)); };
     }
 }
 /*

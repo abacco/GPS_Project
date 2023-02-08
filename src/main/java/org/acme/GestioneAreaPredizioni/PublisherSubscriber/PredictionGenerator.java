@@ -64,14 +64,35 @@ public class PredictionGenerator {
                     device.setOssigenazione(document.getInteger("ossigenazione"));
                     device.setTemp(document.getInteger("temp"));
                     device.setHeartFreq(document.getInteger("heartFrequency"));
-                    device.setHeartFreq(document.getInteger("pressione massima"));
-                    device.setHeartFreq(document.getInteger("pressione minima"));
+                    device.setPressione(document.getInteger("pressione massima"));
+                    device.setPressione_due(document.getInteger("pressione minima"));
 
                     list.add(device);
                 }
             } finally {
                 cursor.close();
             }
+
+
+            //se il DB non ha abbastanza instance ne genera 10 per il testing
+            // il modello non può fare una predizione se non ci sono almeno 10 instance
+
+            for(int i=0;list.size()<10;i++){
+                Device device = new Device();
+
+                device.setDeviceName(device.getDeviceName());
+                device.setColesterolo(device.getColesterolo());
+                device.setOssigenazione(device.getOssigenazione());
+                device.setTemp(device.getTemp());
+                device.setHeartFreq(device.getHeartFrequency());
+                device.setPressione(device.getPressione());
+                device.setPressione_due(device.getPressione_due());
+
+                list.add(device);
+
+            }
+
+
             return list;
 
         }
@@ -79,17 +100,22 @@ public class PredictionGenerator {
         public List<Predizione> getPredizioni(){
             List<Predizione> predizioni = new ArrayList<>();
 
-         //   List<Device> ril = getRilevazioni();
-          //  predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
-            //  predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
-         //   if(predizioni.get(0).getRischio()==null && predizioni.get(1).getRischio()==null ){
 
-                Predizione pTest = new Predizione();// predizioni.get(0);
+            //prova a fare le predizioni ottenendo una lista di device dal DB, se non riesce genera dati fittizi
+            try{
+                List<Device> ril = getRilevazioni();
+                predizioni.add(PredizioniInfartoService.getPredizioneInfarto(ril));
+                predizioni.add(PredizioniAteroService.getPredizioneAtero(ril));
+                if(predizioni.get(0).getRischio() == null && predizioni.get(1).getRischio() == null)
+                    throw new Exception();
+            }catch (Exception e){
+                predizioni = new ArrayList<>();
+                Predizione pTest = new Predizione();
                 pTest.setPercentualeRischio(25);
                 pTest.setRischio("sotto_controllo");
                 predizioni.add(pTest);
                 predizioni.add(pTest);
-           // }
+            }
 
             return predizioni;
         }

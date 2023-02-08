@@ -36,7 +36,8 @@ public class GestioneChatBotController {
 
             return array.toString();
         } catch (SolutionsNotFound e) {
-            return null;
+            return "Solution not found";   //in caso non riesce a connettersi al db restituisce una stringa e non null per evitare nullPointer
+            //return null;
         }
     }
 

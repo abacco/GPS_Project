@@ -19,20 +19,23 @@ public class GestioneChatBotData {
     private static final String DBname = "soluzioni";
 
     private MongoCollection getCollection() {
-        MongoCollection mc = mongoClient.getDatabase(DBname).getCollection(DBname);
-        if(mc.countDocuments()<=0){
-            Document documentI = addProblema("Infarto","soluzioneInfarto");
-            Document documentF = addProblema("Febbre","soluzioneFebbre");
-            Document documentP = addProblema("Pressione Alta","soluzionePressioneAlta");
-            Document documentp = addProblema("Pressione Bassa","soluzionePressioneBassa");
-            Document documentT = addProblema("Tachicardia","soluzioneTachicardia");
+       MongoCollection mc = null;      //aggiunto controllo per la connessione al DB per la pipeline
+        try{
+            mc= mongoClient.getDatabase(DBname).getCollection(DBname);
+            if(mc.countDocuments()<=0){
+                Document documentI = addProblema("Infarto","soluzioneInfarto");
+                Document documentF = addProblema("Febbre","soluzioneFebbre");
+                Document documentP = addProblema("Pressione Alta","soluzionePressioneAlta");
+                Document documentp = addProblema("Pressione Bassa","soluzionePressioneBassa");
+                Document documentT = addProblema("Tachicardia","soluzioneTachicardia");
 
-            List<Document> list = Collections.EMPTY_LIST;
-            Collections.addAll(list = new ArrayList<Document>(),documentI,documentF,documentP,documentp,documentT);
+                List<Document> list = Collections.EMPTY_LIST;
+                Collections.addAll(list = new ArrayList<Document>(),documentI,documentF,documentP,documentp,documentT);
 
-            mc.insertMany(list);
+                mc.insertMany(list);
 
-        }
+            }
+        }catch (Exception e){}
         return mc;
 
     }

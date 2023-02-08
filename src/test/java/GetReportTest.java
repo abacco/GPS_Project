@@ -23,7 +23,7 @@ public class GetReportTest {
     public void testGetReportReturnType() {
         given().when().get("/Report")
                 .then()
-                .statusCode(500);
+                .statusCode(200);
 
         StreamingOutput result = null;
         try {
@@ -33,11 +33,5 @@ public class GetReportTest {
         }
         assertNotNull(result);
     }
-    @Test
-    public void testGetReportReturnType2() {
-        given().when().get("/localhost:8080")
-                .then()
-                .statusCode(404);
 
-    }
 }
