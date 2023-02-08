@@ -64,14 +64,35 @@ public class PredictionGenerator {
                     device.setOssigenazione(document.getInteger("ossigenazione"));
                     device.setTemp(document.getInteger("temp"));
                     device.setHeartFreq(document.getInteger("heartFrequency"));
-                    device.setHeartFreq(document.getInteger("pressione massima"));
-                    device.setHeartFreq(document.getInteger("pressione minima"));
+                    device.setPressione(document.getInteger("pressione massima"));
+                    device.setPressione_due(document.getInteger("pressione minima"));
 
                     list.add(device);
                 }
             } finally {
                 cursor.close();
             }
+
+
+            //se il DB non ha abbastanza instance ne genera 10 per il testing
+            // il modello non può fare una predizione se non ci sono almeno 10 instance
+
+            for(int i=0;list.size()<10;i++){
+                Device device = new Device();
+
+                device.setDeviceName(device.getDeviceName());
+                device.setColesterolo(device.getColesterolo());
+                device.setOssigenazione(device.getOssigenazione());
+                device.setTemp(device.getTemp());
+                device.setHeartFreq(device.getHeartFrequency());
+                device.setPressione(device.getPressione());
+                device.setPressione_due(device.getPressione_due());
+
+                list.add(device);
+
+            }
+
+
             return list;
 
         }
