@@ -38,7 +38,7 @@
     function generate() {
         clear();
         let element = document.getElementById("daterange");
-        let string = "http://localhost:8080/report?daterange="+ encodeURIComponent(element.value);
+        let string = "http://localhost:8080/Report?daterange="+ encodeURIComponent(element.value);
 
         let report = document.createElement("a");
         report.href = string;
