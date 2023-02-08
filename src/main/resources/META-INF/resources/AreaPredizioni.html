@@ -14,12 +14,49 @@
 
   <!--Javascript-->
   <script src = "./AreaPredizioni/AreaPredizioni.js"></script>
- <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+  <script src = "./AreaPredizioni/NotificaRischio.js"></script>
 
 
 </head>
 
 <body>
+
+    <!--HTML e JS Chatbot-->
+    <div id="responseArea">
+
+    </div>
+
+    <div id="CBButtonList" style="display:none;">
+      <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
+      <hr>
+      <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
+      <hr>
+      <button id="CBButtonC" class="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
+      <hr>
+      <button id="CBButtonD" class="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
+      <hr>
+      <button id="CBButtonE" class="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
+    </div>
+
+
+    <script>
+
+      function hide() {
+        const variable = document.getElementById('CBButtonList');
+
+        if (variable.style.display == "block") {
+          variable.style.display = "none";
+        } else {
+          variable.style.display = "block";
+        }
+      }
+
+
+    </script>
+
+    <script type="text/javascript" src="/ChatBot/ChatBotScript"></script>
+
+    <!--fine Chatbot -->
 
   <div class="generale">
 
@@ -72,11 +109,11 @@
   </div>
 
   <!--Barra Navigazionale-->
-  <nav style="right: 160px">
-    <a href="/#">Device</a>
-    <a href="/AreaPredizioni.html" ><input type="radio"  class="check"> Area Predizioni</a>
-    <a href="/Report.html">Report</a>
-    <a href="/Chatbot.html">Chatbot</a>
+  <nav style="right: 195px;">
+    <a href="index.html">Device</a>
+    <a href="AreaPredizioni.html" ><input type="radio"  class="check">Area Predizioni</a>
+    <a href="Report.html">Report</a>
+    <a onclick="javascript:hide()"> Chatbot</a>
     <div class="animation start-area-predizioni"></div>
   </nav>
 

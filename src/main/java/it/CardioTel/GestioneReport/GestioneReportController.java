@@ -1,5 +1,9 @@
 package it.CardioTel.GestioneReport;
 
+import GestioneChatBot.Service.Solution;
+import GestioneChatBot.Service.SolutionsNotFound;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
 
 import io.vertx.core.json.JsonArray;
@@ -31,6 +35,8 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import org.jboss.logging.annotations.BaseUrl;
+import org.jsoup.Jsoup;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -46,7 +52,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM_TYPE;
 public class GestioneReportController  {
 
    @Inject
-    GestioneReportServiceImpl gestioneReportService;
+   GestioneReportServiceImpl gestioneReportService;
+
 
         private void generatePdf(ArrayList<String> data, ByteArrayOutputStream baos) {
             try {
@@ -77,20 +84,39 @@ public class GestioneReportController  {
         ArrayList<String> measurementList = new ArrayList<>();
         try{
             measurementList = gestioneReportService.getMeasurements(periodOfTime);
-        }catch (Exception e){  //se fallisce a fare lo split o a connettersi al db genera dati fittizi
+        }catch (Exception e){  //se fallisce a fare lo split o a connetter
             String d1 = "device1";
             String d2 = "device2";
             measurementList.add(d1);
             measurementList.add(d2);
         }
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         generatePdf(measurementList, baos);
         byte[] pdf = baos.toByteArray();
         return output -> {output.write(pdf);};
         //return output -> { generatePdf(measurementList.toString(), new ByteArrayOutputStream(output)); };
     }
+    @POST
+    @Path("/getReports")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getReports(@FormParam("daterange") String periodOfTime) {
+        ArrayList<String> measurementList = new ArrayList<>();
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+        try{
+            measurementList = gestioneReportService.getMeasurements(periodOfTime);
+            //transforma in json l'array
+            String json = ow.writeValueAsString(measurementList);
+            return json;
+        }catch (Exception e){  //se fallisce a fare lo split o a connetter
+            e.printStackTrace();
+        }
+
+        return measurementList.toString();
+
+    }
 }
+
 /*
     private byte[] generatePdfBytes(List<String> strings) throws IOException {
         // create a new PDF document

@@ -23,6 +23,8 @@ public class GestioneReportData{
         return mongoClient.getDatabase(DBname).getCollection(DBname);
     }
 
+
+    //Prende da DB i documenti che rappresentano i device
     public ArrayList<Document> getMeasurement(Date[] pot) {
 
         Date startDate = pot[0];

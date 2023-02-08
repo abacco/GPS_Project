@@ -27,7 +27,7 @@ public class GetReportTest {
 
         StreamingOutput result = null;
         try {
-            result = grc.getReport("01/01/1990 01/01/1990");
+            result = grc.getReport("1990-01-01,1990-01-01");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

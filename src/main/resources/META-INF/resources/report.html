@@ -11,78 +11,174 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1"/>
 
+    <link rel="stylesheet" type="text/css" href="report.css">
 </head>
 
 <body>
+    <!--HTML e JS Chatbot-->
+    <div id="responseArea">
+
+    </div>
+
+    <div id="CBButtonList" style="display:none;">
+        <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
+        <hr>
+        <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
+        <hr>
+        <button id="CBButtonC" class="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
+        <hr>
+        <button id="CBButtonD" class="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
+        <hr>
+        <button id="CBButtonE" class="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
+    </div>
+
+
+    <script>
+
+        function hide() {
+            const variable = document.getElementById('CBButtonList');
+
+            if (variable.style.display == "block") {
+                variable.style.display = "none";
+            } else {
+                variable.style.display = "block";
+            }
+        }
+
+
+    </script>
+
+    <script type="text/javascript" src="/ChatBot/ChatBotScript"></script>
+
+    <!--fine Chatbot -->
+
+
 <div id="date"></div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <input type="text" id="daterange"/>
-    <script>
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            });
 
-        });
-    </script>
+    <!-- <input type="text" id="daterange"/>-->
 
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
 
-    <button onClick="generate()">Crea Report</button>
-    <script>
-    function generate() {
-        clear();
-        let element = document.getElementById("daterange");
-        let string = "http://localhost:8080/report?daterange="+ encodeURIComponent(element.value);
+    <table id="stampa">    </table>
 
-        let report = document.createElement("a");
-        report.href = string;
-        report.innerHTML = "Visualizza Report";
-        report.download = "Report.pdf";
-        document.getElementById("date").append(report);
-    }
+  <!--
+      <script>
+          $(function() {
+              $('input[name="daterange"]').daterangepicker({
+                  opens: 'left'
+              }, function(start, end, label) {
+                  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+              });
 
-    function clear() {
-        document.getElementById("date").innerHTML = "";
-    }
+          });
+      </script>
+  -->
 
-    </script>
+        <button onClick="generate()">Crea Report</button>
+        <script>
+        function generate() {
+            Repclear();
+            //prende la data e la mette nell'uri
+            var date = new Date(document.getElementById("startDate").value);
 
-<!--
-<div id= "print">
-<br>
-    <div style="width:100%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
-    <div class=""></div>
-    </div>
-    <div class="chartjs-size-monitor-shrink"><div class=""></div>
-    </div>
-    </div>
-    <canvas id="canvas" style="display: block; width: 1140px; height: 570px;" width="1140" height="570" class="chartjs-render-monitor"></canvas>
-    </div>
-</div>
-    <button id="download-button">Download PDF</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+           formattedStartDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
 
-    <script>
-        const button = document.getElementById('download-button');
-        function generatePDF() {
-            var element = document.getElementById("print");
-            var opt = {
-                margin:       0,
-                filename:     'Report.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 1 },
-                jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
-            };
-            html2pdf(element,opt);
+            var date = new Date(document.getElementById("endDate").value);
+
+            formattedEndDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
+
+            range = formattedStartDate + "," + formattedEndDate;
+            console.log(range)
+            //let element = document.getElementById("daterange");
+            let string = "http://localhost:8080/Report?daterange="+ encodeURIComponent(range);
+
+            let report = document.createElement("a");
+            report.href = string;
+            report.innerHTML = "Visualizza Report";
+            report.download = "Report.pdf";
+            document.getElementById("date").append(report);
+            InserisciReport(range);
         }
-        button.addEventListener("click", generatePDF);
-    </script>
-    <a href='http://localhost:8080/report'><button>Download PDF</button></a>
+
+        function Repclear() {
+            document.getElementById("date").innerHTML = "";
+        }
+
+        function InserisciReport(range) {
+
+            req = new XMLHttpRequest()
+            var maxIteration = 30;
+            req.onload = function () {
+                clear();
+                const responseArray = JSON.parse(this.responseText);
+                let element = document.getElementById("stampa");
+
+                for (let i in responseArray) {
+                    if(maxIteration < i)
+                        break;
+
+                    let node = document.createElement("tr");
+                    node.append(responseArray[i]);
+                    element.append(node)
+
+                }
+            }
+
+            req.open("POST", "/Report/getReports", true);
+            req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            req.send("daterange="+range);
+        }
+
+        </script>
+
+
+    <!--
+    <div id= "print">
+    <br>
+        <div style="width:100%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand">
+        <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink"><div class=""></div>
+        </div>
+        </div>
+        <canvas id="canvas" style="display: block; width: 1140px; height: 570px;" width="1140" height="570" class="chartjs-render-monitor"></canvas>
+        </div>
+    </div>
+        <button id="download-button">Download PDF</button>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            const button = document.getElementById('download-button');
+            function generatePDF() {
+                var element = document.getElementById("print");
+                var opt = {
+                    margin:       0,
+                    filename:     'Report.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 1 },
+                    jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
+                };
+                html2pdf(element,opt);
+            }
+            button.addEventListener("click", generatePDF);
+        </script>
+        <a href='http://localhost:8080/report'><button>Download PDF</button></a>-->
+
+<!--Barra Navigazionale-->
+    <nav style="right: 195px;">
+        <a href="index.html">Device</a>
+        <a href="AreaPredizioni.html" ><input type="radio"  class="check">Area Predizioni</a>
+        <a href="Report.html">Report</a>
+        <a onclick="javascript:hide()"> Chatbot</a>
+        <div class="animation start-report"></div>
+    </nav>
 </body>
 </html>

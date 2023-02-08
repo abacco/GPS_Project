@@ -308,3 +308,74 @@ table.comicGreen tfoot td {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+#responseArea {
+    background-color: #1abc9c;
+    border-radius: 6px;
+}
+
+#CBButtonList {
+    border-radius: 15px;
+    background-color: #fff;
+    height: 270px;
+    width: 300px;
+    position:absolute;
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    bottom: 85px;
+    left: 1141px;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+#CBButtonList button {
+    background-color: transparent;
+    border: transparent;
+    border-radius: 5px;
+    display: block;
+    justify-self: center;
+    margin: 14px auto;
+    font-size: 20px;
+}
+
+#CBButtonList button:hover {
+    background-color: #1abc9c;
+    border: transparent;
+    color: #212121;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#CBButtonList button:active {
+    background-color: white;
+    color: black;
+}
+
+#responseArea button {
+    position: relative;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+}
+
+#responseArea button:hover {
+    background-color: darkblue;
+    border: transparent;
+    color: white;
+}
+
+#responseArea button:active {
+    background-color: white;
+    color: black;
+}
+
+#CBButtonList hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 80%;
+    height: 1px;
+    border: none;
+    background-color: #212121;
+}

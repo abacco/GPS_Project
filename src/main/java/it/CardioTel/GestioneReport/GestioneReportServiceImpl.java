@@ -4,6 +4,8 @@ import org.bson.Document;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,25 +19,32 @@ public class GestioneReportServiceImpl {
     GestioneReportData gestioneReportData;
 
     public ArrayList<String> getMeasurements (String periodOfTime){
+
+        //formattazione stringa
         Date [] pot = new Date [2];
         String startDate = "" ;
         String endDate = "" ;
-        try {
-        String[] split = periodOfTime.split(" ");
+        String[] split = periodOfTime.split(",");
         startDate = split[0];
         endDate = split[1];
-        //pot = array di date
-        pot[0] = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
-        pot[1] = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+
+        try{
+            pot[0]  = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+            pot[1]  = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+
         ArrayList<Document> list = new ArrayList<Document>();
+
+        //array di documenti device
         list = gestioneReportData.getMeasurement(pot);
 
         return getMeasurementsInString(list);
     }
 
+
+    //trasforma i document in stringhe formattate
     private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
         ArrayList<String> s = new ArrayList<String>();
         for (Document d : l){
@@ -44,6 +53,9 @@ public class GestioneReportServiceImpl {
       return s;
     }
 
+
+
+    //formatta in stringa i device presi da DB
     private String formatDocumentToString(Document d) {
         if(d.isEmpty() || d == null) {
             return "";
