@@ -32,7 +32,6 @@ public class GestioneReportController  {
    @Inject
    GestioneReportServiceImpl gestioneReportService;
 
-
         private void generatePdf(ArrayList<String> data, ByteArrayOutputStream baos) {
             try {
                 PdfWriter writer = new PdfWriter(baos);

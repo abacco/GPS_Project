@@ -40,7 +40,7 @@ public class GestioneChatBotData {
 
     }
 
-    private Document addProblema(String problema, String soluzione) {
+    public Document addProblema(String problema, String soluzione) {
         return new Document()
                 .append("problem",problema )
                 .append("solution",soluzione);

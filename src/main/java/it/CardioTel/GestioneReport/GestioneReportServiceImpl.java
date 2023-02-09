@@ -4,8 +4,6 @@ import org.bson.Document;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -58,19 +56,19 @@ public class GestioneReportServiceImpl {
     }
 
 
-    public ArrayList<String> getMeasurementsToPrint (ArrayList<Document> l){
+    /*public ArrayList<String> getMeasurementsToPrint (ArrayList<Document> l){
         return getMeasurementsInString(l);
-    }
+    }*/
 
 
     //trasforma i document in stringhe formattate
-    private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
+   /* private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
         ArrayList<String> s = new ArrayList<String>();
         for (Document d : l){
             s.add(formatDocumentToString(d));
         }
       return s;
-    }
+    }*/
 
     //Ottiene le medie dei valori nelle date selezionate
     public ArrayList<String> getAverages(ArrayList<Document> l ){
@@ -79,7 +77,7 @@ public class GestioneReportServiceImpl {
 
 
     //formatta in stringa i device presi da DB
-    private String formatDocumentToString(Document d) {
+  /*  private String formatDocumentToString(Document d) {
         if(d.isEmpty() || d == null) {
             return "";
         }
@@ -103,9 +101,9 @@ public class GestioneReportServiceImpl {
 
         return str.toString();
 
-    }
+    }*/
 
-    private ArrayList<String> getMeasurentsInAverage(ArrayList<Document> l){
+    public ArrayList<String> getMeasurentsInAverage(ArrayList<Document> l){
         ArrayList<String> s = new ArrayList<String>();
         int preMax = 0;
         int preMin = 0;
@@ -139,7 +137,7 @@ public class GestioneReportServiceImpl {
                 i++;
             }else{
 
-                s.add(GetAverageinString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
+                s.add(GetAverageInString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
 
                 //passa al giorno successivo
                 Calendar calendar = dateToCalendar(date);
@@ -149,13 +147,13 @@ public class GestioneReportServiceImpl {
 
             }
         }
-        s.add(GetAverageinString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
+        s.add(GetAverageInString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
 
         return s;
 
 }
 
-    private String GetAverageinString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
+    public String GetAverageInString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
         freqCard /= numInstancies;
         colesterolo  /= numInstancies;
         ossigenazione  /= numInstancies;
