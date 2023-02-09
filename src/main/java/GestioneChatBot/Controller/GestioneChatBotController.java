@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -45,7 +46,16 @@ public class GestioneChatBotController {
     @Path("/interface")
     @Produces(MediaType.TEXT_HTML)
     public String printCBPage() throws IOException {
-        String path = "../src/main/java/GestioneChatBot/Controller/ChatBot.html";
+
+        File currentFolder = new File(System.getProperty("user.dir"));
+        File srcFolder = new File(currentFolder, "src");
+        String path = null;
+
+        if (srcFolder.exists() && srcFolder.isDirectory()) {
+            path = "./src/main/java/GestioneChatBot/Controller/ChatBot.html";
+        } else {
+            path = "../src/main/java/GestioneChatBot/Controller/ChatBot.html";
+        }
 
         return Files.readString(Paths.get(path));
     }
@@ -54,7 +64,16 @@ public class GestioneChatBotController {
     @Path("/ChatBotScript")
     @Produces(MediaType.TEXT_PLAIN)
     public String getScript() throws IOException {
-        String path = "../src/main/java/GestioneChatBot/Controller/ChatBotScript.js";
+
+        File currentFolder = new File(System.getProperty("user.dir"));
+        File srcFolder = new File(currentFolder, "src");
+        String path = null;
+
+        if (srcFolder.exists() && srcFolder.isDirectory()) {
+            path = "./src/main/java/GestioneChatBot/Controller/ChatBotScript.js";
+        } else {
+            path = "../src/main/java/GestioneChatBot/Controller/ChatBotScript.js";
+        }
 
         return Files.readString(Paths.get(path));
     }
