@@ -5,22 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Report</title>
 
-    <h1>Sezione Report</h1>
-
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" type="text/css" href="report.css">
+    <link href="NavBar_ChatBot.css" rel="stylesheet" type="text/css">
+
 </head>
 
-<body>
+<body class = "body">
 <!--HTML e JS Chatbot-->
     <div id="responseArea">
 
         </div>
 
-    <div id="CBButtonList" style="display:none;">
+    <div id="CBButtonList" >
             <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
             <hr>
             <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
@@ -48,17 +47,25 @@
 
    <!--fine Chatbot -->
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+    <script src="report.js"></script>
 
-<script src = "./AreaPredizioni/NotificaRischio.js"></script>
-<script src="report.js"></script>
+<div class="date">
+    <p>A Partire da</p><input type="date" id="startDate">
+    <p>Fino a</p><input type="date" id="endDate">
+    <button class = "genera" onClick="generate()">Crea Report</button>
 
-    <input type="date" id="startDate">
-    <input type="date" id="endDate">
-    <button onClick="generate()">Crea Report</button>
-    <div id="date">
-    </div>
+
+    <div id="date"></div>
+
+</div>
+
+<div class="stampa">
     <table id="stampa">    </table>
-
+</div>
 <!--Barra Navigazionale-->
     <nav style="right: 195px;">
             <a href="index.html">Device</a>

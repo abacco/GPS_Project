@@ -30,8 +30,17 @@ function generate() {
 
     let report = document.createElement("a");
     report.href = string;
-    report.innerHTML = "Visualizza Report";
+    let img = document.createElement("img");
+    img.src ="https://i.imgur.com/iapMPv5.png";
+    img.classList.add("icona");
+    report.href = string;
+    report.img = "https://i.imgur.com/iapMPv5.png";
+    report.innerHTML = "Download Report";
+    report.classList.add("scarica");
+    let br = document.createElement("br");
     report.download = "Report.pdf";
+    report.append(br);
+    report.append(img);
     document.getElementById("date").append(report);
     InserisciReport(range);
 }

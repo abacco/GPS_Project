@@ -1,0 +1,167 @@
+@charset "ISO-8859-1";
+
+#responseArea {
+    background-color: #1abc9c;
+    border-radius: 6px;
+}
+
+#CBButtonList {
+
+    display:none;
+    border-radius: 15px;
+    background-color: #fff;
+    height: 270px;
+    width: 300px;
+    position:absolute;
+    flex-direction: column;
+    flex-wrap:wrap;
+    bottom: 85px;
+    left: 1270px;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+    z-index: 10;
+
+}
+
+#CBButtonList button {
+    background-color: transparent;
+    border: transparent;
+    border-radius: 5px;
+    display: block;
+    justify-self: center;
+    margin: 14px auto;
+    font-size: 20px;
+}
+
+#CBButtonList button:hover {
+    background-color: #1abc9c;
+    border: transparent;
+    color: #212121;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#CBButtonList button:active {
+    background-color: white;
+    color: black;
+}
+
+#responseArea button {
+    position: relative;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+}
+
+#responseArea button:hover {
+    background-color: darkblue;
+    border: transparent;
+    color: white;
+}
+
+#responseArea button:active {
+    background-color: white;
+    color: black;
+}
+
+#CBButtonList hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 80%;
+    height: 1px;
+    border: none;
+    background-color: #212121;
+}
+
+/* Barra Navigazionale */
+nav {
+    font-family: "Times New Roman";
+    position: fixed;
+    bottom: 20px;
+    overflow: hidden;
+    margin-left: 5px;
+    width: 1200px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 15px;
+    font-size: 0;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+    margin-right: 150px;
+}
+
+/* Link barra navigazionale */
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 25px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: black;
+}
+nav a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+/* Animazione barra navigazionale */
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+/* Pulsanti barra navigazionale */
+a:nth-child(1) {
+    width: 300px;
+}
+a:nth-child(2) {
+    width: 300px;
+}
+a:nth-child(3) {
+    width: 300px;
+}
+a:nth-child(4) {
+    width: 300px;
+}
+a:nth-child(5) {
+    width: 300px;
+}
+nav .start-home, a:nth-child(1):hover~.animation {
+    width: 300px;
+    left: 0;
+    background-color: #1abc9c;
+}
+nav .start-area-predizioni, a:nth-child(2):hover~.animation {
+    width: 300px;
+    left: 300px;
+    background-color: #1abc9c;
+}
+nav .start-report, a:nth-child(3):hover~.animation {
+    width: 300px;
+    left: 600px;
+    background-color: #1abc9c;
+}
+nav .start-chatbot, a:nth-child(4):hover~.animation {
+    width: 300px;
+    left: 900px;
+    background-color: #1abc9c;
+}
+nav .start-contact, a:nth-child(5):hover~.animation {
+    width: 300px;
+    left: 1200px;
+    background-color: #1abc9c;
+}
