@@ -1,5 +1,6 @@
 package it.CardioTel.GestioneReport;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -33,11 +34,25 @@ public class GestioneReportData{
         //controllare mongoClient
        // MongoClient mongoClient = new MongoClient("localhost", 27017);
         MongoDatabase database = mongoClient.getDatabase("misurazioni");
-        MongoCursor<Document> cursor = getCollection().find().iterator();
+
         MongoCollection<Document> measureCollection = database.getCollection("misurazioni");
-        Bson condition = new Document("$gte", startDate).append("$lte", endDate);
-        Bson filter = new Document("Date", condition);
+        Bson condition = null;
+
+        //così se sono uguali prende le  predizione della giornata fino a fine giornata
+        if(startDate.equals(endDate)) {
+            endDate.setHours(23);
+            endDate.setMinutes(59);
+            endDate.setSeconds(59);
+        }
+
+
+        condition = new Document("$gte", startDate).append("$lte", endDate);
+
+
+        Bson filter = new Document("date", condition);
        // FindIterable<Document> documents = measureCollection.find(filter);
+
+        MongoCursor<Document> cursor = measureCollection.find(filter).iterator();
         try {
             while(cursor.hasNext()) {
                 Document document = cursor.next();

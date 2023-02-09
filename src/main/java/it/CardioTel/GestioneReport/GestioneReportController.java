@@ -35,8 +35,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-import org.jboss.logging.annotations.BaseUrl;
-import org.jsoup.Jsoup;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
