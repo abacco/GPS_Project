@@ -1,35 +1,15 @@
 package it.CardioTel.GestioneReport;
 
-import GestioneChatBot.Service.Solution;
-import GestioneChatBot.Service.SolutionsNotFound;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
-
-import io.vertx.core.json.JsonArray;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import javax.inject.Inject;
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -81,7 +61,7 @@ public class GestioneReportController  {
     public StreamingOutput getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
         ArrayList<String> measurementList = new ArrayList<>();
         try{
-            measurementList = gestioneReportService.getMeasurements(periodOfTime);
+            measurementList = gestioneReportService.getMeasurementsToPrint(gestioneReportService.getMeasurements(periodOfTime));
         }catch (Exception e){  //se fallisce a fare lo split o a connetter
             String d1 = "device1";
             String d2 = "device2";
@@ -102,7 +82,7 @@ public class GestioneReportController  {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
         try{
-            measurementList = gestioneReportService.getMeasurements(periodOfTime);
+            measurementList = gestioneReportService.getAverages(gestioneReportService.getMeasurements(periodOfTime));;
             //transforma in json l'array
             String json = ow.writeValueAsString(measurementList);
             return json;

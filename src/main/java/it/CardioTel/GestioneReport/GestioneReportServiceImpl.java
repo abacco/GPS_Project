@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class GestioneReportServiceImpl {
     @Inject
     GestioneReportData gestioneReportData;
 
-    public ArrayList<String> getMeasurements (String periodOfTime){
+    public ArrayList<Document> getMeasurements (String periodOfTime){
 
         //formattazione stringa
         Date [] pot = new Date [2];
@@ -31,6 +32,9 @@ public class GestioneReportServiceImpl {
         try{
             pot[0]  = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
             pot[1]  = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
+            Calendar calendar = dateToCalendar(pot[1]);
+            calendar.add(Calendar.DATE, 1);
+            pot[1] =calendarToDate(calendar);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -40,7 +44,24 @@ public class GestioneReportServiceImpl {
         //array di documenti device
         list = gestioneReportData.getMeasurement(pot);
 
-        return getMeasurementsInString(list);
+        return list;
+    }
+
+    //Converte Date a Calendar
+    private Calendar dateToCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
+    //Converte Calendar a Date
+    private Date calendarToDate(Calendar calendar) {
+        return calendar.getTime();
+    }
+
+
+    public ArrayList<String> getMeasurementsToPrint (ArrayList<Document> l){
+        return getMeasurementsInString(l);
     }
 
 
@@ -53,6 +74,10 @@ public class GestioneReportServiceImpl {
       return s;
     }
 
+    //Ottiene le medie dei valori nelle date selezionate
+    public ArrayList<String> getAverages(ArrayList<Document> l ){
+        return getMeasurentsInAverage(l);
+    }
 
 
     //formatta in stringa i device presi da DB
@@ -82,15 +107,39 @@ public class GestioneReportServiceImpl {
 
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
+    private ArrayList<String> getMeasurentsInAverage(ArrayList<Document> l){
+        ArrayList<String> s = new ArrayList<String>();
+        int preMax = 0;
+        int preMin = 0;
+        int colesterolo = 0;
+        int freqCard = 0;
+        int ossigenazione = 0;
+        int temp = 0;
+        int numInstancies = l.size();
 
-    public Date getEndDate() {
-        return endDate;
-    }
+        for (Document d : l){
+            freqCard += (int)d.get("heartFrequency");
+            colesterolo += (int)d.get("colesterolo");
+            ossigenazione += (int)d.get("ossigenazione");
+            preMin += (int)d.get("pressione minima");
+            preMax += (int)d.get("pressione massima");
+            temp += (int)d.get("temp");
+        }
 
-    private Date startDate;
-    private Date endDate;
+        freqCard /= numInstancies;
+        colesterolo  /= numInstancies;
+        ossigenazione  /= numInstancies;
+        preMin  /= numInstancies;
+        preMax  /= numInstancies;
+        temp  /= numInstancies;
 
-}
+        s.add("Frequenza cardiaca : " + String.valueOf(freqCard));
+        s.add("Temperatura : "+String.valueOf(temp));
+        s.add("Ossigenazione : " + String.valueOf(ossigenazione));
+        s.add("Colesterolo : " + String.valueOf(colesterolo));
+        s.add("Pressione Minima : "+String.valueOf(preMin));
+        s.add("Pressione Massima : "+String.valueOf(preMax));
+
+        return s;
+
+}}
