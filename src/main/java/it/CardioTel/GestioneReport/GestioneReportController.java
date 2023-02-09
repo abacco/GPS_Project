@@ -48,6 +48,7 @@ public class GestioneReportController  {
                     //ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
                     document.add(new Paragraph(str));
+                    document.add(new Paragraph("\n"));
                 }
 
                 document.close();
@@ -61,7 +62,7 @@ public class GestioneReportController  {
     public StreamingOutput getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
         ArrayList<String> measurementList = new ArrayList<>();
         try{
-            measurementList = gestioneReportService.getMeasurementsToPrint(gestioneReportService.getMeasurements(periodOfTime));
+            measurementList = gestioneReportService.getAverages((gestioneReportService.getMeasurements(periodOfTime)));
         }catch (Exception e){  //se fallisce a fare lo split o a connetter
             String d1 = "device1";
             String d2 = "device2";

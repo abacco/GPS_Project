@@ -8,10 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @ApplicationScoped
 public class GestioneReportServiceImpl {
@@ -40,6 +37,7 @@ public class GestioneReportServiceImpl {
         }
 
         ArrayList<Document> list = new ArrayList<Document>();
+
 
         //array di documenti device
         list = gestioneReportData.getMeasurement(pot);
@@ -115,17 +113,49 @@ public class GestioneReportServiceImpl {
         int freqCard = 0;
         int ossigenazione = 0;
         int temp = 0;
-        int numInstancies = l.size();
+        int numInstancies = 0;
 
-        for (Document d : l){
-            freqCard += (int)d.get("heartFrequency");
-            colesterolo += (int)d.get("colesterolo");
-            ossigenazione += (int)d.get("ossigenazione");
-            preMin += (int)d.get("pressione minima");
-            preMax += (int)d.get("pressione massima");
-            temp += (int)d.get("temp");
+
+
+        Date date = (Date) l.get(0).get("date"); //prima data
+        int i = 0;
+        Date tDate = date;
+        Date currDate =date;
+
+        //aggiunge all'array le stringhe delle medie giornaliere
+        while(l.size()>i){
+            Document d = l.get(i);
+            tDate = (Date)d.get("date");
+            if(tDate.getYear() == date.getYear() && tDate.getMonth()==date.getMonth() && tDate.getDate()==date.getDate()){
+                numInstancies++;
+                freqCard += (int)d.get("heartFrequency");
+                colesterolo += (int)d.get("colesterolo");
+                ossigenazione += (int)d.get("ossigenazione");
+                preMin += (int)d.get("pressione minima");
+                preMax += (int)d.get("pressione massima");
+                temp += (int)d.get("temp");
+                currDate = tDate;
+
+                i++;
+            }else{
+
+                s.add(GetAverageinString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
+
+                //passa al giorno successivo
+                Calendar calendar = dateToCalendar(date);
+                calendar.add(Calendar.DATE, 1);
+                date =calendarToDate(calendar);
+                numInstancies = 0;
+
+            }
         }
+        s.add(GetAverageinString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
 
+        return s;
+
+}
+
+    private String GetAverageinString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
         freqCard /= numInstancies;
         colesterolo  /= numInstancies;
         ossigenazione  /= numInstancies;
@@ -133,13 +163,13 @@ public class GestioneReportServiceImpl {
         preMax  /= numInstancies;
         temp  /= numInstancies;
 
-        s.add("Frequenza cardiaca : " + String.valueOf(freqCard));
-        s.add("Temperatura : "+String.valueOf(temp));
-        s.add("Ossigenazione : " + String.valueOf(ossigenazione));
-        s.add("Colesterolo : " + String.valueOf(colesterolo));
-        s.add("Pressione Minima : "+String.valueOf(preMin));
-        s.add("Pressione Massima : "+String.valueOf(preMax));
+        return  "Frequenza cardiaca : " + String.valueOf(freqCard) +
+                "\nTemperatura : "+String.valueOf(temp)+
+                "\nOssigenazione : " + String.valueOf(ossigenazione)+
+                "\nColesterolo : " + String.valueOf(colesterolo)+
+                "\nPressione Minima : "+String.valueOf(preMin)+
+                "\nPressione Massima : "+String.valueOf(preMax)+
+                "\nData : "+String.valueOf(tDate);
 
-        return s;
-
-}}
+    }
+}
