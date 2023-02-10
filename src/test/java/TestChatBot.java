@@ -1,19 +1,24 @@
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.inject.Inject;
 
 import GestioneChatBot.Controller.GestioneChatBotController;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @QuarkusTest
 public class TestChatBot {
 
     @Inject
-    private GestioneChatBotController myResource;
+    GestioneChatBotController myResource;
 
     @Test
     public void testGetSolutions_Infarto() {
@@ -51,5 +56,32 @@ public class TestChatBot {
         String response = myResource.getSolutions("NotExistProblems");
         assertTrue(response.equals("Solution not found"));
     }
+
+    @Test
+    public void testPrintCBPage() throws IOException {
+        String expected = new String(Files.readAllBytes(Paths.get("./src/main/java/GestioneChatBot/Controller/ChatBot.html")));
+        String result = myResource.printCBPage();
+
+        assertEquals(result, expected);
+    }
+
+    @Test
+    public void test_getScript() throws IOException {
+        String expected = new String(Files.readAllBytes(Paths.get("./src/main/java/GestioneChatBot/Controller/ChatBotScript.js")));
+
+        String result = myResource.getScript();
+
+        assertEquals(result, expected);
+    }
+        @Test
+        public void testGetSolutions() {
+            given()
+                    .when().post("/ChatBot/getJsonSolution")
+                    .then()
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                    .body(is("Solution not found"));
+        }
+
 }
 
