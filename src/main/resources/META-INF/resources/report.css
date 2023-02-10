@@ -27,6 +27,7 @@
     background-color: #282828;
     border: none;
 }
+
 ::-webkit-scrollbar-thumb:active{
     background-color:rgba(42, 42, 42, 0.71);
     border: none;
@@ -245,6 +246,23 @@ table.comicGreen tfoot td {
     border: none;
     box-shadow: 2px 2px 5px grey;
     margin: 50px auto auto auto;
+
+}
+
+.tabella{
+
+    font-family: "Times New Roman";
+    font-size: 25px;
+    margin: 15px auto;
+    font-weight: normal;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 10px;
+}
+
+#stampa{
+
+    font-size: 30px;
+    font-weight: bold;
 
 }
 

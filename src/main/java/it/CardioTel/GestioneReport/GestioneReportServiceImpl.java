@@ -115,13 +115,14 @@ public class GestioneReportServiceImpl {
         preMax  /= numInstancies;
         temp  /= numInstancies;
 
-        return  "Frequenza cardiaca : " + freqCard +
-                "\nTemperatura : " + temp +
-                "\nOssigenazione : " + ossigenazione +
-                "\nColesterolo : " + colesterolo +
-                "\nPressione Minima : "+ preMin +
-                "\nPressione Massima : " + preMax +
-                "\nData : "+(new SimpleDateFormat("dd-MM-yyyy").format(tDate));
+        return  "Data : "+(new SimpleDateFormat("dd-MM-yyyy").format(tDate)) + ":=" +
+                "\nFrequenza cardiaca : " + freqCard +";" +
+                "\nTemperatura : " + temp +";" +
+                "\nOssigenazione : " + ossigenazione +";" +
+                "\nColesterolo : " + colesterolo +";" +
+                "\nPressione Minima : "+ preMin +";" +
+                "\nPressione Massima : " + preMax +";" ;
+
     }
 
     private Date dayAfter (Date date){

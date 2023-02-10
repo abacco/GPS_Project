@@ -6,6 +6,7 @@ function sendRequest(problem) {
         const responseArray = JSON.parse(this.responseText);
 
         let element = document.getElementById("responseArea");
+        element.style.display="inline";
 
         let clearButton = document.createElement("button")
         clearButton.innerHTML="Close"
@@ -33,4 +34,5 @@ function sendRequest(problem) {
 function clear() {
     let element = document.getElementById("responseArea");
     element.innerHTML = "";
+    element.style.display="none";
 }

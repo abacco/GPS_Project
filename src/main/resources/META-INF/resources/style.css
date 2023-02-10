@@ -228,11 +228,21 @@ table.comicGreen tfoot td {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-@charset "ISO-8859-1";
 
 #responseArea {
-    background-color: #1abc9c;
-    border-radius: 6px;
+
+    font-family: "Times New Roman";
+    font-size: 20px;
+    display: none;
+    height: 270px;
+    bottom: 85px;
+    left: 380px;
+    position:fixed;
+    background-color: white;
+    border-radius: 15px;
+    width: 870px;
+    z-index: 10;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
 }
 
 #CBButtonList {
@@ -242,7 +252,7 @@ table.comicGreen tfoot td {
     background-color: #fff;
     height: 270px;
     width: 300px;
-    position:absolute;
+    position: fixed;
     flex-direction: column;
     flex-wrap:wrap;
     bottom: 85px;

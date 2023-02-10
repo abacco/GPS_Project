@@ -59,9 +59,19 @@ function InserisciReport(range) {
         let element = document.getElementById("stampa");
         element.innerHTML = "Media dei valori dal " + new Date(document.getElementById("startDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + " al " + new Date(document.getElementById("endDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + ":";
         for (let i in responseArray) {
-            let node = document.createElement("tr");
-            node.append(responseArray[i]);
-            element.append(node)
+            let table = document.createElement("table");
+            table.classList.add("tabella");
+
+            let mis = document.createElement("tr");
+            let data = document.createElement("tr");
+            var misurazione = responseArray[i].split("=");
+
+
+            data.append(misurazione[0]);
+            mis.append(misurazione[1]);
+            table.append(data)
+            table.append(mis)
+            element.append(table)
 
         }
     }
