@@ -1,18 +1,15 @@
-package it.unisa.CardioTel.GestioneDevice;
+package it.unisa.CardioTel.GestioneDevice.Service;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import org.bson.Document;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.*;
-
 import java.util.concurrent.TimeUnit;
-
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
-
 import io.reactivex.Flowable;
 
 @ApplicationScoped

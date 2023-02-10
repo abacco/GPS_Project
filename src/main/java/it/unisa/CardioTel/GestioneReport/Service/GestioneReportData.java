@@ -2,11 +2,9 @@ package it.unisa.CardioTel.GestioneReport.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 

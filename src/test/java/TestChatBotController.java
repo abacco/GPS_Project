@@ -1,21 +1,14 @@
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.inject.Inject;
 
 import it.unisa.CardioTel.GestioneChatBot.Controller.GestioneChatBotController;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 @QuarkusTest
-public class TestChatBot {
+public class TestChatBotController {
 
     @Inject
     GestioneChatBotController myResource;
@@ -26,6 +19,7 @@ public class TestChatBot {
         assertNotNull(response);
         assertTrue(response.length() > 2);
     }
+
     @Test
     public void testGetSolutions_Tachicardia() {
         String response = myResource.getSolutions("Tachicardia");

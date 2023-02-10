@@ -3,7 +3,7 @@ package it.unisa.CardioTel.GestioneAreaPredizioni.Service;
 import javax.enterprise.context.ApplicationScoped;
 
 import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.Predizione;
-import it.unisa.CardioTel.GestioneDevice.Device;
+import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.FastVector;

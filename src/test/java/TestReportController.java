@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @QuarkusTest
-public class GetReportTest {
+public class TestReportController {
 
-    int i =0;
+    int i = 0;
 
     @Inject
     GestioneReportController grc;

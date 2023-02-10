@@ -9,7 +9,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-public class TestGestioneReportService {
+public class TestReportService {
 
     @Inject
     GestioneReportServiceImpl myResource;

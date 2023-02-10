@@ -1,8 +1,6 @@
 package it.unisa.CardioTel.GestioneReport.Service;
 
-import it.unisa.CardioTel.GestioneReport.Service.GestioneReportData;
 import org.bson.Document;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.text.ParseException;
@@ -82,12 +80,9 @@ public class GestioneReportServiceImpl {
                 preMax += (int)d.get("pressione massima");
                 temp += (int)d.get("temp");
                 currDate = tDate;
-
                 i++;
-            }else{
-
+            } else {
                 s.add(GetAverageInString(freqCard, colesterolo, ossigenazione, preMin, preMax, temp, currDate, numInstancies));
-
                 date = dayAfter(date);
                 numInstancies = 0;
                 preMax = 0;
@@ -96,18 +91,16 @@ public class GestioneReportServiceImpl {
                 freqCard = 0;
                 ossigenazione = 0;
                 temp = 0;
-
             }
         }
-
         s.add(GetAverageInString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
 
         return s;
-}
+    }
 
     public String GetAverageInString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
         if (numInstancies == 0)
-            return "";
+            return "\t\t\t";
 
         freqCard /= numInstancies;
         colesterolo  /= numInstancies;
@@ -123,7 +116,6 @@ public class GestioneReportServiceImpl {
                 "\nColesterolo : " + colesterolo +";" +
                 "\nPressione Minima : "+ preMin +";" +
                 "\nPressione Massima : " + preMax +";" ;
-
     }
 
     private Date dayAfter (Date date){
@@ -132,28 +124,28 @@ public class GestioneReportServiceImpl {
     return calendarToDate(calendar);
     }
 
-        /*public ArrayList<String> getMeasurementsToPrint (ArrayList<Document> l){
+    /* Codice per salvare tutte le misurazioni in PDF
+    public ArrayList<String> getMeasurementsToPrint (ArrayList<Document> l){
         return getMeasurementsInString(l);
-    }*/
+    }
 
 
     //trasforma i document in stringhe formattate
-   /* private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
+    private ArrayList<String> getMeasurementsInString(ArrayList<Document> l){
         ArrayList<String> s = new ArrayList<String>();
         for (Document d : l){
             s.add(formatDocumentToString(d));
         }
       return s;
-    }*/
+    }
 
     //Ottiene le medie dei valori nelle date selezionate
- /*   public ArrayList<String> getAverages(ArrayList<Document> l ){
+    public ArrayList<String> getAverages(ArrayList<Document> l ){
         return getMeasurentsInAverage(l);
     }
-*/
 
     //formatta in stringa i device presi da DB
-  /*  private String formatDocumentToString(Document d) {
+        private String formatDocumentToString(Document d) {
         if(d.isEmpty() || d == null) {
             return "";
         }
@@ -176,6 +168,5 @@ public class GestioneReportServiceImpl {
         str = str.append(d.get("date") + ". ");
 
         return str.toString();
-
     }*/
 }

@@ -1,4 +1,4 @@
-package it.unisa.CardioTel.GestioneAreaPredizioni;
+package it.unisa.CardioTel.GestioneAreaPredizioni.Controller;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

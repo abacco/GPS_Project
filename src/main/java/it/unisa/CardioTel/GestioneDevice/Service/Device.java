@@ -1,6 +1,5 @@
-package it.unisa.CardioTel.GestioneDevice;
+package it.unisa.CardioTel.GestioneDevice.Service;
 
-import java.util.Date;
 import java.util.Random;
 
 public class Device {

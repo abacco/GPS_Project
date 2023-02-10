@@ -1,17 +1,21 @@
 import io.quarkus.test.junit.QuarkusTest;
+import io.reactivex.Flowable;
+import io.reactivex.subscribers.TestSubscriber;
 import io.restassured.response.Response;
-import it.unisa.CardioTel.GestioneDevice.TempGenerator;
+import it.unisa.CardioTel.GestioneDevice.Service.TempGenerator;
 import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @QuarkusTest
-public class DeviceResourceTest {
+public class TestDevice {
 
     @Inject
     TempGenerator t;
@@ -217,6 +221,17 @@ public class DeviceResourceTest {
 
     }
 
+    @Test
+    public void testGenerate() {
+        Flowable<String> flowable = t.generate();
 
+        TestSubscriber<String> subscriber = new TestSubscriber<>();
+        flowable.take(11, TimeUnit.SECONDS)
+                // 11 per ritardo + generazione
+                .subscribe(subscriber);
+
+        subscriber.awaitTerminalEvent();
+        subscriber.assertValueCount(1);
+    }
 
 }

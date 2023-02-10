@@ -1,8 +1,6 @@
-package TestingAreaPredizioni;
-
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
-import it.unisa.CardioTel.GestioneDevice.Device;
+import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.MLModel;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniAteroService;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniInfartoService;
@@ -25,7 +23,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @QuarkusTest
-public class AreaPredizioniTest {
+public class TestAreaPredizioni {
 
     @Inject
     PredictionGenerator p;

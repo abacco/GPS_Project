@@ -5,7 +5,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import io.reactivex.Flowable;
-import it.unisa.CardioTel.GestioneDevice.Device;
+import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniAteroService;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniInfartoService;
 import org.bson.Document;

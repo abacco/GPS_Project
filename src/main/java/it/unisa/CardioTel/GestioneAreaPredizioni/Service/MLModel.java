@@ -1,17 +1,13 @@
 package it.unisa.CardioTel.GestioneAreaPredizioni.Service;
 
 import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.Predizione;
-import it.unisa.CardioTel.GestioneDevice.DBQueries;
-import it.unisa.CardioTel.GestioneDevice.Device;
+import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import weka.classifiers.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.functions.LinearRegression;
-
-
 import javax.enterprise.context.ApplicationScoped;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -82,7 +78,6 @@ public class MLModel {
 
     //genera l'arff file da cui ottenere il datasource in base alla malattia
     public static String getArff(String malattia, List<Device> rilevazione) {
-        DBQueries query = new DBQueries();
         Instances dataset = null;
         String outputFilename = "";
 
