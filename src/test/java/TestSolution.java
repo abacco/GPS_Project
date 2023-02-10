@@ -1,4 +1,4 @@
-import GestioneChatBot.Service.Solution;
+import it.unisa.CardioTel.GestioneChatBot.Service.Solution;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.Test;
 

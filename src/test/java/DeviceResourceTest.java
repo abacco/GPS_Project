@@ -1,13 +1,12 @@
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
-import org.acme.TempGenerator;
+import it.unisa.CardioTel.GestioneDevice.TempGenerator;
 import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 
 import static io.restassured.RestAssured.given;
-import static io.smallrye.common.constraint.Assert.assertFalse;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 

@@ -1,15 +1,13 @@
 package TestingAreaPredizioni;
 
-import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
-import org.acme.Device;
-import org.acme.GestioneAreaPredizioni.MachineLearning.MLModel;
-import org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniAteroService;
-import org.acme.GestioneAreaPredizioni.MachineLearning.PredizioniInfartoService;
-import org.acme.GestioneAreaPredizioni.PredizioniResources;
-import org.acme.GestioneAreaPredizioni.PublisherSubscriber.PredictionGenerator;
-import org.acme.GestioneAreaPredizioni.PublisherSubscriber.Predizione;
+import it.unisa.CardioTel.GestioneDevice.Device;
+import it.unisa.CardioTel.GestioneAreaPredizioni.Service.MLModel;
+import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniAteroService;
+import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniInfartoService;
+import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.PredictionGenerator;
+import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.Predizione;
 import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -134,7 +132,7 @@ public class AreaPredizioniTest {
 
         //ottengo il mean absolute error per verificare lo scarto entro il quale deve essere preciso
         Evaluation eval= new Evaluation(PredizioniAteroService.getAsInstanceAtero(rilevazioni));
-        eval.crossValidateModel(model,PredizioniAteroService.getAsInstanceAtero(rilevazioni),10,new Random());
+        eval.crossValidateModel(model, PredizioniAteroService.getAsInstanceAtero(rilevazioni),10,new Random());
         double meanAbsoluteError = eval.meanAbsoluteError();
 
         System.out.println(predizioniCalcolate + "%\n" + predizioneEffettiva +"%\nMAE\t " + meanAbsoluteError);
@@ -162,7 +160,7 @@ public class AreaPredizioniTest {
 
         //ottengo il mean absolute error per verificare lo scarto entro il quale deve essere preciso
         Evaluation eval= new Evaluation(PredizioniInfartoService.getAsInstanceInfarto(rilevazioni));
-        eval.crossValidateModel(model,PredizioniInfartoService.getAsInstanceInfarto(rilevazioni),10,new Random());
+        eval.crossValidateModel(model, PredizioniInfartoService.getAsInstanceInfarto(rilevazioni),10,new Random());
         double meanAbsoluteError = eval.meanAbsoluteError();
 
         System.out.println(predizioniCalcolate + "%\n" + predizioneEffettiva +"%\nMAE\t " + meanAbsoluteError);

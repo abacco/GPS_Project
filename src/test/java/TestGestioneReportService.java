@@ -1,5 +1,5 @@
 import io.quarkus.test.junit.QuarkusTest;
-import it.CardioTel.GestioneReport.GestioneReportServiceImpl;
+import it.unisa.CardioTel.GestioneReport.Service.GestioneReportServiceImpl;
 import org.bson.Document;
 import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
@@ -41,13 +41,13 @@ public class TestGestioneReportService {
 
       ArrayList<String> actualResult = myResource.getAverages(l);
       ArrayList<String> expectedResult = new ArrayList<>();
-      String expected = "Frequenza cardiaca : 15" +
-            "\nTemperatura : 50" +
-            "\nOssigenazione : 100" +
-            "\nColesterolo : 25" +
-            "\nPressione Minima : 45" +
-            "\nPressione Massima : 90" +
-            "\nData : " + (new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+      String expected = "Data : " + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ":=" +
+            "\nFrequenza cardiaca : 15;" +
+            "\nTemperatura : 50;" +
+            "\nOssigenazione : 100;" +
+            "\nColesterolo : 25;" +
+            "\nPressione Minima : 45;" +
+            "\nPressione Massima : 90;";
       expectedResult.add(expected);
 
     assertEquals(expectedResult, actualResult);

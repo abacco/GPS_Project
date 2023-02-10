@@ -1,5 +1,5 @@
 import io.quarkus.test.junit.QuarkusTest;
-import it.CardioTel.GestioneReport.GestioneReportController;
+import it.unisa.CardioTel.GestioneReport.Controller.GestioneReportController;
 import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import javax.ws.rs.core.StreamingOutput;
