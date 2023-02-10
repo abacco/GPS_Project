@@ -1,11 +1,11 @@
 function generate() {
-    Repclear();
+    repClear();
     //prende la data e la mette nell'uri
     var date = new Date(document.getElementById("startDate").value);
     formattedStartDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
     if(formattedStartDate == "NaN-NaN-NaN"){
         alert("Inserire una data di inizio valida!");
-        Repclear();
+        repClear();
         return;
     }
 
@@ -13,13 +13,13 @@ function generate() {
     formattedEndDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
     if(formattedEndDate == "NaN-NaN-NaN"){
         alert("Inserire una data di fine valida!");
-        Repclear();
+        repClear();
         return;
     }
 
     if(formattedStartDate.valueOf() > formattedEndDate.valueOf()){
         alert("Inserire un intervallo di tempo valido!");
-        Repclear();
+        repClear();
         return;
     }
 
@@ -36,7 +36,7 @@ function generate() {
     InserisciReport(range);
 }
 
-function Repclear() {
+function repClear() {
     document.getElementById("date").innerHTML = "";
 }
 
@@ -48,7 +48,7 @@ function InserisciReport(range) {
         clear();
         const responseArray = JSON.parse(this.responseText);
         let element = document.getElementById("stampa");
-        element.innerHTML="Media dei valori dal " + document.getElementById("startDate").value + " al " + document.getElementById("endDate").value + ":";
+        element.innerHTML = "Media dei valori dal " + new Date(document.getElementById("startDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + " al " + new Date(document.getElementById("endDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + ":";
         for (let i in responseArray) {
             let node = document.createElement("tr");
             node.append(responseArray[i]);

@@ -2,29 +2,21 @@ package it.CardioTel.GestioneReport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-
-
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
-import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM_TYPE;
 
 @Path("/Report")
 public class GestioneReportController  {
@@ -61,7 +53,7 @@ public class GestioneReportController  {
     public StreamingOutput getReport(@QueryParam("daterange") String periodOfTime) throws IOException {
         ArrayList<String> measurementList = new ArrayList<>();
         try{
-            measurementList = gestioneReportService.getAverages((gestioneReportService.getMeasurements(periodOfTime)));
+            measurementList = gestioneReportService.getMeasurements(periodOfTime);
         }catch (Exception e){  //se fallisce a fare lo split o a connetter
             String d1 = "device1";
             String d2 = "device2";
@@ -71,7 +63,7 @@ public class GestioneReportController  {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         generatePdf(measurementList, baos);
         byte[] pdf = baos.toByteArray();
-        return output -> {output.write(pdf);};
+        return output -> output.write(pdf);
         //return output -> { generatePdf(measurementList.toString(), new ByteArrayOutputStream(output)); };
     }
     @POST
@@ -82,10 +74,9 @@ public class GestioneReportController  {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
         try{
-            measurementList = gestioneReportService.getAverages(gestioneReportService.getMeasurements(periodOfTime));;
+            measurementList = gestioneReportService.getMeasurements(periodOfTime);
             //transforma in json l'array
-            String json = ow.writeValueAsString(measurementList);
-            return json;
+            return ow.writeValueAsString(measurementList);
         }catch (Exception e){  //se fallisce a fare lo split o a connetter
             e.printStackTrace();
         }

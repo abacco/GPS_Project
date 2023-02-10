@@ -18,6 +18,13 @@ public class TestSolution {
     }
 
     @Test
+    public void testSolutionGetters() {
+        Solution solution = new Solution("Problem", "Solution");
+        assertEquals("Problem", solution.getProblem());
+        assertEquals("Solution", solution.getSolution());
+    }
+
+    @Test
     public void testEquals() {
         Solution solution1 = new Solution("Infarto", "soluzioneInfarto");
         Solution solution2 = new Solution("Febbre", "soluzioneInfarto");
