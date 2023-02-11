@@ -28,7 +28,7 @@ public class GestioneReportServiceImpl {
             pot[1]  = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
             Calendar calendar = dateToCalendar(pot[1]);
             calendar.add(Calendar.DATE, 1);
-            pot[1] =calendarToDate(calendar);
+            pot[1] = calendarToDate(calendar);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -36,8 +36,7 @@ public class GestioneReportServiceImpl {
         ArrayList<Document> list = new ArrayList<>();
 
         list = gestioneReportData.getMeasurement(pot);
-
-        return getAverages(list);
+        return getAverages(list, pot);
     }
 
     //Converte Date a Calendar
@@ -52,7 +51,7 @@ public class GestioneReportServiceImpl {
         return calendar.getTime();
     }
 
-    public ArrayList<String> getAverages(ArrayList<Document> l){
+    public ArrayList<String> getAverages(ArrayList<Document> l, Date [] pot){
         ArrayList<String> s = new ArrayList<>();
         int preMax = 0;
         int preMin = 0;
@@ -62,6 +61,9 @@ public class GestioneReportServiceImpl {
         int temp = 0;
         int numInstancies = 0;
 
+        String title = "Medie giornaliere dei paramentri rilevate dal " + (new SimpleDateFormat("dd-MM-yyyy").format(pot[0])) +
+                                    " al " + (new SimpleDateFormat("dd-MM-yyyy").format(dayBefore(pot[1])));
+        s.add(title);
         Date date = (Date) l.get(0).get("date"); //prima data
         int i = 0;
         Date tDate ;
@@ -100,7 +102,7 @@ public class GestioneReportServiceImpl {
 
     public String GetAverageInString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
         if (numInstancies == 0)
-            return "\t\t\t";
+            return " ";
 
         freqCard /= numInstancies;
         colesterolo  /= numInstancies;
@@ -109,19 +111,25 @@ public class GestioneReportServiceImpl {
         preMax  /= numInstancies;
         temp  /= numInstancies;
 
-        return  "Data : "+(new SimpleDateFormat("dd-MM-yyyy").format(tDate)) + ":=" +
-                "\nFrequenza cardiaca : " + freqCard +";" +
-                "\nTemperatura : " + temp +";" +
-                "\nOssigenazione : " + ossigenazione +";" +
-                "\nColesterolo : " + colesterolo +";" +
-                "\nPressione Minima : "+ preMin +";" +
-                "\nPressione Massima : " + preMax +";" ;
+        return  "Data : "+(new SimpleDateFormat("dd-MM-yyyy").format(tDate)) + "⠀" +
+                "\nFrequenza cardiaca: " + freqCard +" bpm ;" +
+                "\nTemperatura: " + temp +"°C ;" +
+                "\nOssigenazione: " + ossigenazione +" % ;" +
+                "\nColesterolo: " + colesterolo +" mg/dl ;" +
+                "\nPressione Minima: "+ preMin +" mmHg ;" +
+                "\nPressione Massima: " + preMax + " mmHg" ;
     }
 
     private Date dayAfter (Date date){
     Calendar calendar = dateToCalendar(date);
     calendar.add(Calendar.DATE, 1);
     return calendarToDate(calendar);
+    }
+
+    private Date dayBefore (Date date){
+        Calendar calendar = dateToCalendar(date);
+        calendar.add(Calendar.DATE, - 1);
+        return calendarToDate(calendar);
     }
 
     /* Codice per salvare tutte le misurazioni in PDF

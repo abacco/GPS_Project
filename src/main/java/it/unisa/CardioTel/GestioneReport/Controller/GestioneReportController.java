@@ -56,11 +56,9 @@ public class GestioneReportController  {
         ArrayList<String> measurementList = new ArrayList<>();
         try{
             measurementList = gestioneReportService.getMeasurements(periodOfTime);
-        }catch (Exception e){  //se fallisce a fare lo split o a connetter
-            String d1 = "device1";
-            String d2 = "device2";
-            measurementList.add(d1);
-            measurementList.add(d2);
+        }catch (Exception e){  //se fallisce a fare lo split o a connettersi
+            String d = "Misurazioni non disponibili";
+            measurementList.add(d);
         }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         generatePdf(measurementList, baos);
@@ -79,7 +77,7 @@ public class GestioneReportController  {
             measurementList = gestioneReportService.getMeasurements(periodOfTime);
             //transforma in json l'array
             return ow.writeValueAsString(measurementList);
-        }catch (Exception e){  //se fallisce a fare lo split o a connetter
+        }catch (Exception e){  //se fallisce a fare lo split o a connettersi
             e.printStackTrace();
         }
 

@@ -130,7 +130,7 @@ source.onmessage = function (event) {
     row.appendChild(cell);
 
     var cell = document.createElement("td")
-    var cellText = document.createTextNode(incoming.temp + "°");
+    var cellText = document.createTextNode(incoming.temp + "°C");
     /*if(incoming.temp > 36){
         //alert("You have contracted FEVER")
     }*/

@@ -39,7 +39,7 @@ public class TestReportService {
     doc2.put("numInstancies", 2);
     l.add(doc2);
 
-      ArrayList<String> actualResult = myResource.getAverages(l);
+      ArrayList<String> actualResult = myResource.getAverages(l,pot);
       ArrayList<String> expectedResult = new ArrayList<>();
       String expected = "Data : " + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ":=" +
             "\nFrequenza cardiaca : 15;" +
@@ -52,5 +52,7 @@ public class TestReportService {
 
     assertEquals(expectedResult, actualResult);
   }
+
+  private Date [] pot = {new Date(), new Date()};
 }
 

@@ -57,15 +57,17 @@ function InserisciReport(range) {
         clear();
         const responseArray = JSON.parse(this.responseText);
         let element = document.getElementById("stampa");
-        element.innerHTML = "Media dei valori dal " + new Date(document.getElementById("startDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + " al " + new Date(document.getElementById("endDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + ":";
+        element.innerHTML = "Medie giornaliere dei parametri rilevate dal " + new Date(document.getElementById("startDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + " al " + new Date(document.getElementById("endDate").value).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' }) + ":";
         for (let i in responseArray) {
             let table = document.createElement("table");
             table.classList.add("tabella");
 
-            let mis = document.createElement("tr");
             let data = document.createElement("tr");
-            var misurazione = responseArray[i].split("=");
+            let mis = document.createElement("tr");
 
+            if(responseArray[i].startsWith("Medie") || responseArray[i] === " ")
+                continue;
+            var misurazione = responseArray[i].split("⠀");
 
             data.append(misurazione[0]);
             mis.append(misurazione[1]);
