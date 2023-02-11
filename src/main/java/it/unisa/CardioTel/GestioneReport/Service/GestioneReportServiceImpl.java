@@ -65,9 +65,6 @@ public class GestioneReportServiceImpl {
         int temp = 0;
         int numInstancies = 0;
 
-        String title = "Medie giornaliere dei paramentri rilevate dal " + (new SimpleDateFormat("dd-MM-yyyy").format(pot[0])) +
-                                    " al " + (new SimpleDateFormat("dd-MM-yyyy").format(dayBefore(pot[1])));
-        s.add(title);
         Date date = (Date) l.get(0).get("date"); //prima data
         int i = 0;
         Date tDate ;

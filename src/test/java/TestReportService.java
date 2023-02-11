@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -41,18 +42,20 @@ public class TestReportService {
 
       ArrayList<String> actualResult = myResource.getAverages(l,pot);
       ArrayList<String> expectedResult = new ArrayList<>();
-      String expected = "Data : " + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ":=" +
-            "\nFrequenza cardiaca : 15;" +
-            "\nTemperatura : 50;" +
-            "\nOssigenazione : 100;" +
-            "\nColesterolo : 25;" +
-            "\nPressione Minima : 45;" +
-            "\nPressione Massima : 90;";
+      String expected = "Data : " + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + "⠀" +
+            "\nFrequenza cardiaca: 15 bpm ;" +
+            "\nTemperatura: 50°C ;" +
+            "\nOssigenazione: 100 % ;" +
+            "\nColesterolo: 25 mg/dl ;" +
+            "\nPressione Minima: 45 mmHg ;" +
+            "\nPressione Massima: 90 mmHg";
       expectedResult.add(expected);
+
 
     assertEquals(expectedResult, actualResult);
   }
 
   private Date [] pot = {new Date(), new Date()};
+
 }
 
