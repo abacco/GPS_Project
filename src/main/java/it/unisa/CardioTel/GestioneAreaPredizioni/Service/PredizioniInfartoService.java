@@ -4,6 +4,8 @@ import javax.enterprise.context.ApplicationScoped;
 
 import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.Predizione;
 import it.unisa.CardioTel.GestioneDevice.Service.Device;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.FastVector;
@@ -12,6 +14,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 
 import java.util.List;
 
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @ApplicationScoped
 public class PredizioniInfartoService {
 

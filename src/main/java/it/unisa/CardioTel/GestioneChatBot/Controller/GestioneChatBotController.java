@@ -4,6 +4,8 @@ import it.unisa.CardioTel.GestioneChatBot.Service.GestioneChatBotServiceImpl;
 import it.unisa.CardioTel.GestioneChatBot.Service.Solution;
 import it.unisa.CardioTel.GestioneChatBot.Service.SolutionsNotFound;
 import io.vertx.core.json.JsonArray;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -14,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @Path("/ChatBot")
 public class GestioneChatBotController {
 

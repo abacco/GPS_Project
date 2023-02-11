@@ -1,9 +1,13 @@
 package it.unisa.CardioTel.GestioneChatBot.Service;
 
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 @ApplicationScoped
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 public class GestioneChatBotServiceImpl implements GestioneChatBotService{
 
     @Inject

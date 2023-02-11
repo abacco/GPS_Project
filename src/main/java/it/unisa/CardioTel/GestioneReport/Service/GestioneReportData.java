@@ -5,10 +5,14 @@ import java.util.Date;
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 public class GestioneReportData{
 
     @Inject

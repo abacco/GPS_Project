@@ -9,9 +9,13 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import io.reactivex.Flowable;
 
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @ApplicationScoped
 public class TempGenerator {
 

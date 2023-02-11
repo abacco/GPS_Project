@@ -1,6 +1,9 @@
 package it.unisa.CardioTel.GestioneReport.Service;
 
 import org.bson.Document;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.text.ParseException;
@@ -8,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @ApplicationScoped
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 public class GestioneReportServiceImpl {
 
     @Inject

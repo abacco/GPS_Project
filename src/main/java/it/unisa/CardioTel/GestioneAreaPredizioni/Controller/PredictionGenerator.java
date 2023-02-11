@@ -9,6 +9,8 @@ import it.unisa.CardioTel.GestioneDevice.Service.Device;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniAteroService;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniInfartoService;
 import org.bson.Document;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @ApplicationScoped
 public class PredictionGenerator {
 

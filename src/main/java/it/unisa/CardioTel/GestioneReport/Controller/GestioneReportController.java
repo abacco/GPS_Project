@@ -13,6 +13,8 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import it.unisa.CardioTel.GestioneReport.Service.GestioneReportServiceImpl;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,6 +23,7 @@ import javax.ws.rs.core.StreamingOutput;
 import java.nio.charset.StandardCharsets;
 
 @Path("/Report")
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 public class GestioneReportController  {
 
    @Inject

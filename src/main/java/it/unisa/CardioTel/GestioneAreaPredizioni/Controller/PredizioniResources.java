@@ -8,10 +8,12 @@ import javax.ws.rs.core.MediaType;
 
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniAteroService;
 import it.unisa.CardioTel.GestioneAreaPredizioni.Service.PredizioniInfartoService;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.reactivestreams.Publisher;
 
-
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @Path("/AreaPredizioni")
 public class PredizioniResources {
 

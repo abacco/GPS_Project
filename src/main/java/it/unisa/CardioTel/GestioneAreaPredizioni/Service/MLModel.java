@@ -2,6 +2,8 @@ package it.unisa.CardioTel.GestioneAreaPredizioni.Service;
 
 import it.unisa.CardioTel.GestioneAreaPredizioni.Controller.Predizione;
 import it.unisa.CardioTel.GestioneDevice.Service.Device;
+import org.eclipse.microprofile.metrics.MetricUnits;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import weka.classifiers.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Timed(name = "time", unit = MetricUnits.MILLISECONDS)
 @ApplicationScoped
 public class MLModel {
 
