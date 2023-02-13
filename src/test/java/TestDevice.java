@@ -129,7 +129,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore1 = is(this.t.getEsp8266().getHeartFrequency() <=60  || this.t.getEsp8266().getHeartFrequency() >= 140);
+        Matcher<Boolean> sensore1 = is(this.t.getEsp8266().getHeartFrequency() <60  || this.t.getEsp8266().getHeartFrequency() > 140);
         boolean f;
         if(this.t.getEsp8266().getHeartFrequency() >= 60 && this.t.getEsp8266().getHeartFrequency() <= 140 ) {
             f = false;
@@ -145,7 +145,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore2 = is(this.t.getEsp8266().getTemp() <=33  || this.t.getEsp8266().getTemp() >= 42);
+        Matcher<Boolean> sensore2 = is(this.t.getEsp8266().getTemp() <33  || this.t.getEsp8266().getTemp() > 42);
         boolean f;
         if(this.t.getEsp8266().getTemp() >= 33 && this.t.getEsp8266().getTemp() <= 42 ) {
             f = false;
@@ -161,7 +161,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore3 = is(this.t.getEsp8266().getOssigenazione() <=45  || this.t.getEsp8266().getOssigenazione() >= 100);
+        Matcher<Boolean> sensore3 = is(this.t.getEsp8266().getOssigenazione() <45  || this.t.getEsp8266().getOssigenazione() > 100);
         boolean f;
         if(this.t.getEsp8266().getOssigenazione() >= 45 && this.t.getEsp8266().getOssigenazione() <= 100 ) {
             f = false;
@@ -177,7 +177,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore4 = is(this.t.getEsp8266().getColesterolo()<=100  || this.t.getEsp8266().getColesterolo() >= 400);
+        Matcher<Boolean> sensore4 = is(this.t.getEsp8266().getColesterolo()< 100  || this.t.getEsp8266().getColesterolo() > 400);
         boolean f;
         if(this.t.getEsp8266().getColesterolo() >= 100 && this.t.getEsp8266().getColesterolo() <= 400 ) {
             f = false;
@@ -193,7 +193,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore5 = is(this.t.getEsp8266().getPressione() <=40  || this.t.getEsp8266().getPressione() >= 150);
+        Matcher<Boolean> sensore5 = is(this.t.getEsp8266().getPressione() <40  || this.t.getEsp8266().getPressione() > 150);
         boolean f;
         if(this.t.getEsp8266().getPressione() >= 40 && this.t.getEsp8266().getPressione() <= 150 ) {
             f = false;
@@ -209,7 +209,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-        Matcher<Boolean> sensore5 = is(this.t.getEsp8266().getPressione_due() <=50  || this.t.getEsp8266().getPressione_due() >= 97);
+        Matcher<Boolean> sensore5 = is(this.t.getEsp8266().getPressione_due() <50  || this.t.getEsp8266().getPressione_due() > 97);
         boolean f;
         if(this.t.getEsp8266().getPressione_due() >= 50 && this.t.getEsp8266().getPressione_due() <= 97 ) {
             f = false;
