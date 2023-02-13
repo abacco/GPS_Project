@@ -17,17 +17,17 @@ public class GestioneReportServiceImpl {
     @Inject
     GestioneReportData gestioneReportData;
 
-    public ArrayList<String> getMeasurements (String periodOfTime){
+    public ArrayList<String> getMeasurements(String periodOfTime) {
 
         //formattazione stringa
-        Date [] pot = new Date [2];
-        String startDate = "" ;
-        String endDate = "" ;
+        Date[] pot = new Date[2];
+        String startDate = "";
+        String endDate = "";
         String[] split = periodOfTime.split(",");
         startDate = split[0];
         endDate = split[1];
 
-        try{
+        try {
             pot[0]  = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
             pot[1]  = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
             Calendar calendar = dateToCalendar(pot[1]);
@@ -55,7 +55,7 @@ public class GestioneReportServiceImpl {
         return calendar.getTime();
     }
 
-    public ArrayList<String> getAverages(ArrayList<Document> l, Date [] pot){
+    public ArrayList<String> getAverages(ArrayList<Document> l, Date[] pot) {
         ArrayList<String> s = new ArrayList<>();
         int preMax = 0;
         int preMin = 0;
@@ -67,21 +67,21 @@ public class GestioneReportServiceImpl {
 
         Date date = (Date) l.get(0).get("date"); //prima data
         int i = 0;
-        Date tDate ;
+        Date tDate;
         Date currDate = date;
 
         //aggiunge all'array le stringhe delle medie giornaliere
-        while(l.size()>i){
+        while (l.size() > i) {
             Document d = l.get(i);
-            tDate = (Date)d.get("date");
-            if(tDate.getYear() == date.getYear() && tDate.getMonth()==date.getMonth() && tDate.getDate()==date.getDate()){
+            tDate = (Date) d.get("date");
+            if(tDate.getYear() == date.getYear() && tDate.getMonth() == date.getMonth() && tDate.getDate() == date.getDate()) {
                 numInstancies++;
-                freqCard += (int)d.get("heartFrequency");
-                colesterolo += (int)d.get("colesterolo");
-                ossigenazione += (int)d.get("ossigenazione");
-                preMin += (int)d.get("pressione minima");
-                preMax += (int)d.get("pressione massima");
-                temp += (int)d.get("temp");
+                freqCard += (int) d.get("heartFrequency");
+                colesterolo += (int) d.get("colesterolo");
+                ossigenazione += (int) d.get("ossigenazione");
+                preMin += (int) d.get("pressione minima");
+                preMax += (int) d.get("pressione massima");
+                temp += (int) d.get("temp");
                 currDate = tDate;
                 i++;
             } else {
@@ -96,14 +96,16 @@ public class GestioneReportServiceImpl {
                 temp = 0;
             }
         }
-        s.add(GetAverageInString(freqCard,colesterolo,ossigenazione,preMin,preMax,temp,currDate,numInstancies));
+        s.add(GetAverageInString(freqCard, colesterolo, ossigenazione, preMin, preMax, temp, currDate, numInstancies));
 
         return s;
     }
 
-    public String GetAverageInString(int freqCard, int colesterolo, int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
-        if (numInstancies == 0)
+    public String GetAverageInString(int freqCard, int colesterolo,
+                                     int ossigenazione, int preMin, int preMax, int temp, Date tDate, int numInstancies) {
+        if (numInstancies == 0) {
             return " ";
+        }
 
         freqCard /= numInstancies;
         colesterolo  /= numInstancies;
@@ -112,24 +114,24 @@ public class GestioneReportServiceImpl {
         preMax  /= numInstancies;
         temp  /= numInstancies;
 
-        return  "Data : "+(new SimpleDateFormat("dd-MM-yyyy").format(tDate)) + "⠀" +
-                "\nFrequenza cardiaca: " + freqCard +" bpm ;" +
-                "\nTemperatura: " + temp +"°C ;" +
-                "\nOssigenazione: " + ossigenazione +" % ;" +
-                "\nColesterolo: " + colesterolo +" mg/dl ;" +
-                "\nPressione Minima: "+ preMin +" mmHg ;" +
-                "\nPressione Massima: " + preMax + " mmHg" ;
+        return  "Data : " + (new SimpleDateFormat("dd-MM-yyyy").format(tDate)) + "⠀"
+                + "\nFrequenza cardiaca: " + freqCard + " bpm ;"
+                + "\nTemperatura: " + temp + "°C ;"
+                + "\nOssigenazione: " + ossigenazione + " % ;"
+                + "\nColesterolo: " + colesterolo + " mg/dl ;"
+                + "\nPressione Minima: " + preMin + " mmHg ;"
+                + "\nPressione Massima: " + preMax + " mmHg";
     }
 
-    private Date dayAfter (Date date){
+    private Date dayAfter(Date date) {
     Calendar calendar = dateToCalendar(date);
     calendar.add(Calendar.DATE, 1);
     return calendarToDate(calendar);
     }
 
-    private Date dayBefore (Date date){
+    private Date dayBefore(Date date) {
         Calendar calendar = dateToCalendar(date);
-        calendar.add(Calendar.DATE, - 1);
+        calendar.add(Calendar.DATE, -1);
         return calendarToDate(calendar);
     }
 

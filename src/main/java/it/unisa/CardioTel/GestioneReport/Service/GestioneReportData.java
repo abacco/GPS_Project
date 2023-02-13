@@ -13,15 +13,15 @@ import javax.inject.Inject;
 
 @ApplicationScoped
 @Timed(name = "time", unit = MetricUnits.MILLISECONDS)
-public class GestioneReportData{
+public class GestioneReportData {
 
     @Inject
-    MongoClient mongoClient ;//=  new MongoClient("localhost", 27017);;
+    MongoClient mongoClient; //=  new MongoClient("localhost", 27017);
 
-    private static final String DBname = "misurazioni";
+    private static final String dbName = "misurazioni";
 
     private MongoCollection getCollection() {
-        return mongoClient.getDatabase(DBname).getCollection(DBname);
+        return mongoClient.getDatabase(dbName).getCollection(dbName);
     }
 
 
@@ -35,19 +35,14 @@ public class GestioneReportData{
 
         MongoDatabase database = mongoClient.getDatabase("misurazioni");
 
-        MongoCollection<Document> measureCollection = database.getCollection("misurazioni");
+        MongoCollection<Document> measureCollection = database
+                .getCollection("misurazioni");
         Bson condition = null;
-
-
         condition = new Document("$gte", startDate).append("$lte", endDate);
-
-
         Bson filter = new Document("date", condition);
-
-
         MongoCursor<Document> cursor = measureCollection.find(filter).iterator();
         try {
-            while(cursor.hasNext()) {
+            while (cursor.hasNext()) {
                 Document document = cursor.next();
                 list.add(document);
             }
