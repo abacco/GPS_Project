@@ -1,6 +1,6 @@
 import it.unisa.CardioTel.GestioneChatBot.Service.Solution;
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static io.smallrye.common.constraint.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
