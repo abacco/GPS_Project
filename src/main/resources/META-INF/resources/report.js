@@ -1,23 +1,23 @@
 function generate() {
     repClear();
     //prende la data e la mette nell'uri
-    var date = new Date(document.getElementById("startDate").value);
-    formattedStartDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
+    var date1 = new Date(document.getElementById("startDate").value);
+    formattedStartDate = date1.getFullYear() + "-" + (date1.getMonth()+ 1) + "-" + date1.getDate();
     if(formattedStartDate == "NaN-NaN-NaN"){
         alert("Inserire una data di inizio valida!");
         repClear();
         return;
     }
 
-    var date = new Date(document.getElementById("endDate").value);
-    formattedEndDate = date.getFullYear() + "-" + (date.getMonth()+ 1) + "-" + date.getDate();
+    var date2 = new Date(document.getElementById("endDate").value);
+    formattedEndDate = date2.getFullYear() + "-" + (date2.getMonth()+ 1) + "-" + date2.getDate();
     if(formattedEndDate == "NaN-NaN-NaN"){
         alert("Inserire una data di fine valida!");
         repClear();
         return;
     }
 
-    if(formattedStartDate.valueOf() > formattedEndDate.valueOf()){
+    if(date1 > date2){
         alert("Inserire un intervallo di tempo valido!");
         repClear();
         return;
