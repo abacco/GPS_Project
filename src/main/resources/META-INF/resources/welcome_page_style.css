@@ -1,0 +1,98 @@
+.body {
+    background-color: #a0faec;
+
+    margin: 0 auto;
+}
+
+.container {
+    background-color: white;
+
+    margin: 70px auto 0;
+    height: 700px;
+    width: 700px;
+
+    /* bordi arrotondati */
+    border-radius: 15px;
+    border: 3px solid #fff;
+
+    /* ombra */
+    box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+}
+
+.container2 {
+    background-color: white;
+
+    text-align: center;
+    margin: 70px auto 0;
+    height: 300px;
+    width: 650px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+
+    /* bordi arrotondati */
+    border-radius: 15px;
+    border: 3px solid #fff;
+
+    /* ombra */
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.45);
+}
+
+.lista {
+    text-align: left;
+    margin-top: 15px;
+    margin-left: 25px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.lista2 {
+    font-weight: lighter;
+}
+
+.button {
+    border: none;
+    color: black;
+    padding: 15px 60px;
+    text-align: center;
+    letter-spacing: 5px;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    display: inline-block;
+    font-size: 25px;
+    margin-left: 140px;
+    margin-top: 25px;
+    cursor: pointer;
+
+    background-color: #a0faec;
+
+    border-radius: 12px;
+
+    /* ombra */
+    box-shadow: 5px 5px 7px -2px rgba(0,0,0,0.45);
+}
+
+.button2 {
+    border: none;
+    color: black;
+    padding: 15px 60px;
+    text-align: center;
+    letter-spacing: 5px;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    display: inline-block;
+    font-size: 35px;
+    margin-left: 233px;
+    margin-top: 100px;
+    cursor: pointer;
+
+    background-color: #a0faec;
+
+    border-radius: 12px;
+
+    /* ombra */
+    box-shadow: 5px 5px 7px -2px rgba(0,0,0,0.45);
+}
+
+.logo {
+    padding-left: 96px;
+}

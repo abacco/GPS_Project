@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Area Predizioni</title>
+
+  <!--JQuery-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+  <!--Foglio di stile-->
+  <link href="AreaPredizioni/AreaPredizioni.css" rel="stylesheet" type="text/css">
+  <link href="NavBar_ChatBot.css" rel="stylesheet" type="text/css">
+
+  <!--Javascript-->
+  <script src = "./AreaPredizioni/AreaPredizioni.js"></script>
+  <script src = "./AreaPredizioni/NotificaRischio.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--HTML e JS Chatbot-->
+
+    <div id="responseArea">
+
+    </div>
+
+    <div id="CBButtonList">
+      <button id="CBButtonA" class="CBButton" value="Infarto" onclick="sendRequest('Infarto')">Infarto</button>
+      <hr>
+      <button id="CBButtonB" class="CBButtonLine" value="Tachicardia" onclick="sendRequest('Tachicardia')">Tachicardia</button>
+      <hr>
+      <button id="CBButtonC" class="CBButtonLine" value="Pressione Alta" onclick="sendRequest('Pressione Alta')">Pressione Alta</button>
+      <hr>
+      <button id="CBButtonD" class="CBButtonLine" value="Pressione Bassa" onclick="sendRequest('Pressione Bassa')">Pressione Bassa</button>
+      <hr>
+      <button id="CBButtonE" class="CBButtonLine" value="Febbre" onclick="sendRequest('Febbre')">Febbre</button>
+    </div>
+
+
+    <script>
+
+      function hide() {
+        const variable = document.getElementById('CBButtonList');
+
+        if (variable.style.display == "block") {
+          variable.style.display = "none";
+        } else {
+          variable.style.display = "block";
+        }
+      }
+
+
+    </script>
+
+    <script type="text/javascript" src="ChatBotScript.js"></script>
+
+    <!--fine Chatbot -->
+
+  <div class="generale">
+
+    <div>
+
+      <!--Pulsante Aterosclerosi-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "aterosclerosi" value = "Aterosclerosi"></p>
+        <div>
+
+          <!--Sezione percentuale Aterosclerosi-->
+          <table class ="percentuale">
+
+            <thead><th>Rischio</th></thead>
+
+            <!--Stampa percentuale Aterosclerosi-->
+            <tbody role="rowgroup" id="ateroBody"><tr><td id="ateroPredict"></td></tr></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    <br>
+      <!--Pulsante Infarto-->
+      <div class="predizioni">
+        <p> <input type = "button" class = "infarto" value = "Infarto"></p>
+        <div>
+
+          <!--Sezione percentuale Infarto-->
+          <table class ="percentuale">
+
+            <thead><th>Rischio</th></thead>
+
+            <!--Stampa percentuale Infarto-->
+            <tbody role="rowgroup" id="infartoBody"><tr><td id="infartoPredict"></td></tr></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!--Sezione grafico predizioni-->
+    <div id="graficoBody"><div id ="graficoAtero"></div><div id="graficoInfarto"></div></div>
+
+  </div>
+
+  <!--Barra Navigazionale-->
+  <nav style="right: 195px;">
+    <a href="Device.html">Device</a>
+    <a href="AreaPredizioni.html" ><input type="radio"  class="check">Area Predizioni</a>
+    <a href="Report.html">Report</a>
+    <a onclick="javascript:hide()"> Chatbot</a>
+    <div class="animation start-area-predizioni"></div>
+  </nav>
+
+</body>
+
+</html>

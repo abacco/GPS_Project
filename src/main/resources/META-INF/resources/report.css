@@ -1,0 +1,341 @@
+@charset "iso-8859-1";
+
+::-webkit-scrollbar{
+    width:0.4em;
+    height:0.2em;
+    background: transparent;
+    margin-right: 10px;
+    padding: 5px;
+}
+::-webkit-scrollbar:hover{
+    background-color:#eaeaea ;
+    border: none;
+}
+::-webkit-resizer{
+    -webkit-border-radius:4px;
+    background-color:#ccc;
+    border: none;
+}
+::-webkit-scrollbar-thumb{
+    min-height:0.8em;
+    min-width:0.8em;
+    -webkit-border-radius:4px;
+    background-color: rgba(42, 42, 42, 0.71);
+    border: none;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #282828;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb:active{
+    background-color:rgba(42, 42, 42, 0.71);
+    border: none;
+}
+
+.body {
+    background-color: #a0faec;
+}
+
+.float{
+    position:fixed;
+    bottom:10px;
+    right:72px;
+    background-color: #fff;
+    color:#000;
+    border-radius:50px;
+    text-align:center;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+    z-index: 999;
+}
+
+.float-due{
+    position:fixed;
+    bottom:10px;
+    left:72px;
+    background-color: #fff;
+    color:#000;
+    border-radius:50px;
+    text-align:center;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+
+    z-index: 999;
+}
+
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    background-color: white;
+
+    /* bordi arrotondati */
+    border-radius: 15px;
+    border: 3px solid #fff;
+
+    /* ombra */
+    box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+}
+
+.container2 {
+    background-color: white;
+
+    height: 765px;
+    overflow: scroll;
+
+    /* bordi arrotondati */
+    border-radius: 15px;
+    border: 3px solid #fff;
+
+    /* ombra */
+    box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+    padding: 5px;
+}
+
+.container3 {
+    background-color: white;
+
+    /* bordi arrotondati */
+    border-radius: 15px;
+    border: 3px solid #fff;
+
+    /* ombra */
+    box-shadow: 6px 6px 13px 2px rgba(0,0,0,0.45);
+
+    padding: 3px;
+}
+
+.caption-border {
+    /* bordi arrotondati */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+table.comicGreen {
+    border: 10px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 100%;
+    text-align: left;
+    align-content: center;
+    border-collapse: collapse;
+}
+table.comicGreen td, table.comicGreen th {
+    border: 0px solid #fff;
+    padding: 3px 20px;
+    border-radius: 10px;
+}
+
+table.comicGreen tfoot {
+    font-size: 21px;
+    font-weight: bold;
+    color: #000;
+    background: #fff;
+    border-top: 1px solid #fff;
+    border-radius: 10px;
+}
+table.comicGreen tfoot td {
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+.sensore-uno {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: #ace894;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+.sensore-due {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: #ace894;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+.sensore-tre {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: #ace894;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+.sensore-quattro {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: #ace894; /* red color for not error in sensor C2002D*/
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+.sensore-cinque {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: #ace894;
+
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.30);
+}
+
+.alert {
+    border-radius: 15px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.stampa{
+
+    text-wrap: none;
+    overflow-x: scroll;
+    border-radius: 20px;
+    color:black;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 1500px;
+    text-align: center;
+    font-size: 20px;
+    height: 600px;
+    border: none;
+    box-shadow: 2px 2px 5px grey;
+    margin: 50px auto auto auto;
+
+}
+
+.tabella{
+
+    font-family: "Times New Roman";
+    font-size: 25px;
+    margin: 15px auto;
+    font-weight: normal;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 10px;
+}
+
+#stampa{
+
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.date{
+
+    width: 1840px;
+    background-color: white;
+    border-radius: 10px;
+    display: inline-flex;
+    box-shadow: 2px 2px 5px grey;
+    padding: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+#startDate{
+
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: white;
+    margin-left: 5px;
+    margin-right: 50px;
+    box-shadow: 2px 2px 5px grey;
+
+}
+
+#endDate {
+
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border-color: white;
+    margin-left: 5px;
+    margin-right: 50px;
+    box-shadow: 2px 2px 5px grey;
+
+}
+
+.scarica{
+
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+    text-decoration: none;
+    color:black;
+    width: 20px;
+
+}
+
+.scarica:visited{
+
+    text-decoration: none;
+    color:black;
+
+}
+
+.genera{
+
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 50px;
+    background-color: #a0faec;
+    border:solid 0.5px;
+    box-shadow: 2px 2px 5px grey;
+
+}
+
+.icona{
+
+    width: 40px;
+    margin-left: 100px;
+
+}

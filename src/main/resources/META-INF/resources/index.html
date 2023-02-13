@@ -1,65 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
-    <link
-            rel="stylesheet"
-            href="https://unpkg.com/@patternfly/patternfly/patternfly.css"
-            crossorigin="anonymous"
-    >
-    <title>Edge Device</title>
-    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
-    <style>
-        canvas{
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="welcome_page_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;1,100;1,600&family=Oswald:wght@200;300;600;700&display=swap" rel="stylesheet">
+    <title>CardioTel - Welcome Page</title>
+
 </head>
-<body>
-<nav class="navbar navbar-default navbar-pf" role="navigation">
-    <div class="collapse navbar-collapse navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-primary">
-            <li>
-                <a href="#0">Devices</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container">
+<body class="body">
+    <div class="container">
+        <img src="images/logo.png" class="logo">
 
-    <!-- PatternFly components -->
-    <div class="alert alert-success" style="text-align: center">
-        <strong>Working Sensors</strong> <a href="#" class="alert-link"></a>.
+        <button class="button" type="button" onclick="linker()">COLLEGA DISPOSITIVO</button>
+
     </div>
 
-    <div style="width:100%;">
-        <canvas id="canvas"></canvas>
-    </div>
-    <br>
-    <br>
-    <script src='./plot.js'></script>
-    <table class="pf-c-table pf-m-grid-md" role="grid" id="device-table">
-        <caption>Realtime data</caption>
-        <thead>
-        <tr role="row">
-            <th role="columnheader" scope="col">Device Name</th>
-            <th role="columnheader" scope="col">Temperature</th>
-            <th role="columnheader" scope="col">Heart Frequency</th>
-            <th role="columnheader" scope="col">Reading</th>
-        </tr>
-        </thead>
-        <tbody role="rowgroup" id="tempBody">
-        </tbody>
-    </table>
-</div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js"></script>
+
+    <script>
+        function linker() {
+            window.location.href="device_recognition.html";
+        }
+    </script>
 </body>
 </html>
-
