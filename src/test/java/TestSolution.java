@@ -29,7 +29,7 @@ public class TestSolution {
         Solution solution1 = new Solution("Infarto", "soluzioneInfarto");
         Solution solution2 = new Solution("Febbre", "soluzioneInfarto");
         Solution solution3 = new Solution("Infarto", "soluzioneInfarto");
-      //  assertNotEquals(solution1, solution2);
+        //  assertNotEquals(solution1, solution2);
         assertEquals(solution1, solution3);
     }
 
@@ -38,7 +38,7 @@ public class TestSolution {
         Solution solution1 = new Solution("Infarto", "soluzioneInfarto");
         Solution solution2 = new Solution("Febbre", "soluzioneInfarto");
         Solution solution3 = new Solution("Infarto", "soluzioneInfarto");
-       // assertNotEquals(solution1.hashCode(), solution2.hashCode());
+        // assertNotEquals(solution1.hashCode(), solution2.hashCode());
         assertEquals(solution1.hashCode(), solution3.hashCode());
     }
 }
