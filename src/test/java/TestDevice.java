@@ -25,7 +25,7 @@ public class TestDevice {
         Response r = (Response) given()
                 .when()
                 .get("/devices");
-            assertThat(this.t.getEsp8266().getDeviceName(), is("ESP8266-01"));
+        assertThat(this.t.getEsp8266().getDeviceName(), is("ESP8266-01"));
     }
 
     @Test
