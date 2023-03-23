@@ -20,15 +20,15 @@ import java.util.Random;
 @ApplicationScoped
 public class MLModel {
 
-    public static final double percentageRischio = 45;
-    public static final double percentageSicuro = 35;
+    public static final double percentageRischio = 50;
+    public static final double percentageSicuro = 40;
 
     //tramite il datasource fornito crea un modello da sfruttare per la predizione
     public static LinearRegression getModel(DataSource source) throws Exception {
 
         //get dataset from datasource
         Instances dataset = source.getDataSet();
-        dataset.setClassIndex(dataset.numAttributes() - 1);
+        dataset.setClassIndex(dataset.attribute("predizione").index());
 
         //Build model
         LinearRegression model = new LinearRegression();
@@ -44,8 +44,11 @@ public class MLModel {
         try {
             //ottenimento modello dal dataset
             LinearRegression model = getModel(source);
-            Evaluation eval= new Evaluation(instances);
-            eval.crossValidateModel(model,instances,10,new Random());
+            Instances dataset = source.getDataSet();
+            dataset.setClassIndex(dataset.attribute("predizione").index());
+
+            Evaluation eval= new Evaluation(dataset);
+            eval.crossValidateModel(model,dataset,10,new Random());
 
             Predizione pr = new Predizione();
 
@@ -53,11 +56,11 @@ public class MLModel {
             double percent = 0;
             int cont = 0;
             for (Instance i : instances) {
-                percent = +model.classifyInstance(i);
+                percent += model.classifyInstance(i);
                 cont++;
             }
 
-            percent += percent / cont;
+            percent = percent / cont;
 
 
             pr.setPercentualeRischio(percent);
@@ -72,7 +75,8 @@ public class MLModel {
             }
 
             //inserisce la valutazione del modello da stampare
-            pr.setModello(eval.toSummaryString());
+            pr.setModello( "\n"+ "\n"+("Mean Absolute Error :" +"\n"+ eval.meanAbsoluteError())+"\n" +"\n"+
+                    ("Root Mean Absolute Error" + "\n" + eval.rootMeanSquaredError())+"\n");
             return pr;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -85,10 +89,10 @@ public class MLModel {
         String outputFilename = "";
 
         if (malattia.equals("infarto")) {
-            dataset = PredizioniInfartoService.getAsInstanceInfarto(rilevazione);
+            dataset = PredizioniInfartoService.getAsInstanceInfarto(rilevazione, null);
             outputFilename = "RilevazioniSetInfarto.arff";
         } else {
-            dataset = PredizioniAteroService.getAsInstanceAtero(rilevazione);
+            dataset = PredizioniAteroService.getAsInstanceAtero(rilevazione, null);
             outputFilename = "RilevazioniSetAtero.arff";
         }
 
@@ -114,7 +118,7 @@ public class MLModel {
 
         percent.add(normalise(rilevazione.getPressione(), Device.minPresMas, Device.maxPresMas));
         percent.add(normalise(rilevazione.getPressione_due(), Device.minPresMin, Device.maxPresMin));
-        percent.add(normalise(rilevazione.getPressione(), Device.minCol, Device.maxCol));
+        percent.add(normalise(rilevazione.getColesterolo(), Device.minCol, Device.maxCol));
         if (malattia.equals("infarto")) {
             percent.add(normalise(rilevazione.getHeartFrequency(), Device.minHeart, Device.maxHeart));
         }
