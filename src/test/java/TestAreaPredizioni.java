@@ -129,8 +129,8 @@ public class TestAreaPredizioni {
         LinearRegression model = ml.getModel(source);
 
         //ottengo il mean absolute error per verificare lo scarto entro il quale deve essere preciso
-        Evaluation eval= new Evaluation(PredizioniAteroService.getAsInstanceAtero(rilevazioni));
-        eval.crossValidateModel(model, PredizioniAteroService.getAsInstanceAtero(rilevazioni),10,new Random());
+        Evaluation eval= new Evaluation(PredizioniAteroService.getAsInstanceAtero(rilevazioni, "testing"));
+        eval.crossValidateModel(model, PredizioniAteroService.getAsInstanceAtero(rilevazioni, "testing"),10,new Random());
         double meanAbsoluteError = eval.meanAbsoluteError();
 
         System.out.println(predizioniCalcolate + "%\n" + predizioneEffettiva +"%\nMAE\t " + meanAbsoluteError);
@@ -157,8 +157,8 @@ public class TestAreaPredizioni {
         LinearRegression model = ml.getModel(source);
 
         //ottengo il mean absolute error per verificare lo scarto entro il quale deve essere preciso
-        Evaluation eval= new Evaluation(PredizioniInfartoService.getAsInstanceInfarto(rilevazioni));
-        eval.crossValidateModel(model, PredizioniInfartoService.getAsInstanceInfarto(rilevazioni),10,new Random());
+        Evaluation eval= new Evaluation(PredizioniInfartoService.getAsInstanceInfarto(rilevazioni, "testing"));
+        eval.crossValidateModel(model, PredizioniInfartoService.getAsInstanceInfarto(rilevazioni, "testing"),10,new Random());
         double meanAbsoluteError = eval.meanAbsoluteError();
 
         System.out.println(predizioniCalcolate + "%\n" + predizioneEffettiva +"%\nMAE\t " + meanAbsoluteError);
