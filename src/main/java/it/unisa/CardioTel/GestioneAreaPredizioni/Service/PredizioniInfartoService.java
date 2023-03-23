@@ -32,7 +32,7 @@ public class PredizioniInfartoService {
                 DataSource source = new DataSource(MLModel.getArff("infarto", rilevazione));
 
                 //creazione Intance da classificare
-                Instances instance = getAsInstanceInfarto(rilevazione);
+                Instances instance = getAsInstanceInfarto(rilevazione, "testing");
 
 
                 return MLModel.classifyInstance(instance,source);
@@ -49,7 +49,7 @@ public class PredizioniInfartoService {
     }
 
 
-    public static Instances getAsInstanceInfarto(List<Device> rilevazioni){
+    public static Instances getAsInstanceInfarto(List<Device> rilevazioni, String testing){
         @Deprecated
         FastVector deviceList = new FastVector<>();
 
@@ -61,29 +61,32 @@ public class PredizioniInfartoService {
 
         //creare fastvector con gli attributi necessari alla predizione
 
+        instance.addElement(new Attribute("heartFreq"));
         instance.addElement(new Attribute("pressione"));
         instance.addElement(new Attribute("pressione_due"));
         instance.addElement(new Attribute("colesterolo"));
         instance.addElement(new Attribute("predizione"));
 
-        Instances data = new Instances("dataSetAtero", instance, 0);
+        Instances data = new Instances("dataSetInfarto", instance, 0);
 
 
         for(int i=0;i<rilevazioni.size();i++){
-            double[] vals = new double[data.numAttributes()];  // important: needs NEW array!
+            double[] vals = new double[instance.size()];  // important: needs NEW array!
 
             Device rilevazione = rilevazioni.get(i);
-            vals[0] = rilevazione.getPressione();
-            vals[1] = rilevazione.getPressione_due();
-            vals[2] = rilevazione.getColesterolo();
-            vals[3] = MLModel.calcolaPrediction(rilevazione,"infarto");
+            vals[0] = MLModel.normalise(rilevazione.getHeartFrequency(), Device.minHeart, Device.maxHeart);
+            vals[1] = MLModel.normalise(rilevazione.getPressione(), Device.minPresMas, Device.maxPresMas);
+            vals[2] = MLModel.normalise(rilevazione.getPressione_due(), Device.minPresMin, Device.maxPresMin);
+            vals[3] = MLModel.normalise(rilevazione.getColesterolo(), Device.minCol, Device.maxCol);
+            if (testing == null)
+                vals[4] = MLModel.calcolaPrediction(rilevazione,"infarto");
 
             data.add(new DenseInstance(1.0,vals));
 
         }
 
-        data.setClassIndex(data.numAttributes()-1);
         return data;
+
 
     }
 

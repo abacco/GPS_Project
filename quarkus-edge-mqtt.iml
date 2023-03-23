@@ -389,14 +389,6 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.0" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.0" level="project" />
     <orderEntry type="library" name="Maven: org.jacoco:org.jacoco.report:0.8.8" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.core:contenttype:3.4.200-v20140207-1251" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.equinox:preferences:3.5.200-v20140224-1527" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.equinox:registry:3.5.400-v20140428-1507" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.equinox:common:3.6.200-v20130402-1505" level="project" />
-    <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.16.0" level="project" />
-    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_tracer_otel:0.16.0" level="project" />
-    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_tracer_common:0.16.0" level="project" />
-    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_tracer_otel_agent:0.16.0" level="project" />
   </component>
   <component name="Quarkus Tools">
     <option name="hash" value="1102555976" />
